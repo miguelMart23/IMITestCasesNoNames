@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Tools QA TestSuite]" guice-stage="DEVELOPMENT" verbose="0">
+  <test thread-count="5" name="Home(failed)" verbose="0">
+    <classes>
+      <class name="Home">
+        <methods>
+          <include name="breakup_test"/>
+          <include name="TQA_Home_001"/>
+          <include name="setup_test"/>
+        </methods>
+      </class> <!-- Home -->
+    </classes>
+  </test> <!-- Home(failed) -->
+</suite> <!-- Failed suite [Tools QA TestSuite] -->

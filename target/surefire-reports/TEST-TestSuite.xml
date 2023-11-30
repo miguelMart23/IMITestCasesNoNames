@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="TestSuite" time="7.507" tests="3" errors="0" skipped="2" failures="1">
+  <properties>
+    <property name="java.specification.version" value="20"/>
+    <property name="webdriver.chrome.driver" value="src/test/resources/chromedriver.exe"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+    <property name="sun.jnu.encoding" value="Cp1252"/>
+    <property name="java.class.path" value="c:\desarrollo\javaSeleniumBasicProject\target\test-classes;c:\desarrollo\javaSeleniumBasicProject\target\classes;C:\Users\miguel.martinez-gime\.m2\repository\org\seleniumhq\selenium\selenium-java\3.141.59\selenium-java-3.141.59.jar;C:\Users\miguel.martinez-gime\.m2\repository\org\seleniumhq\selenium\selenium-chrome-driver\3.141.59\selenium-chrome-driver-3.141.59.jar;C:\Users\miguel.martinez-gime\.m2\repository\org\seleniumhq\selenium\selenium-edge-driver\3.141.59\selenium-edge-driver-3.141.59.jar;C:\Users\miguel.martinez-gime\.m2\repository\org\seleniumhq\selenium\selenium-firefox-driver\3.141.59\selenium-firefox-driver-3.141.59.jar;C:\Users\miguel.martinez-gime\.m2\repository\org\seleniumhq\selenium\selenium-ie-driver\3.141.59\selenium-ie-driver-3.141.59.jar;C:\Users\miguel.martinez-gime\.m2\repository\org\seleniumhq\selenium\selenium-opera-driver\3.141.59\selenium-opera-driver-3.141.59.jar;C:\Users\miguel.martinez-gime\.m2\repository\org\seleniumhq\selenium\selenium-remote-driver\3.141.59\selenium-remote-driver-3.141.59.jar;C:\Users\miguel.martinez-gime\.m2\repository\org\seleniumhq\selenium\selenium-safari-driver\3.141.59\selenium-safari-driver-3.141.59.jar;C:\Users\miguel.martinez-gime\.m2\repository\net\bytebuddy\byte-buddy\1.8.15\byte-buddy-1.8.15.jar;C:\Users\miguel.martinez-gime\.m2\repository\org\apache\commons\commons-exec\1.3\commons-exec-1.3.jar;C:\Users\miguel.martinez-gime\.m2\repository\com\google\guava\guava\25.0-jre\guava-25.0-jre.jar;C:\Users\miguel.martinez-gime\.m2\repository\com\google\code\findbugs\jsr305\1.3.9\jsr305-1.3.9.jar;C:\Users\miguel.martinez-gime\.m2\repository\org\checkerframework\checker-compat-qual\2.0.0\checker-compat-qual-2.0.0.jar;C:\Users\miguel.martinez-gime\.m2\repository\com\google\errorprone\error_prone_annotations\2.1.3\error_prone_annotations-2.1.3.jar;C:\Users\miguel.martinez-gime\.m2\repository\com\google\j2objc\j2objc-annotations\1.1\j2objc-annotations-1.1.jar;C:\Users\miguel.martinez-gime\.m2\repository\org\codehaus\mojo\animal-sniffer-annotations\1.14\animal-sniffer-annotations-1.14.jar;C:\Users\miguel.martinez-gime\.m2\repository\com\squareup\okhttp3\okhttp\3.11.0\okhttp-3.11.0.jar;C:\Users\miguel.martinez-gime\.m2\repository\com\squareup\okio\okio\1.14.0\okio-1.14.0.jar;C:\Users\miguel.martinez-gime\.m2\repository\org\seleniumhq\selenium\selenium-api\3.141.59\selenium-api-3.141.59.jar;C:\Users\miguel.martinez-gime\.m2\repository\org\seleniumhq\selenium\selenium-support\3.141.59\selenium-support-3.141.59.jar;C:\Users\miguel.martinez-gime\.m2\repository\org\testng\testng\7.7.1\testng-7.7.1.jar;C:\Users\miguel.martinez-gime\.m2\repository\com\beust\jcommander\1.82\jcommander-1.82.jar;C:\Users\miguel.martinez-gime\.m2\repository\org\webjars\jquery\3.6.1\jquery-3.6.1.jar;C:\Users\miguel.martinez-gime\.m2\repository\org\slf4j\slf4j-api\1.7.30\slf4j-api-1.7.30.jar;C:\Users\miguel.martinez-gime\.m2\repository\org\slf4j\slf4j-simple\1.7.25\slf4j-simple-1.7.25.jar;C:\Users\miguel.martinez-gime\.m2\repository\org\apache\commons\commons-lang3\3.8\commons-lang3-3.8.jar;C:\Users\miguel.martinez-gime\.m2\repository\commons-io\commons-io\2.11.0\commons-io-2.11.0.jar;"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="user.variant" value=""/>
+    <property name="java.vendor.url" value="https://java.oracle.com/"/>
+    <property name="user.timezone" value="Europe/Madrid"/>
+    <property name="os.name" value="Windows 10"/>
+    <property name="java.vm.specification.version" value="20"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="user.country" value="ES"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-20\bin"/>
+    <property name="sun.java.command" value="C:\Users\miguel.martinez-gime\AppData\Local\Temp\surefire1141110671613896068\surefirebooter11268610015697042091.jar C:\Users\miguel.martinez-gime\AppData\Local\Temp\surefire1141110671613896068 2023-06-27T08-21-32_435-jvmRun1 surefire12827133067875038489tmp surefire_0558602487463853018tmp"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="c:\desarrollo\javaSeleniumBasicProject\target\test-classes;c:\desarrollo\javaSeleniumBasicProject\target\classes;C:\Users\miguel.martinez-gime\.m2\repository\org\seleniumhq\selenium\selenium-java\3.141.59\selenium-java-3.141.59.jar;C:\Users\miguel.martinez-gime\.m2\repository\org\seleniumhq\selenium\selenium-chrome-driver\3.141.59\selenium-chrome-driver-3.141.59.jar;C:\Users\miguel.martinez-gime\.m2\repository\org\seleniumhq\selenium\selenium-edge-driver\3.141.59\selenium-edge-driver-3.141.59.jar;C:\Users\miguel.martinez-gime\.m2\repository\org\seleniumhq\selenium\selenium-firefox-driver\3.141.59\selenium-firefox-driver-3.141.59.jar;C:\Users\miguel.martinez-gime\.m2\repository\org\seleniumhq\selenium\selenium-ie-driver\3.141.59\selenium-ie-driver-3.141.59.jar;C:\Users\miguel.martinez-gime\.m2\repository\org\seleniumhq\selenium\selenium-opera-driver\3.141.59\selenium-opera-driver-3.141.59.jar;C:\Users\miguel.martinez-gime\.m2\repository\org\seleniumhq\selenium\selenium-remote-driver\3.141.59\selenium-remote-driver-3.141.59.jar;C:\Users\miguel.martinez-gime\.m2\repository\org\seleniumhq\selenium\selenium-safari-driver\3.141.59\selenium-safari-driver-3.141.59.jar;C:\Users\miguel.martinez-gime\.m2\repository\net\bytebuddy\byte-buddy\1.8.15\byte-buddy-1.8.15.jar;C:\Users\miguel.martinez-gime\.m2\repository\org\apache\commons\commons-exec\1.3\commons-exec-1.3.jar;C:\Users\miguel.martinez-gime\.m2\repository\com\google\guava\guava\25.0-jre\guava-25.0-jre.jar;C:\Users\miguel.martinez-gime\.m2\repository\com\google\code\findbugs\jsr305\1.3.9\jsr305-1.3.9.jar;C:\Users\miguel.martinez-gime\.m2\repository\org\checkerframework\checker-compat-qual\2.0.0\checker-compat-qual-2.0.0.jar;C:\Users\miguel.martinez-gime\.m2\repository\com\google\errorprone\error_prone_annotations\2.1.3\error_prone_annotations-2.1.3.jar;C:\Users\miguel.martinez-gime\.m2\repository\com\google\j2objc\j2objc-annotations\1.1\j2objc-annotations-1.1.jar;C:\Users\miguel.martinez-gime\.m2\repository\org\codehaus\mojo\animal-sniffer-annotations\1.14\animal-sniffer-annotations-1.14.jar;C:\Users\miguel.martinez-gime\.m2\repository\com\squareup\okhttp3\okhttp\3.11.0\okhttp-3.11.0.jar;C:\Users\miguel.martinez-gime\.m2\repository\com\squareup\okio\okio\1.14.0\okio-1.14.0.jar;C:\Users\miguel.martinez-gime\.m2\repository\org\seleniumhq\selenium\selenium-api\3.141.59\selenium-api-3.141.59.jar;C:\Users\miguel.martinez-gime\.m2\repository\org\seleniumhq\selenium\selenium-support\3.141.59\selenium-support-3.141.59.jar;C:\Users\miguel.martinez-gime\.m2\repository\org\testng\testng\7.7.1\testng-7.7.1.jar;C:\Users\miguel.martinez-gime\.m2\repository\com\beust\jcommander\1.82\jcommander-1.82.jar;C:\Users\miguel.martinez-gime\.m2\repository\org\webjars\jquery\3.6.1\jquery-3.6.1.jar;C:\Users\miguel.martinez-gime\.m2\repository\org\slf4j\slf4j-api\1.7.30\slf4j-api-1.7.30.jar;C:\Users\miguel.martinez-gime\.m2\repository\org\slf4j\slf4j-simple\1.7.25\slf4j-simple-1.7.25.jar;C:\Users\miguel.martinez-gime\.m2\repository\org\apache\commons\commons-lang3\3.8\commons-lang3-3.8.jar;C:\Users\miguel.martinez-gime\.m2\repository\commons-io\commons-io\2.11.0\commons-io-2.11.0.jar;"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="C:\Users\miguel.martinez-gime"/>
+    <property name="user.language" value="es"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2023-04-18"/>
+    <property name="java.home" value="C:\Program Files\Java\jdk-20"/>
+    <property name="file.separator" value="\"/>
+    <property name="basedir" value="c:\desarrollo\javaSeleniumBasicProject"/>
+    <property name="java.vm.compressedOopsMode" value="32-bit"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="surefire.real.class.path" value="C:\Users\miguel.martinez-gime\AppData\Local\Temp\surefire1141110671613896068\surefirebooter11268610015697042091.jar"/>
+    <property name="user.script" value=""/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="20.0.1+9-29"/>
+    <property name="user.name" value="miguel.martinez-gime"/>
+    <property name="stdout.encoding" value="Cp1252"/>
+    <property name="path.separator" value=";"/>
+    <property name="os.version" value="10.0"/>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="localRepository" value="C:\Users\miguel.martinez-gime\.m2\repository"/>
+    <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
+    <property name="java.io.tmpdir" value="C:\Users\MIGUEL~1.MAR\AppData\Local\Temp\"/>
+    <property name="java.version" value="20.0.1"/>
+    <property name="user.dir" value="c:\desarrollo\javaSeleniumBasicProject"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="native.encoding" value="Cp1252"/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk-20\bin;C:\windows\Sun\Java\bin;C:\windows\system32;C:\windows;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0\;C:\windows\System32\OpenSSH\;C:\Program Files\WindowsPowerShell\Scripts\HP.ClientScriptLibrary;C:\Users\miguel.martinez-gime\AppData\Local\Microsoft\WindowsApps;C:\Users\miguel.martinez-gime\AppData\Local\Programs\Microsoft VS Code\bin;C:\desarrollo\apache-maven-3.8.2\bin;;."/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="stderr.encoding" value="Cp1252"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="java.vm.version" value="20.0.1+9-29"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="java.class.version" value="64.0"/>
+  </properties>
+  <testcase name="setup_test" classname="Home" time="7.503">
+    <failure message="session not created: This version of ChromeDriver only supports Chrome version 111&#10;Current browser version is 114.0.5735.134 with binary path C:\Program Files\Google\Chrome\Application\chrome.exe&#10;Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;&#10;System info: host: &apos;IBLAESTARC08477&apos;, ip: &apos;10.228.64.252&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;20.0.1&apos;&#10;Driver info: driver.version: ChromeDriver&#10;remote stacktrace: Backtrace:&#10;	(No symbol) [0x00F8DCE3]&#10;	(No symbol) [0x00F239D1]&#10;	(No symbol) [0x00E34DA8]&#10;	(No symbol) [0x00E54F6C]&#10;	(No symbol) [0x00E50D11]&#10;	(No symbol) [0x00E4ED19]&#10;	(No symbol) [0x00E815AE]&#10;	(No symbol) [0x00E8129C]&#10;	(No symbol) [0x00E7ACC6]&#10;	(No symbol) [0x00E56F68]&#10;	(No symbol) [0x00E580CD]&#10;	GetHandleVerifier [0x01203832+2506274]&#10;	GetHandleVerifier [0x01239794+2727300]&#10;	GetHandleVerifier [0x0123E36C+2746716]&#10;	GetHandleVerifier [0x01036690+617600]&#10;	(No symbol) [0x00F2C712]&#10;	(No symbol) [0x00F31FF8]&#10;	(No symbol) [0x00F320DB]&#10;	(No symbol) [0x00F3C63B]&#10;	BaseThreadInitThunk [0x756400C9+25]&#10;	RtlGetAppContainerNamedObjectPath [0x771B7B4E+286]&#10;	RtlGetAppContainerNamedObjectPath [0x771B7B1E+238]&#10;" type="org.openqa.selenium.SessionNotCreatedException"><![CDATA[org.openqa.selenium.SessionNotCreatedException: 
+session not created: This version of ChromeDriver only supports Chrome version 111
+Current browser version is 114.0.5735.134 with binary path C:\Program Files\Google\Chrome\Application\chrome.exe
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'IBLAESTARC08477', ip: '10.228.64.252', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '20.0.1'
+Driver info: driver.version: ChromeDriver
+remote stacktrace: Backtrace:
+	(No symbol) [0x00F8DCE3]
+	(No symbol) [0x00F239D1]
+	(No symbol) [0x00E34DA8]
+	(No symbol) [0x00E54F6C]
+	(No symbol) [0x00E50D11]
+	(No symbol) [0x00E4ED19]
+	(No symbol) [0x00E815AE]
+	(No symbol) [0x00E8129C]
+	(No symbol) [0x00E7ACC6]
+	(No symbol) [0x00E56F68]
+	(No symbol) [0x00E580CD]
+	GetHandleVerifier [0x01203832+2506274]
+	GetHandleVerifier [0x01239794+2727300]
+	GetHandleVerifier [0x0123E36C+2746716]
+	GetHandleVerifier [0x01036690+617600]
+	(No symbol) [0x00F2C712]
+	(No symbol) [0x00F31FF8]
+	(No symbol) [0x00F320DB]
+	(No symbol) [0x00F3C63B]
+	BaseThreadInitThunk [0x756400C9+25]
+	RtlGetAppContainerNamedObjectPath [0x771B7B4E+286]
+	RtlGetAppContainerNamedObjectPath [0x771B7B1E+238]
+
+	at Home.setup_test(Home.java:32)
+]]></failure>
+    <system-err><![CDATA[Starting ChromeDriver 111.0.5563.64 (c710e93d5b63b7095afe8c2c17df34408078439d-refs/branch-heads/5563@{#995}) on port 34102
+Only local connections are allowed.
+Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+ChromeDriver was started successfully.
+]]></system-err>
+  </testcase>
+  <testcase name="TQA_Home_001" classname="Home" time="0">
+    <skipped message="session not created: This version of ChromeDriver only supports Chrome version 111&#10;Current browser version is 114.0.5735.134 with binary path C:\Program Files\Google\Chrome\Application\chrome.exe&#10;Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;&#10;System info: host: &apos;IBLAESTARC08477&apos;, ip: &apos;10.228.64.252&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;20.0.1&apos;&#10;Driver info: driver.version: ChromeDriver&#10;remote stacktrace: Backtrace:&#10;	(No symbol) [0x00F8DCE3]&#10;	(No symbol) [0x00F239D1]&#10;	(No symbol) [0x00E34DA8]&#10;	(No symbol) [0x00E54F6C]&#10;	(No symbol) [0x00E50D11]&#10;	(No symbol) [0x00E4ED19]&#10;	(No symbol) [0x00E815AE]&#10;	(No symbol) [0x00E8129C]&#10;	(No symbol) [0x00E7ACC6]&#10;	(No symbol) [0x00E56F68]&#10;	(No symbol) [0x00E580CD]&#10;	GetHandleVerifier [0x01203832+2506274]&#10;	GetHandleVerifier [0x01239794+2727300]&#10;	GetHandleVerifier [0x0123E36C+2746716]&#10;	GetHandleVerifier [0x01036690+617600]&#10;	(No symbol) [0x00F2C712]&#10;	(No symbol) [0x00F31FF8]&#10;	(No symbol) [0x00F320DB]&#10;	(No symbol) [0x00F3C63B]&#10;	BaseThreadInitThunk [0x756400C9+25]&#10;	RtlGetAppContainerNamedObjectPath [0x771B7B4E+286]&#10;	RtlGetAppContainerNamedObjectPath [0x771B7B1E+238]&#10;"/>
+  </testcase>
+  <testcase name="breakup_test" classname="Home" time="0">
+    <skipped/>
+  </testcase>
+</testsuite>
