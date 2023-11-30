@@ -24,8 +24,5 @@ Antes de ejecutar la Test Suite, asegúrate de tener instalados los siguientes c
 ## Uso
 Ejecuta la Test Suite desde tu IDE o mediante la línea de comandos. Asegúrate de haber configurado correctamente las propiedades en los archivos de configuración.
 
-## Contribuciones
-Si encuentras algún problema o tienes sugerencias para mejorar la Test Suite, no dudes en abrir un problema o enviar una solicitud de extracción. ¡Tus contribuciones son bienvenidas!
-
 ## Licencia
 Este proyecto está bajo la Licencia MIT.
