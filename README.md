@@ -19,7 +19,7 @@ Antes de ejecutar la Test Suite, asegúrate de tener instalados los siguientes c
 1. Clona este repositorio en tu máquina local:
 
    ```bash
-   git clone https://github.com/tuusuario/test-suite-imib.git
+   git clone https://github.com/miguelMart23/IMITestCasesNoNames.git
    
 ## Uso
 Ejecuta la Test Suite desde tu IDE o mediante la línea de comandos. Asegúrate de haber configurado correctamente las propiedades en los archivos de configuración.
