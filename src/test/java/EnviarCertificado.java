@@ -29,7 +29,7 @@ public class EnviarCertificado implements Runnable {
             }
 
             // Baja hasta que sea 
-            for (int i = 0; i > pulsarFlecha; i++) {
+            for (int i = 0; i < pulsarFlecha; i++) {
                 robot.keyPress(KeyEvent.VK_DOWN);
                 robot.keyRelease(KeyEvent.VK_DOWN);
             }
