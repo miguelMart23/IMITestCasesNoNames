@@ -67,13 +67,13 @@ public class Main {
    public void IMI_TC001() throws InterruptedException {
 
       // Paso 1
-      OficinaVirtualActions.accederOficinaVirtual();
+      AccionComun.accederOficinaVirtual();
       
       // Paso 2
-      OficinaVirtualActions.accederPaginaBusquedaTramites();
+      AccionComun.accederPaginaBusquedaTramites();
 
       // Paso 3
-      OficinaVirtualActions.ordenarAlfabeticamente('A');
+      AccionComun.ordenarAlfabeticamente('A');
 
       
   }
@@ -88,11 +88,11 @@ public class Main {
    public void IMI_TC002() throws InterruptedException {
  
       // Paso 1
-      OficinaVirtualActions.accederOficinaVirtual();
+      AccionComun.accederOficinaVirtual();
 
       
       // Paso 2
-      OficinaVirtualActions.realizarBusquedaOficinaVirtual("venda");
+      AccionComun.realizarBusquedaOficinaVirtual("venda");
   }
 
 
@@ -106,10 +106,13 @@ public class Main {
    public void IMI_TC003() throws InterruptedException {
  
       // Paso 1
-      TramitesActions.accederPaginaCrearTramite();
+      AccionComun.accederPaginaCrearTramite();
+
+      // Accion
+      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(("//button[contains(@class,\"btn-certificatDigital\")]")))).click();
       
       // Paso 2
-      TramitesActions.loginConCertificadoAOC();
+      AccionComun.loginCertificado(true);
       
       // Paso 3
       // Accion
@@ -203,13 +206,13 @@ public class Main {
    public void IMI_TC004_BT001() throws InterruptedException {
  
       // Paso 1
-      OficinaVirtualActions.accederOficinaVirtual();
+      AccionComun.accederOficinaVirtual();
       
       // Paso 2
-      OficinaVirtualActions.realizarBusquedaOficinaVirtual("Dret d'accés a la informació pública");
+      AccionComun.realizarBusquedaOficinaVirtual("Dret d'accés a la informació pública");
 
       // Paso 3
-      OficinaVirtualActions.verificarBusquedaOficinaVirtual("Dret d'accés a la informació pública");
+      AccionComun.verificarBusquedaOficinaVirtual("Dret d'accés a la informació pública");
   }
 
   
