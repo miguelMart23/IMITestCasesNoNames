@@ -19,14 +19,8 @@ public class EnviarCertificado implements Runnable {
             Robot robot = new Robot();
             int pulsarFlecha;
 
-            // Aquí se pone cuantas veces tiene que bajar la flecha hasta llegar al certificado de ciudadano
-            if (esCiudadano) {
-                pulsarFlecha = 2;
-
-            // Aquí se pone cuantas veces tiene que bajar la flecha hasta llegar al certificado de empresa
-            } else {
-                pulsarFlecha = 3;
-            }
+            // Aquí se pone cuantas veces tiene que bajar la flecha hasta llegar al certificado (1º ciudadano, 2º empresa)
+            int pulsarFlecha = (esCiudadano) ? 2 : 3; 
 
             // Baja hasta que sea 
             for (int i = 0; i < pulsarFlecha; i++) {
