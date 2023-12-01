@@ -21,8 +21,8 @@ public class Main {
 
   // Instanciar acciones/condiciones
   public static String testId;
-  WebDriver driver;
-  Wait<WebDriver> wait; 
+  static WebDriver driver;
+  static Wait<WebDriver> wait; 
   private static Main home_instance = null;
 
   // Instanciar clases de test con patrón Singleton
@@ -63,22 +63,18 @@ public class Main {
    * filtrar el contenido que se muestre empieze por la letra "A"
    */
   
-   @Test(description = "IMI_TC001", enabled = true)
+   @Test(description = "IMI_TC001 - Ordenar Alfabéticamente", enabled = true)
    public void IMI_TC001() throws InterruptedException {
 
       // Paso 1
-      // Accion
-      driver.get("https://seuelectronica.ajuntament.barcelona.cat/oficinavirtual/ca");
-      Thread.sleep(1000);
+      OficinaVirtualActions.accederOficinaVirtual();
       
       // Paso 2
-      wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//a[contains(@class,'font s16 regular white research-all')]")))).click();
-      
+      OficinaVirtualActions.accederPaginaBusquedaTramites();
+
       // Paso 3
-      wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//a[text()='A']")))).click();
-      // Asserts
-      Assert.assertTrue(driver.findElement(By.xpath("//span[@id='A']")).isDisplayed());
-      Thread.sleep(1000);
+      OficinaVirtualActions.ordenarAlfabeticamente('A');
+
       
   }
 
@@ -87,21 +83,114 @@ public class Main {
     * Validar que trás buscar una palabra clave de resultados
    */
   
-   @Test(description = "IMI_TC002", enabled = true)
+   @Test(description = "IMI_TC002 – Buscar palabra clave portal", enabled = true)
 
    public void IMI_TC002() throws InterruptedException {
  
       // Paso 1
-      // Accion
-      driver.get("https://seuelectronica.ajuntament.barcelona.cat/oficinavirtual/ca");
-      Thread.sleep(1000);
+      OficinaVirtualActions.accederOficinaVirtual();
+
       
       // Paso 2
-      // Accion
-      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(("//input[@name=\"searchWord\"]")))).sendKeys("venda");
-      // Asserts
-      Assert.assertTrue(driver.findElements(By.xpath("//strong[text()='venda']")).isEmpty());
+      OficinaVirtualActions.realizarBusquedaOficinaVirtual("venda");
   }
+
+
+     /**
+    * IMI_TC002 – Buscar palabra clave portal
+    * Validar que trás buscar una palabra clave de resultados
+   */
+  
+   @Test(description = "IMI_TC003", enabled = true)
+
+   public void IMI_TC003() throws InterruptedException {
+ 
+      // Paso 1
+      TramitesActions.accederPaginaCrearTramite();
+      
+      // Paso 2
+      TramitesActions.loginConCertificadoAOC();
+      
+      // Paso 3
+      // Accion
+      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//select[@id='T00i_INT_domTipoVia']/option[@value='DM.R.CALLE']"))).click();
+    
+      // Paso 4
+      // Accion
+      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='T00i_INT_domNombre']"))).sendKeys("Montserrat");
+    
+      // Paso 5
+      // Accion
+      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='T00i_INT_domNumero']"))).sendKeys("10");
+    
+      // Paso 6
+      // Accion
+      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='T00i_INT_domMunicipio']"))).sendKeys("Barcelona");
+    
+      // Paso 7
+      // Accion
+      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='T00i_INT_domProvincia']"))).sendKeys("Barcelona");
+    
+      // Paso 8
+      // Accion
+      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='T00i_INT_contEmail']"))).sendKeys("melopez@aubay.es");
+    
+      // Paso 9
+      // Accion
+      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='T00i_INT_contTelMobil']"))).sendKeys("605582675");
+    
+      // Paso 10
+      // Accion
+      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//textarea[@id='T00i_asuntoRegistro']"))).sendKeys("text prova");
+    
+      // Paso 11
+      // Accion
+      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//textarea[@id='T00i_expofets']"))).sendKeys("text prova");
+
+      // Paso 12
+      // Accion
+      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@value='CONS_NS.SI']"))).click();
+
+      // Paso 13
+      // Accion
+      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='continuar']']"))).click();
+    
+      // Paso 14
+      // Accion
+      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//label[contains(@for,'doc-file')]")));
+      
+      // Paso 15
+      // Accion
+      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='doc-file']"))).click();
+      
+      // Paso 16
+      // Accion
+      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='text_add']"))).sendKeys("titol prova");
+    
+      // Paso 17
+      // Accion
+      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[contains(@value,'Adjuntar')]"))).click();
+    
+      // Paso 18
+      // Accion
+      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'botonera')]//a[contains(@class,'enlaceboton')]"))).click();
+    
+      // Paso 19
+      // Accion
+      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[contains(@value,'Enviar')]"))).click();
+    
+      // Paso 20
+      // Accion
+      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@id='firmaNueva']"))).click();
+        
+      // Paso 21
+      // Accion
+      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[contains(@class,\"btn-certificatDigital\")]"))).click();
+        
+      
+
+    }
+
 
    /**
     * IMI_TC004_BT001 – Validar Búsqueda Portal
@@ -114,20 +203,15 @@ public class Main {
    public void IMI_TC004_BT001() throws InterruptedException {
  
       // Paso 1
-      // Accion
-      driver.get("https://seuelectronica.ajuntament.barcelona.cat/oficinavirtual/ca");
-      Thread.sleep(1000);
+      OficinaVirtualActions.accederOficinaVirtual();
       
       // Paso 2
-      // Accion
-      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@name=\"searchWord\"]"))).sendKeys("Dret d'accés");
+      OficinaVirtualActions.realizarBusquedaOficinaVirtual("Dret d'accés a la informació pública");
 
       // Paso 3
-      // Accion
-      wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//div[@role=\"listbox\"]/mat-option[1]")))).click();
-      // Asserts
-      Assert.assertTrue(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(), \"Dret d'accés a la informació pública\")]"))).isDisplayed());
-
+      OficinaVirtualActions.verificarBusquedaOficinaVirtual("Dret d'accés a la informació pública");
   }
+
+  
   
 }
