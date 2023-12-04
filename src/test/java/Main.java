@@ -1,4 +1,4 @@
-
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -12,8 +12,11 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -24,18 +27,18 @@ public class Main {
   public static String testId;
   static WebDriver driver;
   static Wait<WebDriver> wait; 
-  private static Main imi_instance = null;
-  
   static TakesScreenshot scrshot;
   static File srcFile;
   static File destFile;
 
+  private static Main home_instance = null;
+
   // Instanciar clases de test con patrón Singleton
   public static Main setInstance() {
-    if (imi_instance == null) {
-      imi_instance = new Main();
+    if (home_instance == null) {
+      home_instance = new Main();
     }
-    return imi_instance;
+    return home_instance;
   }
 
   @BeforeMethod
@@ -46,7 +49,8 @@ public class Main {
         chromeOptions.addArguments("start-maximized");
         chromeOptions.addArguments("--log-level=1");
 		    driver = new ChromeDriver(chromeOptions);
-        wait = new WebDriverWait(driver, 60);
+        wait = new WebDriverWait(driver, 10);
+        
   }
 
   @AfterMethod
@@ -58,63 +62,56 @@ public class Main {
   /**************************************************
    * Pruebas
    **************************************************/
-   /**
-    * IMI_TC004_BT001 – Validar Búsqueda Portal
-    * Validar que trás buscar
-    * algo en la la barra de búsqueda se abra su pagina de descripción
+
+
+    /**
+
+   * IMI_TC001 - Ordenar Alfabéticamente
+   * Comprovar que tras darle
+   * click a la letra "A" para
+   * filtrar el contenido que se muestre empieze por la letra "A"
    */
-   @Test(description = "IMI_TC004_BT001 - Validar Búsqueda Portal", enabled = true)
-   public void IMI_TC004_BT001() throws InterruptedException {
- 
+  
+   @Test(description = "IMI_TC001 - Ordenar Alfabéticamente", enabled = true)
+   public void IMI_TC001() throws InterruptedException {
+
       // Paso 1
       AccionComun.accederOficinaVirtual();
       
       // Paso 2
-      AccionComun.realizarBusquedaOficinaVirtual("Dret d'accés");
+      AccionComun.accederPaginaBusquedaTramites();
 
       // Paso 3
-      AccionComun.verificarBusquedaOficinaVirtual("Dret d'accés");
+      AccionComun.ordenarAlfabeticamente('A');
+
+      
   }
 
-  /**
-    * IMI_TC005_BT002 – Abrir Trámite
-    * Comprueba la acción de abrir trámite
+   /**
+    * IMI_TC002 – Buscar palabra clave portal
+    * Validar que trás buscar una palabra clave de resultados
    */
-  @Test(description = "IMI_TC005_BT002 - Abrir Trámite", enabled = true)
-  public void IMI_TC005_BT002() throws InterruptedException {
-    // Precondición
-    IMI_TC004_BT001();
-    
-    // Paso 1
-    AccionComun.iniciarTramite();
+  
+   @Test(description = "IMI_TC002 – Buscar palabra clave portal", enabled = true)
 
-    // Paso 2
-    AccionComun.loginCertificado(true);
+   public void IMI_TC002() throws InterruptedException {
+ 
+      // Paso 1
+      AccionComun.accederOficinaVirtual();
+
+      
+      // Paso 2
+      AccionComun.realizarBusquedaOficinaVirtual("venda");
   }
 
-  /**
-    * IMI_TC006_BT003 – Trámite Dret Accés
-    * Comprueba que se puede rellenar el trámite
-    */
-  @Test(description = "IMI_TC006_BT003 - Trámite Dret Accés", enabled = true)
-  public void IMI_TC006_BT003() throws InterruptedException {
-    // Precondición
-    IMI_TC005_BT002();
-    
-    // Paso 1
-    AccionComun.anyadirParametros("email", "test@test.com");
 
-    // Paso 2
-    AccionComun.aceptarSubmit();
-
-    // Paso 3
-    AccionComun.rellenarTextArea(1, "test");
-
-    // Paso 4
-    AccionComun.aceptarSubmit();
-
-    // Paso 5
-    AccionComun.aceptarSubmit();
+     /**
+    * IMI_TC002 – Buscar palabra clave portal
+    * Validar que trás buscar una palabra clave de resultados
+     * @throws IOException
+   */
+  
+   @Test(description = "IMI_TC003", enabled = true)
 
    public void IMI_TC003() throws InterruptedException, IOException {
  
@@ -137,56 +134,29 @@ public class Main {
       // Paso 6
       AccionComun.firmarDigitalmente();
 
-    // Paso 6
-    AccionComun.aceptarSubmit();
+    }
 
-    // Paso 7
-    AccionComun.enviarTramite();
 
-    // Paso 8
-    AccionComun.guardarYCerrarTramite();
-  }
+   /**
+    * IMI_TC004_BT001 – Validar Búsqueda Portal
+    * Validar que trás buscar
+    * algo en la la barra de búsqueda se abra su pagina de descripción
+   */
   
-  /**
-   * IMI_TC007_APOV001 - Validar Acceso Portal Ciudadanía
-   * Comprobación de acceso al portal de la ciudadanía
-   */
-  @Test(description = "IMI_TC007_APOV001 - Validar Acceso Portal Ciudadanía", enabled = true)
-  public void IMI_TC007_APOV001() throws InterruptedException {
-    // Paso 1
-    AccionComun.accederOficinaVirtual();
+   @Test(description = "IMI_TC004_BT001 – Validar Búsqueda Portal", enabled = true)
 
-    // Paso 2
-    AccionCiudadano.accederEspaiPersonal();
+   public void IMI_TC004_BT001() throws InterruptedException {
+ 
+      // Paso 1
+      AccionComun.accederOficinaVirtual();
+      
+      // Paso 2
+      AccionComun.realizarBusquedaOficinaVirtual("Dret d'accés");
 
-    // Paso 3
-    AccionComun.loginCertificado(true);
-  }
-
-  /**
-   * IMI_TC008_APOV002 - Notificacions  Enotum
-   * Acceso de ciudadano con certificado a la oficina virtual a notificaciones
-   */
-  @Test(description = "IMI_TC008_APOV002 - Notificacions  Enotum", enabled = true)
-  public void IMI_TC008_APOV002() throws InterruptedException {
-    // Precondiciones
-    IMI_TC007_APOV001();
-    
-    // Paso 1
-    AccionCiudadano.entrarApartadoNotificaciones();
-
-    // Paso 2
-    AccionCiudadano.verNotificacionesEnotum();
+      // Paso 3
+      AccionComun.verificarBusquedaOficinaVirtual("Dret d'accés");
   }
 
   
-  /**
-   * IMI_TC022_PS007 - Recuperar Borrador
-   * Comprobación del estado de un trámite administrativo ya finalizado
-   */
-  @Test(description = "IMI_TC022_PS007 - Recuperar Borrador", enabled = true)
-  public void IMI_TC022_PS007() throws InterruptedException {
-    // Precondiciones
-    
-  }
+  
 }
