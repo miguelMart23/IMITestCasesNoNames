@@ -20,7 +20,7 @@ public class AccionComun extends Main {
         // Accion
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(("//input[@name=\"searchWord\"]")))).sendKeys(busqueda);
         // Asserts
-        Assert.assertTrue(driver.findElements(By.xpath("//strong[text()='"+busqueda+"']")).isEmpty());
+        Assert.assertTrue(driver.findElements(By.xpath("//strong[text()=\"" + busqueda + "\"]")).isEmpty());
 
     }
 
@@ -33,7 +33,7 @@ public class AccionComun extends Main {
     }
 
     public static void ordenarAlfabeticamente(char letra) throws InterruptedException {
-       wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//a[text()='"+letra+"']")))).click();
+       wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//a[text()='" + letra + "']")))).click();
       // Asserts
       Assert.assertTrue(driver.findElement(By.xpath("//span[@id='"+letra+"']")).isDisplayed());
       Thread.sleep(1000);
@@ -46,8 +46,25 @@ public class AccionComun extends Main {
       Thread.sleep(1000);
   }
 
-  public static void loginCertificado(boolean esCiudadano) {
+  public static void iniciarTramite() {
+    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(@class,'btn-generic primary font semi ng-star-inserted')]"))).click();
 
+    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(@class,'btn-generic primary font s16 none')]"))).click();
+  }
+
+  public static void anyadirParametros(String parametro, String valor) {
+    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@formcontrolname=\"" + parametro + "\"]"))).sendKeys(valor);
+  }
+
+  public static void aceptarSubmit() {
+    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@value='Següent']"))).click();
+  }
+
+  public static void rellenarTextArea(int posicion, String valor) {
+    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//textarea[contains(@class,'text-area-edit')])[" + posicion + "]"))).sendKeys(valor);
+  }
+
+  public static void loginCertificado(boolean esCiudadano) {
     try {
       // Crea las clases y las convierten en hilos
       AbrirPopUpCertificado abrirPopUpCertificado = new AbrirPopUpCertificado(driver, wait);

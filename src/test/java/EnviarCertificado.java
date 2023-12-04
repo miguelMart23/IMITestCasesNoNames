@@ -17,7 +17,6 @@ public class EnviarCertificado implements Runnable {
         try { 
             Thread.sleep(5000); 
             Robot robot = new Robot();
-            int pulsarFlecha;
 
             // Aquí se pone cuantas veces tiene que bajar la flecha hasta llegar al certificado (1º ciudadano, 2º empresa)
             int pulsarFlecha = (esCiudadano) ? 2 : 3; 
