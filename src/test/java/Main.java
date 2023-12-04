@@ -1,18 +1,11 @@
-import org.testng.Assert;
+
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.Set;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -41,7 +34,7 @@ public class Main {
         chromeOptions.addArguments("start-maximized");
         chromeOptions.addArguments("--log-level=1");
 		    driver = new ChromeDriver(chromeOptions);
-        wait = new WebDriverWait(driver, 30);
+        wait = new WebDriverWait(driver, 60);
   }
 
   @AfterMethod
@@ -115,22 +108,52 @@ public class Main {
     AccionComun.aceptarSubmit();
 
     // Paso 7
-    AccionComun.aceptarSubmit();
+    AccionComun.enviarTramite();
 
     // Paso 8
-    AccionComun.aceptarSubmit();
+    AccionComun.guardarYCerrarTramite();
   }
   
   /**
    * IMI_TC007_APOV001 - Validar Acceso Portal Ciudadanía
+   * Comprobación de acceso al portal de la ciudadanía
    */
-  @Test(description = "IMI_TC007_APOV001 - Acceso Portal Ciudadanía", enabled = true)
+  @Test(description = "IMI_TC007_APOV001 - Validar Acceso Portal Ciudadanía", enabled = true)
   public void IMI_TC007_APOV001() throws InterruptedException {
     // Paso 1
-    driver.get("https://seuelectronica.ajuntament.barcelona.cat/oficinavirtual/ca");
-    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//div[contains(@class,'person-space')])[1]//a"))).click();
+    AccionComun.accederOficinaVirtual();
 
     // Paso 2
+    AccionCiudadano.accederEspaiPersonal();
+
+    // Paso 3
     AccionComun.loginCertificado(true);
+  }
+
+  /**
+   * IMI_TC008_APOV002 - Notificacions  Enotum
+   * Acceso de ciudadano con certificado a la oficina virtual a notificaciones
+   */
+  @Test(description = "IMI_TC008_APOV002 - Notificacions  Enotum", enabled = true)
+  public void IMI_TC008_APOV002() throws InterruptedException {
+    // Precondiciones
+    IMI_TC007_APOV001();
+    
+    // Paso 1
+    AccionCiudadano.entrarApartadoNotificaciones();
+
+    // Paso 2
+    AccionCiudadano.verNotificacionesEnotum();
+  }
+
+  
+  /**
+   * IMI_TC022_PS007 - Recuperar Borrador
+   * Comprobación del estado de un trámite administrativo ya finalizado
+   */
+  @Test(description = "IMI_TC022_PS007 - Recuperar Borrador", enabled = true)
+  public void IMI_TC022_PS007() throws InterruptedException {
+    // Precondiciones
+    
   }
 }

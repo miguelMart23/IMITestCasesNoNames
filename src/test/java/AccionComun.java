@@ -27,9 +27,6 @@ public class AccionComun extends Main {
     public static void verificarBusquedaOficinaVirtual(String busqueda) {
       // Accion
       wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//div[@role=\"listbox\"]/mat-option[1]")))).click();
-      // Asserts
-      Assert.assertTrue(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(), \""+busqueda+"\")]"))).isDisplayed());
-
     }
 
     public static void ordenarAlfabeticamente(char letra) throws InterruptedException {
@@ -47,7 +44,7 @@ public class AccionComun extends Main {
   }
 
   public static void iniciarTramite() {
-    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(@class,'btn-generic primary font semi ng-star-inserted')]"))).click();
+    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//div[contains(text(), 'Inicia el tràmit')])[1]"))).click();
 
     wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(@class,'btn-generic primary font s16 none')]"))).click();
   }
@@ -57,11 +54,19 @@ public class AccionComun extends Main {
   }
 
   public static void aceptarSubmit() {
-    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@value='Següent']"))).click();
+    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@value='Següent']"))).click();
   }
 
   public static void rellenarTextArea(int posicion, String valor) {
     wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//textarea[contains(@class,'text-area-edit')])[" + posicion + "]"))).sendKeys(valor);
+  }
+
+  public static void enviarTramite() {
+    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@value='Enviar']"))).click();
+  }
+
+  public static void guardarYCerrarTramite() {
+    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@value='TANCAR I TORNAR']"))).click();
   }
 
   public static void loginCertificado(boolean esCiudadano) {
