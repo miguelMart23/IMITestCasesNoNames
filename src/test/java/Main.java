@@ -3,6 +3,14 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.Set;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -17,6 +25,10 @@ public class Main {
   static WebDriver driver;
   static Wait<WebDriver> wait; 
   private static Main imi_instance = null;
+  
+  static TakesScreenshot scrshot;
+  static File srcFile;
+  static File destFile;
 
   // Instanciar clases de test con patrón Singleton
   public static Main setInstance() {
@@ -83,7 +95,7 @@ public class Main {
   /**
     * IMI_TC006_BT003 – Trámite Dret Accés
     * Comprueba que se puede rellenar el trámite
-   */
+    */
   @Test(description = "IMI_TC006_BT003 - Trámite Dret Accés", enabled = true)
   public void IMI_TC006_BT003() throws InterruptedException {
     // Precondición
@@ -103,6 +115,27 @@ public class Main {
 
     // Paso 5
     AccionComun.aceptarSubmit();
+
+   public void IMI_TC003() throws InterruptedException, IOException {
+ 
+      // Paso 1
+      AccionComun.accederPaginaCrearTramite();
+
+
+      // Paso 2
+      AccionComun.loginCertificado(true);
+      
+      // Paso 3
+      AccionComun.rellenarFormularioAñadirTramite();
+
+      // Paso 4
+      AccionComun.adjuntarFicheroTramite();
+
+      // Paso 5
+      AccionComun.validarFormulario();
+
+      // Paso 6
+      AccionComun.firmarDigitalmente();
 
     // Paso 6
     AccionComun.aceptarSubmit();
