@@ -3,10 +3,14 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Set;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -23,6 +27,10 @@ public class Main {
   public static String testId;
   static WebDriver driver;
   static Wait<WebDriver> wait; 
+  static TakesScreenshot scrshot;
+  static File srcFile;
+  static File destFile;
+
   private static Main home_instance = null;
 
   // Instanciar clases de test con patrón Singleton
@@ -41,7 +49,8 @@ public class Main {
         chromeOptions.addArguments("start-maximized");
         chromeOptions.addArguments("--log-level=1");
 		    driver = new ChromeDriver(chromeOptions);
-        wait = new WebDriverWait(driver, 2);
+        wait = new WebDriverWait(driver, 10);
+        
   }
 
   @AfterMethod
@@ -99,98 +108,31 @@ public class Main {
      /**
     * IMI_TC002 – Buscar palabra clave portal
     * Validar que trás buscar una palabra clave de resultados
+     * @throws IOException
    */
   
    @Test(description = "IMI_TC003", enabled = true)
 
-   public void IMI_TC003() throws InterruptedException {
+   public void IMI_TC003() throws InterruptedException, IOException {
  
       // Paso 1
       AccionComun.accederPaginaCrearTramite();
 
-      // Accion
-      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(("//button[contains(@class,\"btn-certificatDigital\")]")))).click();
-      
+
       // Paso 2
       AccionComun.loginCertificado(true);
       
       // Paso 3
-      // Accion
-      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//select[@id='T00i_INT_domTipoVia']/option[@value='DM.R.CALLE']"))).click();
-    
+      AccionComun.rellenarFormularioAñadirTramite();
+
       // Paso 4
-      // Accion
-      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='T00i_INT_domNombre']"))).sendKeys("Montserrat");
-    
+      AccionComun.adjuntarFicheroTramite();
+
       // Paso 5
-      // Accion
-      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='T00i_INT_domNumero']"))).sendKeys("10");
-    
+      AccionComun.validarFormulario();
+
       // Paso 6
-      // Accion
-      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='T00i_INT_domMunicipio']"))).sendKeys("Barcelona");
-    
-      // Paso 7
-      // Accion
-      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='T00i_INT_domProvincia']"))).sendKeys("Barcelona");
-    
-      // Paso 8
-      // Accion
-      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='T00i_INT_contEmail']"))).sendKeys("melopez@aubay.es");
-    
-      // Paso 9
-      // Accion
-      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='T00i_INT_contTelMobil']"))).sendKeys("605582675");
-    
-      // Paso 10
-      // Accion
-      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//textarea[@id='T00i_asuntoRegistro']"))).sendKeys("text prova");
-    
-      // Paso 11
-      // Accion
-      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//textarea[@id='T00i_expofets']"))).sendKeys("text prova");
-
-      // Paso 12
-      // Accion
-      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@value='CONS_NS.SI']"))).click();
-
-      // Paso 13
-      // Accion
-      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='continuar']']"))).click();
-    
-      // Paso 14
-      // Accion
-      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//label[contains(@for,'doc-file')]")));
-      
-      // Paso 15
-      // Accion
-      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='doc-file']"))).click();
-      
-      // Paso 16
-      // Accion
-      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='text_add']"))).sendKeys("titol prova");
-    
-      // Paso 17
-      // Accion
-      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[contains(@value,'Adjuntar')]"))).click();
-    
-      // Paso 18
-      // Accion
-      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'botonera')]//a[contains(@class,'enlaceboton')]"))).click();
-    
-      // Paso 19
-      // Accion
-      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[contains(@value,'Enviar')]"))).click();
-    
-      // Paso 20
-      // Accion
-      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@id='firmaNueva']"))).click();
-        
-      // Paso 21
-      // Accion
-      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[contains(@class,\"btn-certificatDigital\")]"))).click();
-        
-      
+      AccionComun.firmarDigitalmente();
 
     }
 
@@ -209,10 +151,10 @@ public class Main {
       AccionComun.accederOficinaVirtual();
       
       // Paso 2
-      AccionComun.realizarBusquedaOficinaVirtual("Dret d'accés a la informació pública");
+      AccionComun.realizarBusquedaOficinaVirtual("Dret d'accés");
 
       // Paso 3
-      AccionComun.verificarBusquedaOficinaVirtual("Dret d'accés a la informació pública");
+      AccionComun.verificarBusquedaOficinaVirtual("Dret d'accés");
   }
 
   

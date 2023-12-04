@@ -1,4 +1,12 @@
+import java.io.File;
+import java.io.IOException;
+
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
@@ -20,7 +28,7 @@ public class AccionComun extends Main {
         // Accion
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(("//input[@name=\"searchWord\"]")))).sendKeys(busqueda);
         // Asserts
-        Assert.assertTrue(driver.findElements(By.xpath("//strong[text()='"+busqueda+"']")).isEmpty());
+        Assert.assertTrue(driver.findElements(By.xpath("//strong[text()=\""+busqueda+"\"]")).isEmpty());
 
     }
 
@@ -42,7 +50,7 @@ public class AccionComun extends Main {
 
     public static void accederPaginaCrearTramite() throws InterruptedException {
       // Accion
-      driver.get("https://seuelectronica-int.ajuntament.barcelona.cat/APPS/ptbportal/login.do?language=ca&style=ciutada&origen=portal_tramits&loginTarget=T400i&iniciar=");
+      driver.get("https://seuelectronica-int.ajuntament.bcn/APPS/ptbportal/login.do?language=ca&style=ciutada&origen=portal_tramits&loginTarget=T400i&iniciar=");
       Thread.sleep(1000);
   }
 
@@ -66,6 +74,101 @@ public class AccionComun extends Main {
         e.printStackTrace();
     }
     
+  }
+
+  public static void adjuntarFicheroTramite() {
+          // Paso 14
+      // Accion
+      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id=\"page\"]")));
+      
+      // Paso 15
+      // Accion
+      File file = new File("./src/test/resources/ff.txt");
+      wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@id=\"doc-file\"]"))).sendKeys(file.getAbsolutePath());
+      
+      // Paso 16
+      // Accion
+      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id=\"text_add\"]"))).sendKeys("titol prova");
+    
+      // Paso 17
+      // Accion
+      //wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[contains(@value,\"Adjuntar\")]"))).click();
+    
+      // Paso 17
+      // Accion
+      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='botonera']/a"))).click();
+    
+  }
+
+  public static void rellenarFormularioAñadirTramite() {
+      // Paso 3
+      // Accion
+      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//select[@id='T00i_INT_domTipoVia']/option[@value='DM.R.CALLE']"))).click();
+    
+      // Paso 4
+      // Accion
+      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='T00i_INT_domNombre']"))).sendKeys("Montserrat");
+    
+      // Paso 5
+      // Accion
+      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='T00i_INT_domNumero']"))).sendKeys("10");
+    
+      // Paso 6
+      // Accion
+      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='T00i_INT_domMunicipio']"))).sendKeys("Barcelona");
+    
+      // Paso 7
+      // Accion
+      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='T00i_INT_domProvincia']"))).sendKeys("Barcelona");
+    
+      // Paso 8
+      // Accion
+      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='T00i_INT_contEmail']"))).sendKeys("melopez@aubay.es");
+    
+      // Paso 9
+      // Accion
+      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='T00i_INT_contTelMobil']"))).sendKeys("605582675");
+    
+      // Paso 10
+      // Accion
+      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//textarea[@id='T00i_asuntoRegistro']"))).sendKeys("text prova");
+    
+      // Paso 11
+      // Accion
+      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//textarea[@id='T00i_expofets']"))).sendKeys("text prova");
+
+      // Paso 12
+      // Accion
+      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//textarea[@id='T00i_concpetic']"))).sendKeys("text prova");
+
+      // Paso 13
+      // Accion
+      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='continuar']"))).click();
+  }
+
+  public static void validarFormulario() throws IOException {
+    scrshot = ((TakesScreenshot)driver);
+    srcFile = scrshot.getScreenshotAs(OutputType.FILE);
+    destFile = new File("./screenshoots/validateForm.png");
+    FileUtils.copyFile(srcFile, destFile);
+
+    JavascriptExecutor js = (JavascriptExecutor) driver;
+    js.executeScript("window.scrollBy(0,1200)", "");
+    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[contains(@value,'Enviar')]"))).click();
+
+  }
+
+  public static void firmarDigitalmente() throws InterruptedException,IOException {
+
+    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@id='firmaNueva']"))).click();
+    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@name='certificat']/span[@class='txt']"))).click();
+    scrshot = ((TakesScreenshot)driver);
+    srcFile = scrshot.getScreenshotAs(OutputType.FILE);
+    destFile = new File("./screenshoots/sendedTramit.png");
+    FileUtils.copyFile(srcFile, destFile);
+
+    Thread.sleep(20000);
+   
   }
 
 }
