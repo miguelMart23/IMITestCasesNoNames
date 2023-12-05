@@ -92,11 +92,12 @@ public class Main {
    /**
     * IMI_TC002 – Buscar palabra clave portal
     * Validar que trás buscar una palabra clave de resultados
+   * @throws IOException
    */
   
    @Test(description = "IMI_TC002 – Buscar palabra clave portal", enabled = true)
 
-   public void IMI_TC002() throws InterruptedException {
+   public void IMI_TC002() throws InterruptedException, IOException {
  
       // Paso 1
       AccionComun.accederOficinaVirtual();
@@ -143,11 +144,12 @@ public class Main {
     * IMI_TC004_BT001 – Validar Búsqueda Portal
     * Validar que trás buscar
     * algo en la la barra de búsqueda se abra su pagina de descripción
+   * @throws IOException
    */
   
    @Test(description = "IMI_TC004_BT001 – Validar Búsqueda Portal", enabled = true)
 
-   public void IMI_TC004_BT001() throws InterruptedException {
+   public void IMI_TC004_BT001() throws InterruptedException, IOException {
  
       // Paso 1
       AccionComun.accederOficinaVirtual();
@@ -162,9 +164,10 @@ public class Main {
   /**
     * IMI_TC005_BT002 – Abrir Trámite
     * Comprueba la acción de abrir trámite
+   * @throws IOException
    */
   @Test(description = "IMI_TC005_BT002 - Abrir Trámite", enabled = true)
-  public void IMI_TC005_BT002() throws InterruptedException {
+  public void IMI_TC005_BT002() throws InterruptedException, IOException {
     // Precondición
     IMI_TC004_BT001();
    
@@ -178,9 +181,10 @@ public class Main {
   /**
     * IMI_TC006_BT003 – Trámite Dret Accés
     * Comprueba que se puede rellenar el trámite
+   * @throws IOException
    */
   @Test(description = "IMI_TC006_BT003 - Trámite Dret Accés", enabled = true)
-  public void IMI_TC006_BT003() throws InterruptedException {
+  public void IMI_TC006_BT003() throws InterruptedException, IOException {
     // Precondición
     IMI_TC005_BT002();
    

@@ -31,11 +31,13 @@ public class AccionComun extends Main {
     
     }
 
-    public static void realizarBusquedaOficinaVirtual(String busqueda) {
-        // Accion
+    public static void realizarBusquedaOficinaVirtual(String busqueda) throws IOException {
+
+      // Accion
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(("//input[@name=\"searchWord\"]")))).sendKeys(busqueda);
         // Asserts
         Assert.assertTrue(driver.findElements(By.xpath("//strong[text()=\""+busqueda+"\"]")).isEmpty());
+        AccionComun.takeScreenshoot("searchDone.png");
 
     }
 
@@ -48,6 +50,7 @@ public class AccionComun extends Main {
     }
 
     public static void ordenarAlfabeticamente(char letra) throws InterruptedException {
+      Thread.sleep(5000);
        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//a[text()='"+letra+"']")))).click();
       // Asserts
       Assert.assertTrue(driver.findElement(By.xpath("//span[@id='"+letra+"']")).isDisplayed());
@@ -154,10 +157,7 @@ public class AccionComun extends Main {
   }
 
   public static void validarFormulario() throws IOException {
-    scrshot = ((TakesScreenshot)driver);
-    srcFile = scrshot.getScreenshotAs(OutputType.FILE);
-    destFile = new File("./screenshoots/validateForm.png");
-    FileUtils.copyFile(srcFile, destFile);
+    AccionComun.takeScreenshoot("validateForm.png");
 
     JavascriptExecutor js = (JavascriptExecutor) driver;
     js.executeScript("window.scrollBy(0,1200)", "");
@@ -169,10 +169,7 @@ public class AccionComun extends Main {
 
     wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@id='firmaNueva']"))).click();
     wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@name='certificat']/span[@class='txt']"))).click();
-    scrshot = ((TakesScreenshot)driver);
-    srcFile = scrshot.getScreenshotAs(OutputType.FILE);
-    destFile = new File("./screenshoots/sendedTramit.png");
-    FileUtils.copyFile(srcFile, destFile);
+    AccionComun.takeScreenshoot("sendedTramit.png");
 
     Thread.sleep(20000);
    
@@ -218,4 +215,13 @@ public class AccionComun extends Main {
     }
     
   }
+
+  public static void takeScreenshoot(String nombreFoto) throws IOException {
+      scrshot = ((TakesScreenshot)driver);
+      srcFile = scrshot.getScreenshotAs(OutputType.FILE);
+      destFile = new File("./screenshoots/"+java.time.LocalDate.now()+"/"+nombreFoto);
+      FileUtils.copyFile(srcFile, destFile);
+  }
+
+
 }
