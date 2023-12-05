@@ -4,6 +4,7 @@ import java.io.IOException;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -15,6 +16,12 @@ public class AccionComun extends Main {
     public static void accederOficinaVirtual() throws InterruptedException {
       // Accions - Entrar pagina principal
       Main.driver.get("https://seuelectronica.ajuntament.barcelona.cat/oficinavirtual/ca");
+      Thread.sleep(1000);
+    }
+
+    public static void accederOficinaVirtualVPN() throws InterruptedException {
+      // Accions - Entrar pagina principal
+      Main.driver.get("https://seuelectronica-int.ajuntament.bcn/oficinavirtual/ca");
       Thread.sleep(1000);
     }
 
@@ -171,4 +178,44 @@ public class AccionComun extends Main {
    
   }
 
+  public static void iniciarTramite() {
+    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//div[contains(text(), 'Inicia el tràmit')])[1]"))).click();
+ 
+    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(@class,'btn-generic primary font s16 none')]"))).click();
+  }
+ 
+  public static void anyadirParametros(String parametro, String valor) {
+    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@formcontrolname=\"" + parametro + "\"]"))).sendKeys(valor);
+  }
+ 
+  public static void aceptarSubmit() {
+    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@value='Següent']"))).click();
+  }
+ 
+  public static void rellenarTextArea(int posicion, String valor) {
+    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//textarea[contains(@class,'text-area-edit')])[" + posicion + "]"))).sendKeys(valor);
+  }
+ 
+  public static void enviarTramite() {
+    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@value='Enviar']"))).click();
+  }
+ 
+  public static void guardarYCerrarTramite() {
+    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@value='TANCAR I TORNAR']"))).click();
+  }
+
+  public static void enviarAlBuscador(String xpathBuscador, String textoBuscar) {
+
+    try {
+      driver.findElement(By.xpath(xpathBuscador)).sendKeys(textoBuscar);
+    
+      Thread.sleep(1000);
+
+      driver.findElement(By.xpath(xpathBuscador)).sendKeys(Keys.ENTER);
+    }
+    catch (InterruptedException e) {
+        e.printStackTrace();
+    }
+    
+  }
 }
