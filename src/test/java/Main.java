@@ -27,7 +27,6 @@ public class Main {
   static TakesScreenshot scrshot;
   static File srcFile;
   static File destFile;
-  private static String texto;
 
   private static Main home_instance = null;
 
@@ -708,36 +707,38 @@ public class Main {
 
     // Condicion - Page Is "dades personals de la persona sol·licitant"
 
-    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'dates-title')]")));
+    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"tramitForm\"]/div/app-personal-form/div/div[1]")));
 
     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(@class, 'bg-spinner')]")));
 
-    texto = driver.findElement(By.xpath("(//div[contains(@class,'dates-title')])[1]")).getText();
+    String texto = driver.findElement(By.xpath("//*[@id=\"tramitForm\"]/div/app-personal-form/div/div[1]/span")).getText();
 
-    Assert.assertTrue(texto.equals("dades personals de la persona sol·licitant"));
+    Assert.assertTrue(texto.equals("DADES DE LA PERSONA SOL·LICITANT"));
 
 
     // Paso 6
 
     // Accion - User Fills In First Page
 
-    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'dates-title')]")));
+    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"tramitForm\"]/div/app-personal-form/div/div[1]")));
 
     driver.findElement(By.xpath("//input[contains(@formcontrolname,'email')]")).sendKeys("imi_certificats@bcn.cat");
 
-    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//app-wizard-buttons//input[1]")));
+    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//app-wizard-buttons/div[1]/button")));
 
-    driver.findElement(By.xpath("//app-wizard-buttons//input[1]")).click();
+    driver.findElement(By.xpath("//app-wizard-buttons/div[1]/button")).click();
+
+    Thread.sleep(5000);
 
     // Condicion - Page Is "dades de la sol·licitud"
 
-    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'dates-title')]")));
+    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"dataForm\"]/div/div[1]/span")));
 
     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(@class, 'bg-spinner')]")));
 
-    texto = driver.findElement(By.xpath("(//div[contains(@class,'dates-title')])[1]")).getText();
+    texto = driver.findElement(By.xpath("//*[@id=\"dataForm\"]/div/div[1]/span")).getText();
 
-    Assert.assertTrue(texto.equals("dades de la sol·licitud"));
+    Assert.assertTrue(texto.equals("DADES DE LA SOL·LICITUD"));
 
 
     // Paso 7
@@ -757,36 +758,39 @@ public class Main {
 
     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(@class, 'bg-spinner')]")));
 
-    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//app-wizard-buttons//input[1]")));
+    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//app-wizard-buttons/div[1]/button")));
 
-    driver.findElement(By.xpath("//app-wizard-buttons//input[1]")).click();
+    driver.findElement(By.xpath("//app-wizard-buttons/div[1]/button")).click();
 
     // Condicion - Page Is "autorització de consulta de dades"
 
-    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'dates-title')]")));
+    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"fileForm\"]/div[1]/div[1]")));
 
     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(@class, 'bg-spinner')]")));
 
-    texto = driver.findElement(By.xpath("(//div[contains(@class,'dates-title')])[1]")).getText();
+    texto = driver.findElement(By.xpath("//*[@id=\"fileForm\"]/div[1]/div[1]/span")).getText();
 
-    Assert.assertTrue(texto.equals("autorització de consulta de dades"));
+    Assert.assertTrue(texto.equals("AUTORITZACIÓ DE CONSULTA DE DADES"));
 
 
     // Paso 9
 
-    // Accion - User Attachs File "(//input[contains(@type,'file')])[1]"
+    // Accion - User Attachs File
+
+    File file = new File("./src/test/resources/prueba.pdf");
+    wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("(//input[contains(@type,'file')])[1]"))).sendKeys(file.getAbsolutePath());
+    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text()=\" D'ACORD \"]"))).click();
 
     
-
     // Paso 10
 
     // Accion - User Clicks Next
 
     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(@class, 'bg-spinner')]")));
 
-    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//app-wizard-buttons//input[1]")));
+    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//app-wizard-buttons/div[1]/button")));
 
-    driver.findElement(By.xpath("//app-wizard-buttons//input[1]")).click();
+    driver.findElement(By.xpath("//app-wizard-buttons/div[1]/button")).click();
 
     // Condicion - Page Is "notificacions sol·licitant"
 

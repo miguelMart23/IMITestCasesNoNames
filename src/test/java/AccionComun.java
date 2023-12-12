@@ -15,13 +15,13 @@ public class AccionComun extends Main {
     public static void accederOficinaVirtual() throws InterruptedException {
       // Accions - Entrar pagina principal
       Main.driver.get("https://seuelectronica.ajuntament.barcelona.cat/oficinavirtual/ca");
-      Thread.sleep(1000);
+      Thread.sleep(8000);
     }
 
     public static void accederOficinaVirtualVPN() throws InterruptedException {
       // Accions - Entrar pagina principal
       Main.driver.get("https://seuelectronica-int.ajuntament.bcn/oficinavirtual/ca");
-      Thread.sleep(1000);
+      Thread.sleep(8000);
     }
 
     public static void accederPaginaBusquedaTramites() {
@@ -73,6 +73,7 @@ public class AccionComun extends Main {
       Thread hiloEnviarCertificado = new Thread(enviarCertificado);
 
       // Corren
+      Thread.sleep(2000);
       hiloAbrirPopUpCertificado.start();
       hiloEnviarCertificado.start();
 
