@@ -234,5 +234,50 @@ public class AccionComun extends Main {
       FileUtils.copyFile(srcFile, destFile);
   }
 
+  public static void scrollDown(int scrollAbajoPx) {
+    JavascriptExecutor js = (JavascriptExecutor) driver;
+    js.executeScript("window.scrollBy(0,"+scrollAbajoPx+")", "");
+  }
+
+  public static void checkCorrectOperationNumber() throws IOException {
+    // Paso 1
+    scrollDown(600);
+    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//p[contains(@class,'referencia')][1]/span")));
+    // Paso 2
+    takeScreenshoot("IMI_TC003-Correct_Operation_Number-1");
+    // Paso 3
+    String tramitId = driver.findElement(By.xpath("//p[contains(@class,'referencia')][1]/span")).getText();
+    // Paso 4
+    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(@class,'caja_estado')][2]//a[1]"))).click();
+    // Paso 5
+    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@id='home-tab']")));
+    // Paso 6
+    wait.until(ExpectedConditions.not(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class, 'bg-spinner-file')]"))));
+    // Paso 7
+    takeScreenshoot("IMI_TC003-Correct_Operation_Number-2");
+    // Paso 8
+    driver.findElement(By.xpath("//a[@id='home-tab']")).click();
+    // Paso 9 
+    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//p[text()='"+tramitId+"']"))).click();
+    // Paso 10 
+    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//app-query-tramit-detail")));
+    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//app-query-tramit-detail")));
+    // Paso 11
+    takeScreenshoot("IMI_TC003-Correct_Operation_Number-3");
+    // Paso 12 
+    String originalWindow = driver.getWindowHandle();
+    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@class,'col-10 col-sm-8 col-md-4 btn-generic primary mb-4 font s16')]"))).click();
+    // Paso 13
+    for (String windowHandle : driver.getWindowHandles()) {
+      if(!originalWindow.contentEquals(windowHandle)) {
+          driver.switchTo().window(windowHandle);
+          break;
+      }
+    }
+    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='contingut']")));
+    // Paso 14
+    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//table//tbody//tr[1]//td[2]"))).getText().compareTo(tramitId);
+  }
+
 
 }
