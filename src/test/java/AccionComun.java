@@ -185,7 +185,7 @@ public class AccionComun extends Main {
     wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@formcontrolname=\"" + parametro + "\"]"))).sendKeys(valor);
   }
  
-  public static void aceptarSubmit() {
+  public static void aceptarSubmit() throws InterruptedException {
     Thread.sleep(5000);
     wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@value='Següent']"))).click();
   }
@@ -215,6 +215,16 @@ public class AccionComun extends Main {
         e.printStackTrace();
     }
     
+  }
+
+  public static void pageIs(String xpath, String textoValidar) {
+    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
+
+    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(@class, 'bg-spinner')]")));
+
+    String texto = driver.findElement(By.xpath(xpath)).getText();
+
+    Assert.assertTrue(texto.equals(textoValidar));
   }
 
   public static void takeScreenshoot(String nombreFoto) throws IOException {

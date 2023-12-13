@@ -707,13 +707,7 @@ public class Main {
 
     // Condicion - Page Is "dades personals de la persona sol·licitant"
 
-    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"tramitForm\"]/div/app-personal-form/div/div[1]")));
-
-    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(@class, 'bg-spinner')]")));
-
-    String texto = driver.findElement(By.xpath("//*[@id=\"tramitForm\"]/div/app-personal-form/div/div[1]/span")).getText();
-
-    Assert.assertTrue(texto.equals("DADES DE LA PERSONA SOL·LICITANT"));
+    AccionComun.pageIs("//*[@id=\"tramitForm\"]/div/app-personal-form/div/div[1]/span", "DADES DE LA PERSONA SOL·LICITANT");
 
 
     // Paso 6
@@ -724,21 +718,13 @@ public class Main {
 
     driver.findElement(By.xpath("//input[contains(@formcontrolname,'email')]")).sendKeys("imi_certificats@bcn.cat");
 
-    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//app-wizard-buttons/div[1]/button")));
-
-    driver.findElement(By.xpath("//app-wizard-buttons/div[1]/button")).click();
+    AccionComun.aceptarSubmit();
 
     Thread.sleep(5000);
 
     // Condicion - Page Is "dades de la sol·licitud"
 
-    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"dataForm\"]/div/div[1]/span")));
-
-    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(@class, 'bg-spinner')]")));
-
-    texto = driver.findElement(By.xpath("//*[@id=\"dataForm\"]/div/div[1]/span")).getText();
-
-    Assert.assertTrue(texto.equals("DADES DE LA SOL·LICITUD"));
+    AccionComun.pageIs("//*[@id=\"dataForm\"]/div/div[1]/span", "DADES DE LA SOL·LICITUD");
 
 
     // Paso 7
@@ -758,19 +744,11 @@ public class Main {
 
     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(@class, 'bg-spinner')]")));
 
-    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//app-wizard-buttons/div[1]/button")));
-
-    driver.findElement(By.xpath("//app-wizard-buttons/div[1]/button")).click();
+    AccionComun.aceptarSubmit();
 
     // Condicion - Page Is "autorització de consulta de dades"
 
-    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"fileForm\"]/div[1]/div[1]")));
-
-    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(@class, 'bg-spinner')]")));
-
-    texto = driver.findElement(By.xpath("//*[@id=\"fileForm\"]/div[1]/div[1]/span")).getText();
-
-    Assert.assertTrue(texto.equals("AUTORITZACIÓ DE CONSULTA DE DADES"));
+    AccionComun.pageIs("//*[@id=\"fileForm\"]/div[1]/div[1]/span", "AUTORITZACIÓ DE CONSULTA DE DADES");
 
 
     // Paso 9
@@ -786,22 +764,15 @@ public class Main {
 
     // Accion - User Clicks Next
 
+    /* No existe ninguna pagina de notificacions sol·licitant
     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(@class, 'bg-spinner')]")));
 
-    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//app-wizard-buttons/div[1]/button")));
-
-    driver.findElement(By.xpath("//app-wizard-buttons/div[1]/button")).click();
+    AccionComun.aceptarSubmit();
 
     // Condicion - Page Is "notificacions sol·licitant"
 
-    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'dates-title')]")));
-
-    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(@class, 'bg-spinner')]")));
-
-    texto = driver.findElement(By.xpath("(//div[contains(@class,'dates-title')])[1]")).getText();
-
-    Assert.assertTrue(texto.equals("notificacions sol·licitant"));
-
+    AccionComun.pageIs("(//div[contains(@class,'dates-title')])[1]", "notificacions sol·licitant");
+    */
 
     // Paso 11
 
@@ -809,31 +780,24 @@ public class Main {
 
     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(@class, 'bg-spinner')]")));
 
-    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//app-wizard-buttons//input[1]")));
-
-    driver.findElement(By.xpath("//app-wizard-buttons//input[1]")).click();
+    AccionComun.aceptarSubmit();
 
     // Condicion - Page Is "Dades del sol·licitant"
 
-    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'dates-title')]")));
-
-    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(@class, 'bg-spinner')]")));
-
-    texto = driver.findElement(By.xpath("(//div[contains(@class,'dates-title')])[1]")).getText();
-
-    Assert.assertTrue(texto.equals("Dades del sol·licitant"));
+    AccionComun.pageIs("//*[@id=\"tramitForm\"]/div[2]/div/span", "DADES DE LA PERSONA SOL·LICITANT");
 
 
     // Paso 12
 
     // Accion - User Checks Accept Privacy Policy
 
+    /* No aparece ningún elemento al cual aceptar la politica de privacidad
     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(@class, 'bg-spinner')]")));
 
     wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//label[@class='material-checkbox']")));
 
     driver.findElement(By.xpath("//label[@class='material-checkbox']")).click();
-
+    */
 
     // Paso 13
 
@@ -841,32 +805,28 @@ public class Main {
 
     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(@class, 'bg-spinner')]")));
 
-    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//app-wizard-buttons//input[1]")));
-
-    driver.findElement(By.xpath("//app-wizard-buttons//input[1]")).click();
+    AccionComun.aceptarSubmit();
 
     // Condicion - Page Is "document a signar"
 
-    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'dates-title')]")));
-
-    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(@class, 'bg-spinner')]")));
-
-    texto = driver.findElement(By.xpath("(//div[contains(@class,'dates-title')])[1]")).getText();
-
-    Assert.assertTrue(texto.equals("document a signar"));
+    AccionComun.pageIs("//*[@id=\"tramitForm\"]/div[2]/div[1]/span", "DESCARREGUEU EL VOSTRE DOCUMENT");
 
 
     // Paso 14
 
     // Accion - User Saves Form
 
-    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//app-wizard-save-draft//button)[1]")));
+    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//app-wizard-save-draft/div[1]/div")));
 
-    driver.findElement(By.xpath("(//app-wizard-save-draft//button)[1]")).click();
+    driver.findElement(By.xpath("//app-wizard-save-draft/div[1]/div")).click();
 
+    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text()=\" D'acord \"]"))).click();
+
+    /* Código de robot que no concuerda con ninguna acción posible 
     wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//div[contains(@class,'content-box-modal')]//button)[3]")));
 
     driver.findElement(By.xpath("(//div[contains(@class,'content-box-modal')]//button)[3]")).click();
+    */
 
     // Condicion - Form Is Saved Correctly
 
