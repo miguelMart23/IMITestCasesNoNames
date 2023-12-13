@@ -132,6 +132,9 @@ public class Main {
       // Paso 6
       AccionComun.firmarDigitalmente();
 
+      // Paso 7
+      AccionComun.checkCorrectOperationNumber();
+
     }
 
 
