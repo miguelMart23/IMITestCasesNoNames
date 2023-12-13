@@ -6,13 +6,17 @@ import org.testng.annotations.Test;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Set;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -133,6 +137,9 @@ public class Main {
       // Paso 6
       AccionComun.firmarDigitalmente();
 
+      // Paso 7
+      AccionComun.checkCorrectOperationNumber();
+
     }
 
 
@@ -143,7 +150,7 @@ public class Main {
    * @throws IOException
    */
   
-   @Test(description = "IMI_TC004_BT001 - Validar Búsqueda Portal", enabled = true)
+   @Test(description = "IMI_TC004_BT001 – Validar Búsqueda Portal", enabled = true)
 
    public void IMI_TC004_BT001() throws InterruptedException, IOException {
  
@@ -152,7 +159,6 @@ public class Main {
       
       // Paso 2
       AccionComun.realizarBusquedaOficinaVirtual("Dret d'accés");
-
 
       // Paso 3
       AccionComun.verificarBusquedaOficinaVirtual("Dret d'accés");
@@ -450,34 +456,22 @@ public class Main {
   }
  
   /**
-   * IMI_TC015 - Validar Acceso Portal Profesional Autónomo
-   * 
-   */
-  @Test(description = "IMI_TC0015_AAOV001 - Validar Acceso Portal Profesional Autónomo", enabled = true)
-  public void IMI_TC0015_AAOV001() throws InterruptedException {
-    //paso 1
-    IMI_TC0016_PS001();
-    //paso 2
-    wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//*[@id=\"home\"]/app-person-space-info/section/div[3]/div[3]/div")))).click();
-    AccionComun.loginCertificado(true);
-    Thread.sleep(2000);
-    driver.close();
- 
- 
+  * IMI_TC015 - Ver Detalle Tramite
+  * Consulta del detalle de un trámite en el portal de la empresa
+  */
+  @Test(description = "IMI_TC0014_AEOV003 - Ver Información Fiscal Y Volver A Pagina Inicio", enabled = true)
+  public void IMI_TC0015_AEOV003() throws InterruptedException {
+
   }
- 
 
   /**
-   * IMI_TC016 - Pagina por Defecto
-   * 
-   */
-  @Test(description = "IMI_TC0016_PS001 - Pagina por Defecto", enabled = true)
-  public void IMI_TC0016_PS001() throws InterruptedException {
-    //paso 1
-    driver.get("https://seuelectronica-int.ajuntament.bcn/oficinavirtual/ca");
-    Thread.sleep(4000);
-  }
+  * IMI_TC016 - Ver Detalle Tramite
+  * Consulta del detalle de un trámite en el portal de la empresa
+  */
+  @Test(description = "IMI_TC0014_AEOV003 - Ver Información Fiscal Y Volver A Pagina Inicio", enabled = true)
+  public void IMI_TC0016_AEOV003() throws InterruptedException {
 
+  }
 
   /**
    * IMI_TC017 - Sección Que Es Oficina Virtual
@@ -485,6 +479,7 @@ public class Main {
    * la sección de 
    * "qué es la oficina virtual"
    */
+ 
   @Test(description = "IMI_TC017_PS002 - Sección Que Es Oficina Virtual", enabled = true)
   public void IMI_TC017() throws InterruptedException, IOException {
 
@@ -506,13 +501,13 @@ public class Main {
 
   }
 
-
   /**
    * IMI_TC018 - Búsqueda Produce Resultados
    * Comprobación de funcionamiento 
    * del buscador
    */
   @Test(description = "IMI_TC018_PS003 - Búsqueda Produce Resultados", enabled = true)
+
   public void IMI_TC018() throws InterruptedException, IOException {
 
     // Precondición
@@ -533,13 +528,13 @@ public class Main {
 
   }
 
-
   /**
    * IMI_TC019 - Pagina Citas
    * Comprobación de buscador 
    * acceso a la página de citas
    */
   @Test(description = "IMI_TC019_PS004 - Pagina Citas", enabled = true)
+
   public void IMI_TC019() throws InterruptedException, IOException {
 
     // Precondición
@@ -560,13 +555,13 @@ public class Main {
 
   }
 
-
   /**
    * IMI_TC020 - Consultar Información Citas E Iniciar Tramite
    * Comprobación de consulta de 
    * información e inicio de trámite
    */
   @Test(description = "IMI_TC020_PS005 - Consultar Información Citas E Iniciar Tramite", enabled = true)
+
   public void IMI_TC020() throws InterruptedException, IOException {
 
     // Precondición
@@ -629,7 +624,6 @@ public class Main {
 
   }
 
-
   /**
    * IMI_TC021 - Creación Borrador Derechos Acceso
    * Comprobación de consulta 
@@ -637,6 +631,7 @@ public class Main {
    * de trámite
    */
   @Test(description = "IMI_TC021_PS006 - Creación Borrador Derechos Acceso", enabled = true)
+
   public void IMI_TC021() throws InterruptedException, IOException {
 
     AccionComun.accederOficinaVirtualVPN();
@@ -869,7 +864,6 @@ public class Main {
     wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@class,'bcn-icon-ok-bold')]")));
 
   }
-
 
   /**
    * IMI_TC022_PS007 - Recuperar Borrador
