@@ -36,7 +36,7 @@ public class AccionComun extends Main {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(("//input[@name=\"searchWord\"]")))).sendKeys(busqueda);
         // Asserts
         Assert.assertTrue(driver.findElements(By.xpath("//strong[text()=\""+busqueda+"\"]")).isEmpty());
-        AccionComun.takeScreenshoot("searchDone.png");
+        AccionComun.takeScreenshoot("IMI_TC002-Search.png");
 
     }
 
