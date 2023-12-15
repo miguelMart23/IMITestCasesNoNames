@@ -239,6 +239,17 @@ public class AccionComun extends Main {
     js.executeScript("window.scrollBy(0,"+scrollAbajoPx+")", "");
   }
 
+  public static void recuperarTramitePorId (String tramiteId) {
+    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@placeholder='Introduïu el número']"))).sendKeys(tramiteId);
+    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[normalize-space()='Consulta']"))).click();
+    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[normalize-space()='Recuperar esborrany']"))).click();
+  }
+
+  public static void validarTextoFormulario(String textoEsperado) {
+    String textoActual = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='text-pas']"))).getText();
+    Assert.assertEquals(textoActual, textoEsperado);
+  }
+
   public static void checkCorrectOperationNumber() throws IOException {
     // Paso 1
     scrollDown(600);
@@ -279,5 +290,5 @@ public class AccionComun extends Main {
     wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//table//tbody//tr[1]//td[2]"))).getText().compareTo(tramitId);
   }
 
-
+ 
 }
