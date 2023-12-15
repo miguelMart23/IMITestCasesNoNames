@@ -21,4 +21,11 @@ public class AccionCiudadano extends Main {
         driver.switchTo().window(tabs.get(1));
         Assert.assertTrue(driver.getTitle().contains("e-NOTUM"));
     }
+
+    public static String conseguirIdTramite() {
+        String successText = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//p[@class='font s32 semi black mb-5 ng-star-inserted']"))).getText();
+        String testID = successText.replaceAll("[^\\d{4}_\\d+]", "");
+        
+        return testID;
+    }
 }
