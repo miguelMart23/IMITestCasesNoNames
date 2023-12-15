@@ -838,14 +838,52 @@ public class Main {
   }
 
 
-  /**
    * IMI_TC022_PS007 - Recuperar Borrador
    * Comprobación del estado de un trámite administrativo ya finalizado
    */
   @Test(description = "IMI_TC022_PS007 - Recuperar Borrador", enabled = true)
-  public void IMI_TC022_PS007() throws InterruptedException {
+  public void IMI_TC022_PS007() throws InterruptedException, IOException {    
     // Precondiciones
+    IMI_TC021();
    
+    // Paso 1
+    String tramiteId = AccionCiudadano.conseguirIdTramite();
+    AccionComun.guardarYCerrarTramite();
+
+    // Paso 2
+    AccionComun.recuperarTramitePorId(tramiteId);
+
+    // Paso 3
+    // Condicion - Page Is "dades personals de la persona sol·licitant"
+    AccionComun.validarTextoFormulario("Dades de la persona sol·licitant");
+    AccionComun.aceptarSubmit();
+
+    // Paso 4
+    // Condicion - Page Is "dades de la sol·licitud"
+    Thread.sleep(5000);
+    AccionComun.validarTextoFormulario("Dades del tràmit");
+    AccionComun.aceptarSubmit();
+
+    // Paso 5
+    // Condicion - Page Is "autorització de consulta de dades"
+    Thread.sleep(5000);
+    AccionComun.validarTextoFormulario("Documentació");
+    AccionComun.aceptarSubmit();
+
+    // Paso 6
+    // Condicion - Page Is "autorització de consulta de dades"
+    Thread.sleep(5000);
+    AccionComun.validarTextoFormulario("Resum");
+    AccionComun.aceptarSubmit();
+
+    // Paso 7
+    // Condicion - Page is "decarregeu el vostre document"
+    AccionComun.validarTextoFormulario("Enviament (registre/signatura)");
+    AccionComun.enviarTramite();
+    
+    // Paso 8
+    Thread.sleep(30000);
+    AccionComun.guardarYCerrarTramite();
   }
 
 
