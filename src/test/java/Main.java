@@ -150,7 +150,7 @@ public class Main {
    public void IMI_TC004_BT001() throws InterruptedException, IOException {
  
       // Paso 1
-      AccionComun.accederOficinaVirtual();
+      AccionComun.accederOficinaVirtualVPN();
       
       // Paso 2
       AccionComun.realizarBusquedaOficinaVirtual("Dret d'accés");
@@ -219,7 +219,7 @@ public class Main {
   @Test(description = "IMI_TC007_APOV001 - Validar Acceso Portal Ciudadanía", enabled = true)
   public void IMI_TC007_APOV001() throws InterruptedException {
     // Paso 1
-    AccionComun.accederOficinaVirtual();
+    AccionComun.accederOficinaVirtualVPN();
  
     // Paso 2
     AccionCiudadano.accederEspaiPersonal();
