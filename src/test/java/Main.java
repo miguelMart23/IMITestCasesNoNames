@@ -85,6 +85,8 @@ public class Main {
       // Paso 3
       AccionComun.ordenarAlfabeticamente('A');
 
+      System.out.println("Test " + testId + "completado");
+
     } catch (TimeoutException | NoSuchElementException e) {
       String errorCause = "" + e.getClass();
       errorCause = errorCause.substring(errorCause.lastIndexOf(".") + 1, errorCause.length());
@@ -113,6 +115,8 @@ public class Main {
 
       // Paso 2
       AccionComun.realizarBusquedaOficinaVirtual("venda");
+
+      System.out.println("Test " + testId + "completado");
 
     } catch (TimeoutException | NoSuchElementException e) {
       String errorCause = "" + e.getClass();
@@ -156,6 +160,8 @@ public class Main {
       // Paso 7
       AccionComun.checkCorrectOperationNumber();
 
+      System.out.println("Test " + testId + "completado");
+
     } catch (TimeoutException | NoSuchElementException e) {
       String errorCause = "" + e.getClass();
       errorCause = errorCause.substring(errorCause.lastIndexOf(".") + 1, errorCause.length());
@@ -187,6 +193,8 @@ public class Main {
       // Paso 3
       AccionComun.verificarBusquedaOficinaVirtual("Dret d'accés");
 
+      System.out.println("Test " + testId + "completado");
+
     } catch (TimeoutException | NoSuchElementException e) {
       String errorCause = "" + e.getClass();
       errorCause = errorCause.substring(errorCause.lastIndexOf(".") + 1, errorCause.length());
@@ -216,7 +224,10 @@ public class Main {
       // Paso 2
       AccionComun.loginCertificado(true);
 
-    } catch (TimeoutException | NoSuchElementException e) {
+      System.out.println("Test " + testId + "completado");
+
+    } 
+    catch (TimeoutException | NoSuchElementException e) {
       String errorCause = "" + e.getClass();
       errorCause = errorCause.substring(errorCause.lastIndexOf(".") + 1, errorCause.length());
 
@@ -262,7 +273,8 @@ public class Main {
 
       // Paso 8
       AccionComun.guardarYCerrarTramite();
-      System.out.println("Test completado");
+      
+      System.out.println("Test " + testId + "completado");
 
     } catch (TimeoutException | NoSuchElementException e) {
       String errorCause = "" + e.getClass();
@@ -292,6 +304,8 @@ public class Main {
       // Paso 3
       AccionComun.loginCertificado(true);
 
+      System.out.println("Test " + testId + "completado");
+
     } catch (TimeoutException | NoSuchElementException e) {
       String errorCause = "" + e.getClass();
       errorCause = errorCause.substring(errorCause.lastIndexOf(".") + 1, errorCause.length());
@@ -319,6 +333,8 @@ public class Main {
 
       // Paso 2
       AccionCiudadano.verNotificacionesEnotum();
+
+      System.out.println("Fallo en el test " + testId + " (se ha guardado una captura de pantalla en la carpeta sreenshots)");
 
     } catch (TimeoutException | NoSuchElementException e) {
       String errorCause = "" + e.getClass();
@@ -377,6 +393,8 @@ public class Main {
 
       // Assert.assertTrue(driver.findElement(By.xpath("//span[contains(text(),
       // '123456789')]")).isDisplayed());
+
+      System.out.println("Test " + testId + "completado");
 
     } catch (TimeoutException | NoSuchElementException e) {
       String errorCause = "" + e.getClass();
@@ -449,28 +467,20 @@ public class Main {
    * @throws IOException
    */
 
-  @Test(description = "IMI_TC011 - Validar Acceso Portal Empresa", enabled = true)
-  public void IMI_TC011() throws InterruptedException, IOException {
-    testId = "IMI_TC011";
-    try {
-      // Paso 1
-      driver.get("https://seuelectronica-int.ajuntament.bcn/oficinavirtual/ca");
-      wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//div[contains(@class,'person-space')])[2]//a"))).click();
-
-      // Paso 2
-      AccionComun.loginCertificado(false);
-      wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='espai_personal']//li//a"))).click();
-      Thread.sleep(10000);
-
-    } catch (TimeoutException | NoSuchElementException e) {
-      String errorCause = "" + e.getClass();
-      errorCause = errorCause.substring(errorCause.lastIndexOf(".") + 1, errorCause.length());
-
-      AccionComun.takeScreenshoot(testId + " - " + errorCause);
-
-      System.out.println("Fallo en el test " + testId + " (se ha guardado una captura de pantalla en la carpeta sreenshots)");
-    }
-  }
+   @Test(description = "IMI_TC011 - Validar Acceso Portal Empresa", enabled = true)
+ 
+   public void IMI_TC011() throws InterruptedException {
+  
+     // Paso 1
+     driver.get("https://seuelectronica-int.ajuntament.bcn/oficinavirtual/ca");
+     wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//div[contains(@class,'person-space')])[2]//a"))).click();
+  
+     // Paso 2
+     AccionComun.loginCertificado(false);
+     wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='espai_personal']//li//a"))).click();
+     Thread.sleep(10000);
+  
+   }
 
   /**
    * IMI_TC012 - Ver Detalle Tramite
@@ -521,28 +531,17 @@ public class Main {
    * @throws IOException
    */
   @Test(description = "IMI_TC0013_AEOV002 - Ver Información Fiscal", enabled = true)
-  public void IMI_TC0013_AEOV002() throws InterruptedException, IOException {
-    testId = "IMI_TC0013_AEOV002";
-    try {
-      // Precondición
-      IMI_TC011();
-
-      // Paso 1
-      wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//*[@id=\"profile-tab\"]")))).click();
-      wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//*[@id=\"profile\"]/app-enterprise-tax/div[2]/div/div[1]/div/div[1]")))).click();
-      Thread.sleep(2000);
-
-      // Paso 2
-      wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//*[@id=\"ex1-tab-1\"]")))).click();
-
-    } catch (TimeoutException | NoSuchElementException e) {
-      String errorCause = "" + e.getClass();
-      errorCause = errorCause.substring(errorCause.lastIndexOf(".") + 1, errorCause.length());
-
-      AccionComun.takeScreenshoot(testId + " - " + errorCause);
-
-      System.out.println("Fallo en el test " + testId + " (se ha guardado una captura de pantalla en la carpeta sreenshots)");
-    }
+  public void IMI_TC0013_AEOV002() throws InterruptedException {
+    //navegar a virtual ofice companis
+    IMI_TC011();
+    //paso 1
+    wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//*[@id=\"profile-tab\"]")))).click();
+    wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//*[@id=\"profile\"]/app-enterprise-tax/div[2]/div/div[1]/div/div[1]")))).click();
+    Thread.sleep(2000);
+    //paso 2
+ 
+    wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//*[@id=\"ex1-tab-1\"]")))).click();
+ 
   }
 
   /**
@@ -551,30 +550,13 @@ public class Main {
    * @throws IOException
    */
   @Test(description = "IMI_TC0014_AEOV003 - Ver Información Fiscal Y Volver A Pagina Inicio", enabled = true)
-  public void IMI_TC0014_AEOV003() throws InterruptedException, IOException {
-    testId = "IMI_TC0014_AEOV003";
-    try {
-      // Navegar a virtual ofice companis
-      IMI_TC011();
-
-      // Paso 1
-      wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//*[@id=\"profile-tab\"]")))).click();
-      wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//*[@id=\"profile\"]/app-enterprise-tax/div[2]/div/div[1]/div/div[1]")))).click();
-      Thread.sleep(2000);
-
-      // Paso 2
-      wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//*[@id=\"ex1-tab-1\"]")))).click();
-      wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//div[contains(@class,'espai_personal')]//a")))).click();
-      Thread.sleep(2000);
-
-    } catch (TimeoutException | NoSuchElementException e) {
-      String errorCause = "" + e.getClass();
-      errorCause = errorCause.substring(errorCause.lastIndexOf(".") + 1, errorCause.length());
-
-      AccionComun.takeScreenshoot(testId + " - " + errorCause);
-
-      System.out.println("Fallo en el test " + testId + " (se ha guardado una captura de pantalla en la carpeta sreenshots)");
-    }
+  public void IMI_TC0014_AEOV003() throws InterruptedException {
+    //paso 1
+    IMI_TC0013_AEOV002();
+    String url = driver.getCurrentUrl();
+    assert url.contains("enterprise-information/tax/vehicles");
+    Thread.sleep(2000);
+    wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("/html/body/app-root/app-personal-space-layout/div/app-personal-space-header/app-corp-header/div[2]/div[2]/div[1]")))).click();
   }
 
   /**
@@ -584,17 +566,16 @@ public class Main {
    */
   @Test(description = "IMI_TC0015_AAOV001 - Validar Acceso Portal Profesional Autónomo", enabled = true)
   public void IMI_TC0015_AAOV001() throws InterruptedException, IOException {
-    testId = "IMI_TC0015_AAOV001";
     try {
-      // Precondición
+      //paso 1
       IMI_TC0016_PS001();
-
-      // Paso 1
+      //paso 2
       wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//*[@id=\"home\"]/app-person-space-info/section/div[3]/div[3]/div")))).click();
       AccionComun.loginCertificado(true);
       Thread.sleep(2000);
-
-    } catch (TimeoutException | NoSuchElementException e) {
+      driver.close();
+    }
+    catch (TimeoutException | NoSuchElementException e) {
       String errorCause = "" + e.getClass();
       errorCause = errorCause.substring(errorCause.lastIndexOf(".") + 1, errorCause.length());
 
@@ -611,13 +592,12 @@ public class Main {
    */
   @Test(description = "IMI_TC0016_PS001 - Pagina por Defecto", enabled = true)
   public void IMI_TC0016_PS001() throws InterruptedException, IOException {
-    testId = "IMI_TC0016_PS001";
     try {
-      // Paso 1
-      driver.get("https://seuelectronica-int.ajuntament.bcn/oficinavirtual/ca");
+      //paso 1
+      AccionComun.accederOficinaVirtualVPN();
       Thread.sleep(4000);
-
-    } catch (TimeoutException | NoSuchElementException e) {
+    }
+    catch (TimeoutException | NoSuchElementException e) {
       String errorCause = "" + e.getClass();
       errorCause = errorCause.substring(errorCause.lastIndexOf(".") + 1, errorCause.length());
 
@@ -626,6 +606,7 @@ public class Main {
       System.out.println("Fallo en el test " + testId + " (se ha guardado una captura de pantalla en la carpeta sreenshots)");
     }
   }
+
 
   /**
    * IMI_TC017 - Sección Que Es Oficina Virtual
@@ -647,6 +628,8 @@ public class Main {
 
       // Condición
       Assert.assertTrue(driver.findElements(By.xpath("//h3[text()=\"Què és l'Oficina Virtual?\"]")).size() > 0);
+
+      System.out.println("Test " + testId + "completado");
 
     } catch (TimeoutException | NoSuchElementException e) {
       String errorCause = "" + e.getClass();
@@ -678,6 +661,8 @@ public class Main {
       // Condición
       Assert.assertTrue(driver.findElements(By.xpath("//*[@id=\"home\"]/div[2]/div/app-search-by-keyword/div/div[2]/div[1]")).size() > 0);
 
+      System.out.println("Test " + testId + "completado");
+
     } catch (TimeoutException | NoSuchElementException e) {
       String errorCause = "" + e.getClass();
       errorCause = errorCause.substring(errorCause.lastIndexOf(".") + 1, errorCause.length());
@@ -685,6 +670,7 @@ public class Main {
       AccionComun.takeScreenshoot(testId + " - " + errorCause);
 
       System.out.println("Fallo en el test " + testId + " (se ha guardado una captura de pantalla en la carpeta sreenshots)");
+
     }
   }
 
@@ -707,6 +693,8 @@ public class Main {
 
       // Condición
       Assert.assertTrue(driver.findElements(By.xpath("//*[@id=\"home\"]/div[2]/div/app-search-by-keyword/div/div[2]/div[1]")).size() > 0);
+
+      System.out.println("Test " + testId + "completado");
 
     } catch (TimeoutException | NoSuchElementException e) {
       String errorCause = "" + e.getClass();
@@ -765,6 +753,8 @@ public class Main {
 
       // Condición
       Assert.assertTrue(driver.findElements(By.xpath("//*[@id='page']")).size() > 0);
+
+      System.out.println("Test " + testId + "completado");
 
     } catch (TimeoutException | NoSuchElementException e) {
       String errorCause = "" + e.getClass();
@@ -931,6 +921,8 @@ public class Main {
       // Condición - Form Is Saved Correctly
       wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@class,'bcn-icon-ok-bold')]")));
 
+      System.out.println("Test " + testId + "completado");
+
     } catch (TimeoutException | NoSuchElementException e) {
       String errorCause = "" + e.getClass();
       errorCause = errorCause.substring(errorCause.lastIndexOf(".") + 1, errorCause.length());
@@ -990,6 +982,8 @@ public class Main {
       // Paso 8
       Thread.sleep(30000);
       AccionComun.guardarYCerrarTramite();
+
+      System.out.println("Test " + testId + "completado");
 
     } catch (TimeoutException | NoSuchElementException e) {
       String errorCause = "" + e.getClass();
