@@ -290,5 +290,36 @@ public class AccionComun extends Main {
     wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//table//tbody//tr[1]//td[2]"))).getText().compareTo(tramitId);
   }
 
+    public static void navegarAreaNotificaciones() throws InterruptedException {
+    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//div[contains(@class, 'options-desktop')])//p[2]")));
+
+    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(@class, 'bg-spinner-file')]")));
+
+    driver.findElement(By.xpath("(//div[contains(@class, 'options-desktop')])//p[2]")).click();
+
+    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//app-notifications")));
+
+    Thread.sleep(2000);
+  }
+
+  public static void navegarDatosSuscripcion() throws InterruptedException {
+      Assert.assertTrue(driver.findElement(By.xpath("//div[contains(@class, 'personal-space')]//div[3]//button")).isEnabled());
+
+      driver.findElement(By.xpath("//div[contains(@class, 'personal-space')]//div[3]//button")).click();
+  }
+
+  public static void cambiarNumTelefono(String numero) throws InterruptedException {
+    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[contains(@formcontrolname, 'telephone')]")));
+
+    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(@class, 'bg-spinner-file')]")));
+
+    driver.findElement(By.xpath("//input[contains(@formcontrolname, 'telephone')]")).sendKeys(numero);
+
+    Thread.sleep(2000);
+
+    Assert.assertTrue(driver.findElement(By.xpath("//button[normalize-space()='Actualitzar dades']")).isEnabled());
+
+    driver.findElement(By.xpath("//button[normalize-space()='Actualitzar dades']")).click();
+  }
  
 }
