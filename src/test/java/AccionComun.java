@@ -12,55 +12,55 @@ import org.testng.Assert;
 
 public class AccionComun extends Main {
     
-    public static void accederOficinaVirtual() throws InterruptedException {
-      // Accions - Entrar pagina principal
-      Main.driver.get("https://seuelectronica.ajuntament.barcelona.cat/oficinavirtual/ca");
-      Thread.sleep(8000);
-    }
+  public static void accederOficinaVirtual() throws InterruptedException {
+    // Accions - Entrar pagina principal
+    Main.driver.get("https://seuelectronica.ajuntament.barcelona.cat/oficinavirtual/ca");
+    Thread.sleep(8000);
+  }
 
-    public static void accederOficinaVirtualVPN() throws InterruptedException {
-      // Accions - Entrar pagina principal
-      Main.driver.get("https://seuelectronica-int.ajuntament.bcn/oficinavirtual/ca");
-      Thread.sleep(8000);
-    }
+  public static void accederOficinaVirtualVPN() throws InterruptedException {
+    // Accions - Entrar pagina principal
+    Main.driver.get("https://seuelectronica-int.ajuntament.bcn/oficinavirtual/ca");
+    Thread.sleep(8000);
+  }
 
-    public static void accederPaginaBusquedaTramites() {
-        // Accions - Acceder a la pagina de busqueda de tramites y ordenación alfabética
-        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//a[contains(@class,'font s16 regular white research-all')]")))).click();
-    
-    }
+  public static void accederPaginaBusquedaTramites() {
+      // Accions - Acceder a la pagina de busqueda de tramites y ordenación alfabética
+      wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//a[contains(@class,'font s16 regular white research-all')]")))).click();
+  
+  }
 
-    public static void realizarBusquedaOficinaVirtual(String busqueda) throws IOException {
+  public static void realizarBusquedaOficinaVirtual(String busqueda) throws IOException {
 
-      // Accion
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(("//input[@name=\"searchWord\"]")))).sendKeys(busqueda);
-        // Asserts
-        Assert.assertTrue(driver.findElements(By.xpath("//strong[text()=\""+busqueda+"\"]")).isEmpty());
-        AccionComun.takeScreenshoot("IMI_TC002-Search.png");
-
-    }
-
-    public static void verificarBusquedaOficinaVirtual(String busqueda) {
-      // Accion
-      wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//div[@role=\"listbox\"]/mat-option[1]")))).click();
+    // Accion
+      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(("//input[@name=\"searchWord\"]")))).sendKeys(busqueda);
       // Asserts
-      //Assert.assertTrue(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(), \""+busqueda+"\")]"))).isDisplayed());
+      Assert.assertTrue(driver.findElements(By.xpath("//strong[text()=\""+busqueda+"\"]")).isEmpty());
+      AccionComun.takeScreenshoot("IMI_TC002-Search.png");
 
-    }
+  }
 
-    public static void ordenarAlfabeticamente(char letra) throws InterruptedException {
-      Thread.sleep(5000);
-       wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//a[text()='"+letra+"']")))).click();
-      // Asserts
-      Assert.assertTrue(driver.findElement(By.xpath("//span[@id='"+letra+"']")).isDisplayed());
-      Thread.sleep(1000);
-    
-    }
+  public static void verificarBusquedaOficinaVirtual(String busqueda) {
+    // Accion
+    wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//div[@role=\"listbox\"]/mat-option[1]")))).click();
+    // Asserts
+    //Assert.assertTrue(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(), \""+busqueda+"\")]"))).isDisplayed());
 
-    public static void accederPaginaCrearTramite() throws InterruptedException {
-      // Accion
-      driver.get("https://seuelectronica-int.ajuntament.bcn/APPS/ptbportal/login.do?language=ca&style=ciutada&origen=portal_tramits&loginTarget=T400i&iniciar=");
-      Thread.sleep(1000);
+  }
+
+  public static void ordenarAlfabeticamente(char letra) throws InterruptedException {
+    Thread.sleep(5000);
+      wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//a[text()='"+letra+"']")))).click();
+    // Asserts
+    Assert.assertTrue(driver.findElement(By.xpath("//span[@id='"+letra+"']")).isDisplayed());
+    Thread.sleep(1000);
+  
+  }
+
+  public static void accederPaginaCrearTramite() throws InterruptedException {
+    // Accion
+    driver.get("https://seuelectronica-int.ajuntament.bcn/APPS/ptbportal/login.do?language=ca&style=ciutada&origen=portal_tramits&loginTarget=T400i&iniciar=");
+    Thread.sleep(1000);
   }
 
   public static void loginCertificado(boolean esCiudadano) {
@@ -202,14 +202,12 @@ public class AccionComun extends Main {
     wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@value='TANCAR I TORNAR']"))).click();
   }
 
-  public static void enviarAlBuscador(String xpathBuscador, String textoBuscar) {
-
+  public static void enviarTexto(String xpath, String textoBuscar) {
     try {
-      driver.findElement(By.xpath(xpathBuscador)).sendKeys(textoBuscar);
+      driver.findElement(By.xpath(xpath)).sendKeys(textoBuscar);
     
-      Thread.sleep(1000);
+      esperarSegundos(1);
 
-      driver.findElement(By.xpath(xpathBuscador)).sendKeys(Keys.ENTER);
     }
     catch (InterruptedException e) {
         e.printStackTrace();
@@ -217,14 +215,8 @@ public class AccionComun extends Main {
     
   }
 
-  public static void pageIs(String xpath, String textoValidar) {
-    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
-
-    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(@class, 'bg-spinner')]")));
-
-    String texto = driver.findElement(By.xpath(xpath)).getText();
-
-    Assert.assertTrue(texto.equals(textoValidar));
+  public static void pulsarEnter(String xpath) {
+    driver.findElement(By.xpath(xpath)).sendKeys(Keys.ENTER);
   }
 
   public static void takeScreenshoot(String nombreFoto) throws IOException {
@@ -290,7 +282,7 @@ public class AccionComun extends Main {
     wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//table//tbody//tr[1]//td[2]"))).getText().compareTo(tramitId);
   }
 
-    public static void navegarAreaNotificaciones() throws InterruptedException {
+  public static void navegarAreaNotificaciones() throws InterruptedException {
     wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//div[contains(@class, 'options-desktop')])//p[2]")));
 
     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(@class, 'bg-spinner-file')]")));
@@ -322,4 +314,12 @@ public class AccionComun extends Main {
     driver.findElement(By.xpath("//button[normalize-space()='Actualitzar dades']")).click();
   }
  
+  public static void clickarElemento(String xpath) {
+    driver.findElement(By.xpath(xpath)).click();
+  }
+
+  public static void esperarSegundos(int segundos) throws InterruptedException {
+    int milisegundos = segundos*1000;
+    Thread.sleep(milisegundos);
+  }
 }
