@@ -80,22 +80,26 @@ public class Main {
     try {
       // Paso 1
       AccionComun.accederOficinaVirtual();
+      Asercion.validarElemento("//a[contains(@class,'font s16 regular white research-all')]");
 
       // Paso 2
+      String letra = "A";
       AccionComun.accederPaginaBusquedaTramites();
+      Asercion.validarElemento("//h1[text()=' Cerqueu el que us interessa ']");
 
       // Paso 3
-      AccionComun.ordenarAlfabeticamente('A');
-
+      AccionComun.ordenarAlfabeticamente(letra.charAt(0));
+      Asercion.validarElemento("//span[@id='"+letra+"']");
       System.out.println("Test " + testId + "completado");
 
-    } catch (TimeoutException | NoSuchElementException e) {
+    } catch (Exception e) {
       String errorCause = "" + e.getClass();
       errorCause = errorCause.substring(errorCause.lastIndexOf(".") + 1, errorCause.length());
 
       AccionComun.takeScreenshoot(testId + " - " + errorCause);
 
       System.out.println("Fallo en el test " + testId + " (se ha guardado una captura de pantalla en la carpeta sreenshots)");
+      Assert.fail(errorCause);
     }
 
   }
@@ -114,19 +118,23 @@ public class Main {
     try {
       // Paso 1
       AccionComun.accederOficinaVirtual();
+      Asercion.validarElemento("//p[text()=' Cerqueu el que us interessa ']");
 
       // Paso 2
       AccionComun.realizarBusquedaOficinaVirtual("venda");
+      Asercion.validarElemento("//input[@name=\"searchWord\"]");
 
-      System.out.println("Test " + testId + "completado");
+      System.out.println("Test " + testId + " completado");
 
-    } catch (TimeoutException | NoSuchElementException e) {
+    } catch (Exception e) {
       String errorCause = "" + e.getClass();
       errorCause = errorCause.substring(errorCause.lastIndexOf(".") + 1, errorCause.length());
 
       AccionComun.takeScreenshoot(testId + " - " + errorCause);
 
       System.out.println("Fallo en el test " + testId + " (se ha guardado una captura de pantalla en la carpeta sreenshots)");
+
+      Assert.fail(errorCause);
     }
   }
 
@@ -143,34 +151,39 @@ public class Main {
     try {
       // Paso 1
       AccionComun.accederPaginaCrearTramite();
+      Asercion.validarTexto("//div[@class='box_id_header']/h2", "Identifiqueu-vos amb certificat digital");
 
       // Paso 2
       AccionComun.loginCertificado(true);
+      Asercion.validarTexto("//span[@id='T00i_INT_capaTitulo1']/legend/span", "Dades de la persona sol·licitant");
 
       // Paso 3
       AccionComun.rellenarFormularioAñadirTramite();
-
       // Paso 4
       AccionComun.adjuntarFicheroTramite();
+      Asercion.validarTexto("//h4/span[@class='font s18 semi' and text()='Dades de la persona sol·licitant  '][1]", "Dades de la persona sol·licitant");
 
       // Paso 5
       AccionComun.validarFormulario();
-
+      Asercion.validarElemento("//a[@id='firmaNueva']");
       // Paso 6
       AccionComun.firmarDigitalmente();
-
+      Asercion.validarElemento("//div[@class='descargapdf']");
       // Paso 7
       AccionComun.checkCorrectOperationNumber();
+      Asercion.validarElemento("//div[@id='contingut'");
+
 
       System.out.println("Test " + testId + "completado");
 
-    } catch (TimeoutException | NoSuchElementException e) {
+    } catch (Exception e) {
       String errorCause = "" + e.getClass();
       errorCause = errorCause.substring(errorCause.lastIndexOf(".") + 1, errorCause.length());
 
       AccionComun.takeScreenshoot(testId + " - " + errorCause);
 
       System.out.println("Fallo en el test " + testId + " (se ha guardado una captura de pantalla en la carpeta sreenshots)");
+      Assert.fail(errorCause);
     }
   }
 
@@ -187,26 +200,30 @@ public class Main {
     testId = "IMI_TC004_BT001";
     try {
       // Paso 1
-      AccionComun.accederOficinaVirtualVPN();
+      AccionComun.accederOficinaVirtual();
+      Asercion.validarElemento("//input[@name='searchWord']");
 
       // Paso 2
       AccionComun.realizarBusquedaOficinaVirtual("Dret d'accés");
+      Asercion.validarElemento("//div[@role=\"listbox\"]/mat-option[1]");
 
       // Paso 3
-      AccionComun.verificarBusquedaOficinaVirtual("Dret d'accés");
-
+      String busqueda = "Dret d'accés";
+      AccionComun.verificarBusquedaOficinaVirtual(busqueda);
+      //Asercion.validarElemento("//app-fitxa-header//div[contains(text(),"+busqueda+")]");
       System.out.println("Test " + testId + "completado");
 
-    } catch (TimeoutException | NoSuchElementException e) {
+    } catch (Exception e) {
       String errorCause = "" + e.getClass();
       errorCause = errorCause.substring(errorCause.lastIndexOf(".") + 1, errorCause.length());
 
       AccionComun.takeScreenshoot(testId + " - " + errorCause);
 
       System.out.println("Fallo en el test " + testId + " (se ha guardado una captura de pantalla en la carpeta sreenshots)");
+      Assert.fail(errorCause);
     }
   }
-
+  
   /**
    * IMI_TC005_BT002 – Abrir Trámite
    * Comprueba la acción de abrir trámite
