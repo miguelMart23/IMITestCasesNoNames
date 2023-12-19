@@ -665,14 +665,14 @@ public class Main {
     try {
       // Precondición
       AccionComun.accederOficinaVirtual();
-      Thread.sleep(10000);
+      AccionComun.esperarSegundos(10);
 
       // Acción
-      driver.findElement(By.xpath("//*[@id='myTab']/div[2]/a[1]")).click();
-      Thread.sleep(10000);
+      AccionComun.clickarElemento("//*[@id='myTab']/div[2]/a[1]");
+      AccionComun.esperarSegundos(10);
 
       // Condición
-      Assert.assertTrue(driver.findElements(By.xpath("//h3[text()=\"Què és l'Oficina Virtual?\"]")).size() > 0);
+      Asercion.validarElemento("//h3[text()=\"Què és l'Oficina Virtual?\"]");
 
       System.out.println("Test " + testId + "completado");
 
@@ -697,14 +697,15 @@ public class Main {
     try {
       // Precondición
       AccionComun.accederOficinaVirtual();
-      Thread.sleep(10000);
+      AccionComun.esperarSegundos(10);
 
       // Acción
-      AccionComun.enviarAlBuscador("//*[@id='mat-input-0']", "familia");
-      Thread.sleep(1000);
+      AccionComun.enviarTexto("//*[@id='mat-input-0']", "familia");
+      AccionComun.pulsarEnter("//*[@id='mat-input-0']");
+      AccionComun.esperarSegundos(1);
 
       // Condición
-      Assert.assertTrue(driver.findElements(By.xpath("//*[@id=\"home\"]/div[2]/div/app-search-by-keyword/div/div[2]/div[1]")).size() > 0);
+      Asercion.validarElemento("//*[@id=\"home\"]/div[2]/div/app-search-by-keyword/div/div[2]/div[1]");
 
       System.out.println("Test " + testId + "completado");
 
@@ -730,14 +731,15 @@ public class Main {
     try {
       // Precondición
       AccionComun.accederOficinaVirtual();
-      Thread.sleep(10000);
+      AccionComun.esperarSegundos(10);
 
       // Acción
-      AccionComun.enviarAlBuscador("//*[@id='mat-input-0']", "cita");
-      Thread.sleep(1000);
+      AccionComun.enviarTexto("//*[@id='mat-input-0']", "cita");
+      AccionComun.pulsarEnter("//*[@id='mat-input-0']");
+      AccionComun.esperarSegundos(1);
 
       // Condición
-      Assert.assertTrue(driver.findElements(By.xpath("//*[@id=\"home\"]/div[2]/div/app-search-by-keyword/div/div[2]/div[1]")).size() > 0);
+      Asercion.validarElemento("//*[@id=\"home\"]/div[2]/div/app-search-by-keyword/div/div[2]/div[1]");
 
       System.out.println("Test " + testId + "completado");
 
@@ -762,42 +764,43 @@ public class Main {
     try {
       // Precondición
       AccionComun.accederOficinaVirtual();
-      Thread.sleep(10000);
+      AccionComun.esperarSegundos(10);
 
       // Paso 1
       // Accion
-      AccionComun.enviarAlBuscador("//*[@id='mat-input-0']", "cita");
-      Thread.sleep(1000);
+      AccionComun.enviarTexto("//*[@id='mat-input-0']", "cita");
+      AccionComun.pulsarEnter("//*[@id='mat-input-0']");
+      AccionComun.esperarSegundos(1);
 
       // Condición
-      Assert.assertTrue(driver.findElements(By.xpath("//*[@id=\"home\"]/div[2]/div/app-search-by-keyword/div/div[2]/div[1]")).size() > 0);
+      Asercion.validarElemento("//*[@id=\"home\"]/div[2]/div/app-search-by-keyword/div/div[2]/div[1]");
 
       // Paso 2
       // Acción
-      driver.findElement(By.xpath("//*[@id=\"home\"]/div[2]/div/app-search-by-keyword/div/div[2]/div[1]/div[1]")).click();
-      Thread.sleep(2000);
+      AccionComun.clickarElemento("//*[@id=\"home\"]/div[2]/div/app-search-by-keyword/div/div[2]/div[1]/div[1]");
+      AccionComun.esperarSegundos(2);
 
       // Condición
-      Assert.assertTrue(driver.findElements(By.xpath("//*[@id='nav-3']/app-fitxa-general-description")).size() > 0);
+      Asercion.validarElemento("//*[@id='nav-3']/app-fitxa-general-description");
 
       // Paso 3
       // Acción
-      driver.findElement(By.xpath("//*[@id='nav-12-tab']")).click();
-      Thread.sleep(1000);
+      AccionComun.clickarElemento("//*[@id='nav-12-tab']");
+      AccionComun.esperarSegundos(1);
 
-      driver.findElement(By.xpath("//*[@id='nav-2-tab']")).click();
-      Thread.sleep(1000);
+      AccionComun.clickarElemento("//*[@id='nav-2-tab']");
+      AccionComun.esperarSegundos(1);
 
       // Condición
-      Assert.assertTrue(driver.findElements(By.xpath("//*[@id='starter-buttons']/div/div/div/button")).size() > 0);
+      Asercion.validarElemento("//*[@id='starter-buttons']/div/div/div/button");
 
       // Paso 4
       // Acción
-      driver.findElement(By.xpath("//*[@id='starter-buttons']/div/div/div/button")).click();
-      Thread.sleep(1000);
+      AccionComun.clickarElemento("//*[@id='starter-buttons']/div/div/div/button");
+      AccionComun.esperarSegundos(1);
 
       // Condición
-      Assert.assertTrue(driver.findElements(By.xpath("//*[@id='page']")).size() > 0);
+      Asercion.validarElemento("//*[@id='page']");
 
       System.out.println("Test " + testId + "completado");
 
@@ -822,84 +825,101 @@ public class Main {
     testId = "IMI_TC021";
     try {
       AccionComun.accederOficinaVirtualVPN();
-      Thread.sleep(10000);
+      AccionComun.esperarSegundos(10);
 
       // - Paso 1
       // - Acción - User Search For "dret acces"
-      AccionComun.enviarAlBuscador("//input[@name=\"searchWord\"]", "dret acces");
+      AccionComun.enviarTexto("//input[@name=\"searchWord\"]", "dret acces");
+      AccionComun.pulsarEnter("//input[@name=\"searchWord\"]");
 
       // - Condición - Results For "dret acces" Should Be Displayed
-      wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//div[contains(@class,\"media-body\")])[1]")));
+      Asercion.validarElemento("(//div[contains(@class,\"media-body\")])[1]");
 
       List<WebElement> list = driver.findElements(By.xpath("//*[contains(text(),'" + "dret acces" + "')]"));
       Assert.assertTrue(list.size() > 0);
 
       // - Paso 2
       // - Acción - User Clicks On First Panel Of Results
-      wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//div[contains(@class,'card-notification')])[1]")));
+      Asercion.validarElemento("(//div[contains(@class,'card-notification')])[1]");
 
-      driver.findElement(By.xpath("(//div[contains(@class,'card-notification')])[1]")).click();
-      Thread.sleep(1000);
+      AccionComun.clickarElemento("(//div[contains(@class,'card-notification')])[1]");
+
+      AccionComun.esperarSegundos(1);
+
+      // Condición
+      Asercion.validarElemento("//*[@id='page']");   //////////////////////////////// PROBAR ESTO
 
       // - Paso 3
       // Acción - User Initiates Process
-      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//button)[3]")));
+      Asercion.validarElemento("(//button)[3]");
 
-      wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(@class, 'bg-spinner-file')]")));
-      Thread.sleep(1000);
+      Asercion.validarElementoInvisible("//div[contains(@class, 'bg-spinner-file')]");
+      AccionComun.esperarSegundos(1);
 
-      driver.findElement(By.xpath("(//button)[3]")).click();
-      Thread.sleep(1000);
+      AccionComun.clickarElemento("(//button)[3]");
+      AccionComun.esperarSegundos(1);
+
+      // Condición
+      Asercion.validarElemento("//*[@id='page']");  //////////////////////////////// PROBAR ESTO
 
       // Paso 4
       // Acción - User Confirms Dialog
-      wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//div[contains(@class,'modal-dialog')])[3]")));
+      Asercion.validarElemento("(//div[contains(@class,'modal-dialog')])[3]");
 
-      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//div[contains(@class,'modal-dialog')]//button)[5]")));
+      Asercion.validarElementoInvisible("(//div[contains(@class,'modal-dialog')]//button)[5]");
 
-      driver.findElement(By.xpath("(//div[contains(@class,'modal-dialog')]//button)[5]")).click();
+      AccionComun.clickarElemento("(//div[contains(@class,'modal-dialog')]//button)[5]");
+
+      // Condición
+      Asercion.validarElemento("//*[@id='page']");  //////////////////////////////// PROBAR ESTO
 
       // Paso 5
       // Acción - User Sign In With Certificate
-      Thread.sleep(1000);
+      AccionComun.esperarSegundos(1);
       AccionComun.loginCertificado(true);
 
       // Condición - Page Is "dades personals de la persona sol·licitant"
-      AccionComun.pageIs("//*[@id=\"tramitForm\"]/div/app-personal-form/div/div[1]/span", "DADES DE LA PERSONA SOL·LICITANT");
+      Asercion.validarPagina("//*[@id=\"tramitForm\"]/div/app-personal-form/div/div[1]/span", "DADES DE LA PERSONA SOL·LICITANT");
 
       // Paso 6
       // Acción - User Fills In First Page
-      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"tramitForm\"]/div/app-personal-form/div/div[1]")));
 
-      driver.findElement(By.xpath("//input[contains(@formcontrolname,'email')]")).sendKeys("imi_certificats@bcn.cat");
+      Asercion.validarElemento("//*[@id=\"tramitForm\"]/div/app-personal-form/div/div[1]");
+
+      AccionComun.enviarTexto("//input[contains(@formcontrolname,'email')]", "imi_certificats@bcn.cat");
 
       AccionComun.aceptarSubmit();
-      Thread.sleep(5000);
+      AccionComun.esperarSegundos(5);
 
       // Condición - Page Is "dades de la sol·licitud"
-      AccionComun.pageIs("//*[@id=\"dataForm\"]/div/div[1]/span", "DADES DE LA SOL·LICITUD");
+      Asercion.validarPagina("//*[@id=\"dataForm\"]/div/div[1]/span", "DADES DE LA SOL·LICITUD");
 
       // Paso 7
       // Acción - User Fills In Second Page
-      driver.findElement(By.xpath("(//textarea)[1]")).sendKeys("info test");
+      AccionComun.enviarTexto("(//textarea)[1]", "info test");
+      AccionComun.enviarTexto("(//textarea)[2]", "moti test");
+      AccionComun.enviarTexto("(//textarea)[3]", "format test");
 
-      driver.findElement(By.xpath("(//textarea)[2]")).sendKeys("moti test");
-
-      driver.findElement(By.xpath("(//textarea)[3]")).sendKeys("format test");
+      // Condición
+      Asercion.validarElemento("//*[@id='page']");  //////////////////////////////// PROBAR ESTO
 
       // Paso 8
       // Acción - User Clicks Next
-      wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(@class, 'bg-spinner')]")));
+      Asercion.validarElementoInvisible("//div[contains(@class, 'bg-spinner')]");
       AccionComun.aceptarSubmit();
 
       // Condición - Page Is "autorització de consulta de dades"
-      AccionComun.pageIs("//*[@id=\"fileForm\"]/div[1]/div[1]/span", "AUTORITZACIÓ DE CONSULTA DE DADES");
+      Asercion.validarPagina("//*[@id=\"fileForm\"]/div[1]/div[1]/span", "AUTORITZACIÓ DE CONSULTA DE DADES");
 
       // Paso 9
       // Acción - User Attachs File
       File file = new File("./src/test/resources/prueba.pdf");
       wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("(//input[contains(@type,'file')])[1]"))).sendKeys(file.getAbsolutePath());
-      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text()=\" D'ACORD \"]"))).click();
+      Asercion.validarElemento("//*[text()=\" D'ACORD \"]");
+      AccionComun.clickarElemento("//*[text()=\" D'ACORD \"]");
+
+      // Condición
+      Asercion.validarElemento("//*[@id='page']");  //////////////////////////////// PROBAR ESTO
 
       // Paso 10
       // Acción - User Clicks Next
@@ -918,11 +938,11 @@ public class Main {
 
       // Paso 11
       // Acción - User Clicks Next
-      wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(@class, 'bg-spinner')]")));
+      Asercion.validarElementoInvisible("//div[contains(@class, 'bg-spinner')]");
       AccionComun.aceptarSubmit();
 
       // Condición - Page Is "Dades del sol·licitant"
-      AccionComun.pageIs("//*[@id=\"tramitForm\"]/div[2]/div/span", "DADES DE LA PERSONA SOL·LICITANT");
+      Asercion.validarPagina("//*[@id=\"tramitForm\"]/div[2]/div/span", "DADES DE LA PERSONA SOL·LICITANT");
 
       // Paso 12
       // Acción - User Checks Accept Privacy Policy
@@ -940,19 +960,20 @@ public class Main {
 
       // Paso 13
       // Acción - User Clicks Next
-      wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(@class, 'bg-spinner')]")));
+      Asercion.validarElementoInvisible("//div[contains(@class, 'bg-spinner')]");
       AccionComun.aceptarSubmit();
 
       // Condición - Page Is "document a signar"
-      AccionComun.pageIs("//*[@id=\"tramitForm\"]/div[2]/div[1]/span", "DESCARREGUEU EL VOSTRE DOCUMENT");
+      Asercion.validarPagina("//*[@id=\"tramitForm\"]/div[2]/div[1]/span", "DESCARREGUEU EL VOSTRE DOCUMENT");
 
       // Paso 14
       // Acción - User Saves Form
-      wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//app-wizard-save-draft/div[1]/div")));
+      Asercion.validarElemento("//app-wizard-save-draft/div[1]/div");
 
-      driver.findElement(By.xpath("//app-wizard-save-draft/div[1]/div")).click();
+      AccionComun.clickarElemento("//app-wizard-save-draft/div[1]/div");
 
-      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text()=\" D'acord \"]"))).click();
+      Asercion.validarElemento("//*[text()=\" D'acord \"]");
+      AccionComun.clickarElemento("//*[text()=\" D'acord \"]");
 
     /*
      * Código de robot que no concuerda con ninguna acción posible
