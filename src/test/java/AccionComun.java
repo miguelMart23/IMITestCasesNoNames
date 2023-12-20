@@ -11,7 +11,12 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
 public class AccionComun extends Main {
-    
+  /*public static void () throws InterruptedException {
+    // Accions - Entrar pagina principal
+    Main.driver.get("https://seuelectronica.ajuntament.barcelona.cat/oficinavirtual/ca");
+    Thread.sleep(8000)
+    ;
+  }*/
   public static void accederOficinaVirtual() throws InterruptedException {
     // Accions - Entrar pagina principal
     Main.driver.get("https://seuelectronica.ajuntament.barcelona.cat/oficinavirtual/ca");

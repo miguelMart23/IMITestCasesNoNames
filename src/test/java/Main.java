@@ -583,7 +583,7 @@ public class Main {
       //paso 1
       wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//*[@id=\"profile-tab\"]")))).click();
       wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//*[@id=\"profile\"]/app-enterprise-tax/div[2]/div/div[1]/div/div[1]")))).click();
-      Thread.sleep(2000);
+      AccionComun.esperarSegundos(2);
       //paso 2
   
       wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//*[@id=\"ex1-tab-1\"]")))).click();
@@ -610,7 +610,7 @@ public class Main {
       IMI_TC0013_AEOV002();
       String url = driver.getCurrentUrl();
       assert url.contains("enterprise-information/tax/vehicles");
-      Thread.sleep(2000);
+      AccionComun.esperarSegundos(2);
       wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("/html/body/app-root/app-personal-space-layout/div/app-personal-space-header/app-corp-header/div[2]/div[2]/div[1]")))).click();
     }
     catch (TimeoutException | NoSuchElementException e) {
@@ -636,7 +636,7 @@ public class Main {
       //paso 2
       wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//*[@id=\"home\"]/app-person-space-info/section/div[3]/div[3]/div")))).click();
       AccionComun.loginCertificado(true);
-      Thread.sleep(2000);
+      AccionComun.esperarSegundos(2);
       driver.close();
     }
     catch (TimeoutException | NoSuchElementException e) {
@@ -659,7 +659,7 @@ public class Main {
     try {
       //paso 1
       AccionComun.accederOficinaVirtualVPN();
-      Thread.sleep(4000);
+      AccionComun.esperarSegundos(4);
     }
     catch (TimeoutException | NoSuchElementException e) {
       String errorCause = "" + e.getClass();
