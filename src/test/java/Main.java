@@ -210,8 +210,10 @@ public class Main {
       // Paso 3
       String busqueda = "Dret d'accés";
       AccionComun.verificarBusquedaOficinaVirtual(busqueda);
-      //Asercion.validarElemento("//app-fitxa-header//div[contains(text(),"+busqueda+")]");
+      System.out.println("//app-fitxa-header//div[contains(text(),\""+busqueda+"\")]");
+      Asercion.validarElemento("//app-fitxa-header//div[contains(text(),\""+busqueda+"\")]");
       System.out.println("Test " + testId + "completado");
+
 
     } catch (Exception e) {
       String errorCause = "" + e.getClass();
