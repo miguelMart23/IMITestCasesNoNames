@@ -603,7 +603,7 @@ public class Main {
    * Consulta del detalle de un trámite en el portal de la empresa
    * @throws IOException
    */
-  @Test(description = "IMI_TC0014_AEOV003 - Ver Información Fiscal Y Volver A Pagina Inicio", enabled = true)
+  @Test(description = "IMI_TC0014_AEOV003 - Comprovar Información Fiscal Y Volver A Pagina Inicio", enabled = true)
   public void IMI_TC0014_AEOV003() throws InterruptedException, IOException {
     try {
       //paso 1
