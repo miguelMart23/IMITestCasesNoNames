@@ -581,12 +581,7 @@ public class Main {
       //navegar a virtual ofice companis
       IMI_TC011();
       //paso 1
-      wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//*[@id=\"profile-tab\"]")))).click();
-      wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//*[@id=\"profile\"]/app-enterprise-tax/div[2]/div/div[1]/div/div[1]")))).click();
-      AccionComun.esperarSegundos(2);
-      //paso 2
-  
-      wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//*[@id=\"ex1-tab-1\"]")))).click();
+      AccionComun.navegarInfoFiscal();
     }
     catch (TimeoutException | NoSuchElementException e) {
       String errorCause = "" + e.getClass();
@@ -603,16 +598,12 @@ public class Main {
    * Consulta del detalle de un trámite en el portal de la empresa
    * @throws IOException
    */
-  @Test(description = "IMI_TC0014_AEOV003 - Comprovar Información Fiscal Y Volver A Pagina Inicio", enabled = true)
+  @Test(description = "IMI_TC0014_AEOV003 - Comprobar Información Fiscal Y Volver A Pagina Inicio", enabled = true)
   public void IMI_TC0014_AEOV003() throws InterruptedException, IOException {
     try {
-      //paso 1
       IMI_TC0013_AEOV002();
-      String url = driver.getCurrentUrl();
-      assert url.contains("enterprise-information/tax/vehicles");
-      AccionComun.esperarSegundos(2);
-      wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("/html/body/app-root/app-personal-space-layout/div/app-personal-space-header/app-corp-header/div[2]/div[2]/div[1]")))).click();
-    }
+      AccionComun.comprobarInfoFiscal();
+          }
     catch (TimeoutException | NoSuchElementException e) {
       String errorCause = "" + e.getClass();
       errorCause = errorCause.substring(errorCause.lastIndexOf(".") + 1, errorCause.length());

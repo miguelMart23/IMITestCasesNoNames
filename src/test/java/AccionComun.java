@@ -11,12 +11,23 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
 public class AccionComun extends Main {
-  /*public static void () throws InterruptedException {
-    // Accions - Entrar pagina principal
-    Main.driver.get("https://seuelectronica.ajuntament.barcelona.cat/oficinavirtual/ca");
-    Thread.sleep(8000)
-    ;
-  }*/
+  public static void clickarElementoWait(String xpath) {
+    wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath))).click();
+  }
+  public static void navegarInfoFiscal() throws InterruptedException {
+    clickarElementoWait("//*[@id=\"profile-tab\"]");
+    clickarElementoWait("//*[@id=\"profile\"]/app-enterprise-tax/div[2]/div/div[1]/div/div[1]");
+    esperarSegundos(2);
+    clickarElementoWait("//*[@id=\"ex1-tab-1\"]");
+  }
+  public static void comprobarInfoFiscal() throws InterruptedException {
+    String url = driver.getCurrentUrl();
+      assert url.contains("enterprise-information/tax/vehicles");
+      esperarSegundos(2);
+      clickarElementoWait("/html/body/app-root/app-personal-space-layout/div/app-personal-space-header/app-corp-header/div[2]/div[2]/div[1]");
+
+  }
+  
   public static void accederOficinaVirtual() throws InterruptedException {
     // Accions - Entrar pagina principal
     Main.driver.get("https://seuelectronica.ajuntament.barcelona.cat/oficinavirtual/ca");
