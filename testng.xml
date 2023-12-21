@@ -2,10 +2,10 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
 <suite name="Tools QA TestSuite">
-    <test verbose="0" preserve-order="true" name="Home">
+    <test verbose="0" preserve-order="true" name="IMI_TestCases">
         <!-- Se ejecutaran los tests de las clases que estén a continuación -->
         <classes>
-            <class name="Home"/>
+            <class name="Main"/>
         </classes>
     </test>
 </suite>
