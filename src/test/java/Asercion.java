@@ -26,11 +26,13 @@ public class Asercion extends Main {
 
     public static void validarPagina(String xpath, String textoValidar) {
         validarElemento(xpath);
-    
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(@class, 'bg-spinner')]")));
-
         validarTexto(xpath, textoValidar);
-
-      }
-
+    }
+    
+    public static void validarTituloPestanyaNueva(String tituloPestanyaNueva) {
+        ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1));
+        Assert.assertTrue(driver.getTitle().contains(tituloPestanyaNueva));
+    }
 }
