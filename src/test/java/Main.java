@@ -1050,7 +1050,7 @@ public class Main {
 
       // Paso 3
 
-      AccionComun.iniciarTramite();
+      AccionComun.iniciarTramiteVolant();
 
       // Paso 4
 

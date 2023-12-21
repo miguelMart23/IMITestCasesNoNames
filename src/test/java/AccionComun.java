@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
@@ -7,13 +8,12 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
 public class AccionComun extends Main {
-  public static void clickarElementoWait(String xpath) {
-    wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath))).click();
-  }
+
   public static void navegarInfoFiscal() throws InterruptedException {
     clickarElementoWait("//*[@id=\"profile-tab\"]");
     clickarElementoWait("//*[@id=\"profile\"]/app-enterprise-tax/div[2]/div/div[1]/div/div[1]");
@@ -397,7 +397,7 @@ public class AccionComun extends Main {
     Assert.assertTrue(list.size() > 0);
   }
 
-  public static void iniciarTramite() throws InterruptedException {
+  public static void iniciarTramiteVolant() throws InterruptedException {
     Asercion.validarElemento("//div[@class='buttons-header both-buttons']//div[contains(text(),'Inicia el tràmit')]");
 
     Asercion.validarElementoInvisible("//div[contains(@class, 'bg-spinner-file')]");
