@@ -234,27 +234,29 @@ public class Main {
    */
   @Test(description = "IMI_TC005_BT002 - Abrir Trámite", enabled = true)
   public void IMI_TC005_BT002() throws InterruptedException, IOException {
+    testId = "IMI_TC005_BT002";
     try {
       // Precondición
       IMI_TC004_BT001();
-      testId = "IMI_TC005_BT002";
 
       // Paso 1
       AccionComun.iniciarTramite();
+      Asercion.validarElemento("//h2[normalize-space()='Identifiqueu-vos amb el mòbil']");
 
       // Paso 2
       AccionComun.loginCertificado(true);
+      Asercion.validarElemento("//p[normalize-space()=\"Dret d'Accés a la informació pública\"]");
 
-      System.out.println("Test " + testId + "completado");
+      System.out.println("Test " + testId + " finalizado");
 
-    } 
-    catch (TimeoutException | NoSuchElementException e) {
+    } catch (Exception e) {
       String errorCause = "" + e.getClass();
       errorCause = errorCause.substring(errorCause.lastIndexOf(".") + 1, errorCause.length());
 
       AccionComun.takeScreenshoot(testId + " - " + errorCause);
 
       System.out.println("Fallo en el test " + testId + " (se ha guardado una captura de pantalla en la carpeta sreenshots)");
+      Assert.fail(errorCause);
     }
   }
 
@@ -266,44 +268,54 @@ public class Main {
    */
   @Test(description = "IMI_TC006_BT003 - Trámite Dret Accés", enabled = true)
   public void IMI_TC006_BT003() throws InterruptedException, IOException {
+    testId = "IMI_TC006_BT003";
     try {
       // Precondición
       IMI_TC005_BT002();
-      testId = "IMI_TC006_BT003";
 
       // Paso 1
       AccionComun.anyadirParametros("email", "test@test.com");
+      Asercion.validarElemento("(//span[normalize-space()='Dades de la persona sol·licitant'])[1]");
 
       // Paso 2
       AccionComun.aceptarSubmit();
+      Asercion.validarElemento("(//span[normalize-space()='Dades del tràmit'])[1]");
 
       // Paso 3
+      Thread.sleep(3000);
       AccionComun.rellenarTextArea(1, "test");
+      AccionComun.aceptarSubmit();
+      Asercion.validarElemento("(//span[normalize-space()='Documentació'])[1]");
 
       // Paso 4
+      Thread.sleep(3000);
       AccionComun.aceptarSubmit();
+      Asercion.validarElemento("(//span[normalize-space()='Resum'])[1]");
 
       // Paso 5
+      Thread.sleep(3000);
       AccionComun.aceptarSubmit();
+      Asercion.validarElemento("(//span[normalize-space()='Enviament (registre/signatura)'])[1]");
 
       // Paso 6
-      AccionComun.aceptarSubmit();
+      AccionComun.enviarTramite();
+      Thread.sleep(30000);
+      Asercion.validarElemento("//p[contains(text(), 'Tràmit realitzat')]");
 
       // Paso 7
-      AccionComun.enviarTramite();
-
-      // Paso 8
       AccionComun.guardarYCerrarTramite();
-      
-      System.out.println("Test " + testId + "completado");
+      Asercion.validarElemento("//p[normalize-space()='Cerqueu el que us interessa']");
 
-    } catch (TimeoutException | NoSuchElementException e) {
+      System.out.println("Test " + testId + " finalizado");
+
+    } catch (Exception e) {
       String errorCause = "" + e.getClass();
       errorCause = errorCause.substring(errorCause.lastIndexOf(".") + 1, errorCause.length());
 
       AccionComun.takeScreenshoot(testId + " - " + errorCause);
 
       System.out.println("Fallo en el test " + testId + " (se ha guardado una captura de pantalla en la carpeta sreenshots)");
+      Assert.fail(errorCause);
     }
   }
 
@@ -318,22 +330,26 @@ public class Main {
     try {
       // Paso 1
       AccionComun.accederOficinaVirtualVPN();
+      Asercion.validarElemento("//p[normalize-space()='Cerqueu el que us interessa']");
 
       // Paso 2
       AccionCiudadano.accederEspaiPersonal();
+      Asercion.validarElemento("//h2[normalize-space()='Identifiqueu-vos amb el mòbil']");
 
       // Paso 3
       AccionComun.loginCertificado(true);
+      Asercion.validarElemento("//p[normalize-space()='ESPAI PERSONAL']");
 
-      System.out.println("Test " + testId + "completado");
+      System.out.println("Test " + testId + " finalizado");
 
-    } catch (TimeoutException | NoSuchElementException e) {
+    } catch (Exception e) {
       String errorCause = "" + e.getClass();
       errorCause = errorCause.substring(errorCause.lastIndexOf(".") + 1, errorCause.length());
 
       AccionComun.takeScreenshoot(testId + " - " + errorCause);
 
       System.out.println("Fallo en el test " + testId + " (se ha guardado una captura de pantalla en la carpeta sreenshots)");
+      Assert.fail(errorCause);
     }
   }
 
@@ -344,27 +360,29 @@ public class Main {
    */
   @Test(description = "IMI_TC008_APOV002 - Notificacions  Enotum", enabled = true)
   public void IMI_TC008_APOV002() throws InterruptedException, IOException {
+    testId = "IMI_TC008_APOV002";
     try {
-
       // Prcondiciónes
       IMI_TC007_APOV001();
-      testId = "IMI_TC008_APOV002";
 
       // Paso 1
       AccionCiudadano.entrarApartadoNotificaciones();
+      Asercion.validarElemento("//p[normalize-space()='Espai personal']");
 
       // Paso 2
       AccionCiudadano.verNotificacionesEnotum();
+      Asercion.validarTituloPestanyaNueva("e-NOTUM");
 
-      System.out.println("Fallo en el test " + testId + " (se ha guardado una captura de pantalla en la carpeta sreenshots)");
+      System.out.println("Test " + testId + " finalizado");
 
-    } catch (TimeoutException | NoSuchElementException e) {
+    } catch (Exception e) {
       String errorCause = "" + e.getClass();
       errorCause = errorCause.substring(errorCause.lastIndexOf(".") + 1, errorCause.length());
 
       AccionComun.takeScreenshoot(testId + " - " + errorCause);
 
       System.out.println("Fallo en el test " + testId + " (se ha guardado una captura de pantalla en la carpeta sreenshots)");
+      Assert.fail(errorCause);
     }
   }
 
@@ -967,59 +985,63 @@ public class Main {
    */
   @Test(description = "IMI_TC022_PS007 - Recuperar Borrador", enabled = true)
   public void IMI_TC022_PS007() throws InterruptedException, IOException {
+    testId = "IMI_TC022_PS007";
     try {
       // Prcondiciónes
       IMI_TC021();
-      testId = "IMI_TC022_PS007";
 
       // Paso 1
       String tramiteId = AccionCiudadano.conseguirIdTramite();
       AccionComun.guardarYCerrarTramite();
+      Asercion.validarElemento("//p[normalize-space()='Cerqueu el que us interessa']");
 
       // Paso 2
       AccionComun.recuperarTramitePorId(tramiteId);
+      Asercion.validarElemento("(//span[normalize-space()='Dades de la persona sol·licitant'])[1]");
 
       // Paso 3
       // Condición - Page Is "dades personals de la persona sol·licitant"
-      AccionComun.validarTextoFormulario("Dades de la persona sol·licitant");
       AccionComun.aceptarSubmit();
+      Asercion.validarElemento("(//span[normalize-space()='Dades del tràmit'])[1]");
 
       // Paso 4
       //Condición - Page Is "dades de la sol·licitud"
-      Thread.sleep(5000);
-      AccionComun.validarTextoFormulario("Dades del tràmit");
+      Thread.sleep(3000);
       AccionComun.aceptarSubmit();
+      Asercion.validarElemento("(//span[normalize-space()='Documentació'])[1]");
 
       // Paso 5
       //Condición - Page Is "autorització de consulta de dades"
-      Thread.sleep(5000);
-      AccionComun.validarTextoFormulario("Documentació");
+      Thread.sleep(3000);
       AccionComun.aceptarSubmit();
+      Asercion.validarElemento("(//span[normalize-space()='Resum'])[1]");
 
       // Paso 6
       //Condición - Page Is "autorització de consulta de dades"
-      Thread.sleep(5000);
-      AccionComun.validarTextoFormulario("Resum");
+      Thread.sleep(3000);
       AccionComun.aceptarSubmit();
+      Asercion.validarElemento("(//span[normalize-space()='Enviament (registre/signatura)'])[1]");
 
       // Paso 7
       //Condición - Page is "decarregeu el vostre document"
-      AccionComun.validarTextoFormulario("Enviament (registre/signatura)");
       AccionComun.enviarTramite();
+      Thread.sleep(30000);
+      Asercion.validarElemento("//p[contains(text(), 'Tràmit realitzat')]");
 
       // Paso 8
-      Thread.sleep(30000);
       AccionComun.guardarYCerrarTramite();
+      Asercion.validarElemento("//p[normalize-space()='Cerqueu el que us interessa']");
 
-      System.out.println("Test " + testId + "completado");
+      System.out.println("Test " + testId + " finalizado");
 
-    } catch (TimeoutException | NoSuchElementException e) {
+    } catch (Exception e) {
       String errorCause = "" + e.getClass();
       errorCause = errorCause.substring(errorCause.lastIndexOf(".") + 1, errorCause.length());
 
       AccionComun.takeScreenshoot(testId + " - " + errorCause);
 
       System.out.println("Fallo en el test " + testId + " (se ha guardado una captura de pantalla en la carpeta sreenshots)");
+      Assert.fail(errorCause);
     }
   }
 
