@@ -15,9 +15,12 @@ import org.testng.Assert;
 public class AccionComun extends Main {
 
   public static void navegarInfoFiscal() throws InterruptedException {
+    Asercion.validarElemento("//*[@id=\"profile-tab\"]");
     clickarElementoWait("//*[@id=\"profile-tab\"]");
+    Asercion.validarElemento("//*[@id=\"profile\"]/app-enterprise-tax/div[2]/div/div[1]/div/div[1]");
     clickarElementoWait("//*[@id=\"profile\"]/app-enterprise-tax/div[2]/div/div[1]/div/div[1]");
     esperarSegundos(2);
+    Asercion.validarElemento("//*[@id=\"ex1-tab-1\"]");
     clickarElementoWait("//*[@id=\"ex1-tab-1\"]");
   }
   public static void comprobarInfoFiscal() throws InterruptedException {

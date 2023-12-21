@@ -576,6 +576,7 @@ public class Main {
       //paso 1
       IMI_TC0016_PS001();
       //paso 2
+      Asercion.validarElemento("//*[@id=\"home\"]/app-person-space-info/section/div[3]/div[3]/div");
       AccionComun.clickarElementoWait("//*[@id=\"home\"]/app-person-space-info/section/div[3]/div[3]/div");
       AccionComun.loginCertificado(true);
       AccionComun.esperarSegundos(2);
