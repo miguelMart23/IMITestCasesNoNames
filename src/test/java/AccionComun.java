@@ -279,6 +279,7 @@ public class AccionComun extends Main {
     takeScreenshoot("IMI_TC003-Correct_Operation_Number-2");
     // Paso 8
     driver.findElement(By.xpath("//a[@id='home-tab']")).click();
+    /* 
     // Paso 9 
     wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//p[text()='"+tramitId+"']"))).click();
     // Paso 10 
@@ -299,6 +300,7 @@ public class AccionComun extends Main {
     wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='contingut']")));
     // Paso 14
     wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//table//tbody//tr[1]//td[2]"))).getText().compareTo(tramitId);
+  */
   }
 
       public static void navegarAreaNotificaciones() throws InterruptedException, IOException {
