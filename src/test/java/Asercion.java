@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -26,11 +27,13 @@ public class Asercion extends Main {
 
     public static void validarPagina(String xpath, String textoValidar) {
         validarElemento(xpath);
-    
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(@class, 'bg-spinner')]")));
-
         validarTexto(xpath, textoValidar);
-
-      }
-
+    }
+    
+    public static void validarTituloPestanyaNueva(String tituloPestanyaNueva) {
+        ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1));
+        Assert.assertTrue(driver.getTitle().contains(tituloPestanyaNueva));
+    }
 }

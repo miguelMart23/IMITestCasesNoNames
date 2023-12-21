@@ -234,27 +234,29 @@ public class Main {
    */
   @Test(description = "IMI_TC005_BT002 - Abrir Trámite", enabled = true)
   public void IMI_TC005_BT002() throws InterruptedException, IOException {
+    testId = "IMI_TC005_BT002";
     try {
       // Precondición
       IMI_TC004_BT001();
-      testId = "IMI_TC005_BT002";
 
       // Paso 1
       AccionComun.iniciarTramite();
+      Asercion.validarElemento("//h2[normalize-space()='Identifiqueu-vos amb el mòbil']");
 
       // Paso 2
       AccionComun.loginCertificado(true);
+      Asercion.validarElemento("//p[normalize-space()=\"Dret d'Accés a la informació pública\"]");
 
-      System.out.println("Test " + testId + "completado");
+      System.out.println("Test " + testId + " finalizado");
 
-    } 
-    catch (TimeoutException | NoSuchElementException e) {
+    } catch (Exception e) {
       String errorCause = "" + e.getClass();
       errorCause = errorCause.substring(errorCause.lastIndexOf(".") + 1, errorCause.length());
 
       AccionComun.takeScreenshoot(testId + " - " + errorCause);
 
       System.out.println("Fallo en el test " + testId + " (se ha guardado una captura de pantalla en la carpeta sreenshots)");
+      Assert.fail(errorCause);
     }
   }
 
@@ -266,44 +268,54 @@ public class Main {
    */
   @Test(description = "IMI_TC006_BT003 - Trámite Dret Accés", enabled = true)
   public void IMI_TC006_BT003() throws InterruptedException, IOException {
+    testId = "IMI_TC006_BT003";
     try {
       // Precondición
       IMI_TC005_BT002();
-      testId = "IMI_TC006_BT003";
 
       // Paso 1
       AccionComun.anyadirParametros("email", "test@test.com");
+      Asercion.validarElemento("(//span[normalize-space()='Dades de la persona sol·licitant'])[1]");
 
       // Paso 2
       AccionComun.aceptarSubmit();
+      Asercion.validarElemento("(//span[normalize-space()='Dades del tràmit'])[1]");
 
       // Paso 3
+      Thread.sleep(3000);
       AccionComun.rellenarTextArea(1, "test");
+      AccionComun.aceptarSubmit();
+      Asercion.validarElemento("(//span[normalize-space()='Documentació'])[1]");
 
       // Paso 4
+      Thread.sleep(3000);
       AccionComun.aceptarSubmit();
+      Asercion.validarElemento("(//span[normalize-space()='Resum'])[1]");
 
       // Paso 5
+      Thread.sleep(3000);
       AccionComun.aceptarSubmit();
+      Asercion.validarElemento("(//span[normalize-space()='Enviament (registre/signatura)'])[1]");
 
       // Paso 6
-      AccionComun.aceptarSubmit();
+      AccionComun.enviarTramite();
+      Thread.sleep(30000);
+      Asercion.validarElemento("//p[contains(text(), 'Tràmit realitzat')]");
 
       // Paso 7
-      AccionComun.enviarTramite();
-
-      // Paso 8
       AccionComun.guardarYCerrarTramite();
-      
-      System.out.println("Test " + testId + "completado");
+      Asercion.validarElemento("//p[normalize-space()='Cerqueu el que us interessa']");
 
-    } catch (TimeoutException | NoSuchElementException e) {
+      System.out.println("Test " + testId + " finalizado");
+
+    } catch (Exception e) {
       String errorCause = "" + e.getClass();
       errorCause = errorCause.substring(errorCause.lastIndexOf(".") + 1, errorCause.length());
 
       AccionComun.takeScreenshoot(testId + " - " + errorCause);
 
       System.out.println("Fallo en el test " + testId + " (se ha guardado una captura de pantalla en la carpeta sreenshots)");
+      Assert.fail(errorCause);
     }
   }
 
@@ -318,22 +330,26 @@ public class Main {
     try {
       // Paso 1
       AccionComun.accederOficinaVirtualVPN();
+      Asercion.validarElemento("//p[normalize-space()='Cerqueu el que us interessa']");
 
       // Paso 2
       AccionCiudadano.accederEspaiPersonal();
+      Asercion.validarElemento("//h2[normalize-space()='Identifiqueu-vos amb el mòbil']");
 
       // Paso 3
       AccionComun.loginCertificado(true);
+      Asercion.validarElemento("//p[normalize-space()='ESPAI PERSONAL']");
 
-      System.out.println("Test " + testId + "completado");
+      System.out.println("Test " + testId + " finalizado");
 
-    } catch (TimeoutException | NoSuchElementException e) {
+    } catch (Exception e) {
       String errorCause = "" + e.getClass();
       errorCause = errorCause.substring(errorCause.lastIndexOf(".") + 1, errorCause.length());
 
       AccionComun.takeScreenshoot(testId + " - " + errorCause);
 
       System.out.println("Fallo en el test " + testId + " (se ha guardado una captura de pantalla en la carpeta sreenshots)");
+      Assert.fail(errorCause);
     }
   }
 
@@ -344,27 +360,29 @@ public class Main {
    */
   @Test(description = "IMI_TC008_APOV002 - Notificacions  Enotum", enabled = true)
   public void IMI_TC008_APOV002() throws InterruptedException, IOException {
+    testId = "IMI_TC008_APOV002";
     try {
-
       // Prcondiciónes
       IMI_TC007_APOV001();
-      testId = "IMI_TC008_APOV002";
 
       // Paso 1
       AccionCiudadano.entrarApartadoNotificaciones();
+      Asercion.validarElemento("//p[normalize-space()='Espai personal']");
 
       // Paso 2
       AccionCiudadano.verNotificacionesEnotum();
+      Asercion.validarTituloPestanyaNueva("e-NOTUM");
 
-      System.out.println("Fallo en el test " + testId + " (se ha guardado una captura de pantalla en la carpeta sreenshots)");
+      System.out.println("Test " + testId + " finalizado");
 
-    } catch (TimeoutException | NoSuchElementException e) {
+    } catch (Exception e) {
       String errorCause = "" + e.getClass();
       errorCause = errorCause.substring(errorCause.lastIndexOf(".") + 1, errorCause.length());
 
       AccionComun.takeScreenshoot(testId + " - " + errorCause);
 
       System.out.println("Fallo en el test " + testId + " (se ha guardado una captura de pantalla en la carpeta sreenshots)");
+      Assert.fail(errorCause);
     }
   }
 
@@ -376,15 +394,15 @@ public class Main {
   @Test(description = "IMI_TC009 - Validar Modificar Datos Del Registro De Suscriptores", enabled = true)
 
   public void IMI_TC009() throws InterruptedException, IOException {
+
+    testId = "IMI_TC009";
     try {
 
       // Precondición
 
       IMI_TC007_APOV001();
 
-      testId = "IMI_TC009";
-
-      Thread.sleep(2000);
+      AccionComun.esperarSegundos(5);
 
       // Paso 1
 
@@ -400,24 +418,18 @@ public class Main {
 
       // Comprobacion
 
-      wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='content-box-modal col-10 offset-1']//div[2]"))).click();
+      AccionComun.comprobarCambioNumTelefono();
 
-      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[contains(@formcontrolname, 'telephone')]")));
-
-      wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(@class, 'bg-spinner-file')]")));
-
-      Assert.assertTrue(driver.findElement(By.xpath("//span[contains(text(), '123456789')]")).isDisplayed());
     } 
-    catch (Exception e) {
+    catch (TimeoutException | NoSuchElementException e) {
       String errorCause = "" + e.getClass();
       errorCause = errorCause.substring(errorCause.lastIndexOf(".") + 1, errorCause.length());
- 
+  
       AccionComun.takeScreenshoot(testId + " - " + errorCause);
- 
+  
       System.out.println("Fallo en el test " + testId + " (se ha guardado una captura de pantalla en la carpeta sreenshots)");
- 
-      Assert.fail(errorCause);
-    } 
+    }
+
   }
 
   /**
@@ -428,49 +440,30 @@ public class Main {
   @Test(description = "IMI_TC010 - Consulta Estado Trámite Finalizado", enabled = true)
 
   public void IMI_TC010() throws InterruptedException, IOException {
+
+    testId = "IMI_TC010";
     try {
+
+      // Precondición
 
       IMI_TC007_APOV001();
 
-      testId = "IMI_TC010";
-
       // Paso 1
 
-      wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//i[@class='fa bcn-icon-esquerra-bold']"))).click();
-
-      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//section[contains(@class,\"check-tramit-status\")])[1]")));
-
-      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//section[@class='check-tramit-status ie10up']")));
-
-      WebElement element = driver.findElement(By.xpath("//section[@class='check-tramit-status ie10up']"));
-      ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
-
-      Thread.sleep(2000);
-
-      Assert.assertTrue(driver.findElement(By.xpath("//input[@placeholder='Introduïu el número']")).isDisplayed());
-
-      driver.findElement(By.xpath("//input[@placeholder='Introduïu el número']")).sendKeys("1689361-34");
-
-      driver.findElement(By.xpath("//input[@placeholder='Introduïu el número']")).sendKeys(Keys.RETURN);
+      AccionComun.buscarTramite("1689361-34");
 
       // Paso 2
 
-      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//app-tramit-status-detail")));
+      AccionComun.comprobarBusquedaTramite("1689361-34");
 
-      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,\"modal-subtitle\")]")));
-
-      List<WebElement> list = driver.findElements(By.xpath("//*[contains(text(),'" + "1689361-34" + "')]"));
-      Assert.assertTrue(list.size() > 0);
     }
-    catch (Exception e) {
+    catch (TimeoutException | NoSuchElementException e) {
       String errorCause = "" + e.getClass();
       errorCause = errorCause.substring(errorCause.lastIndexOf(".") + 1, errorCause.length());
- 
+  
       AccionComun.takeScreenshoot(testId + " - " + errorCause);
- 
+  
       System.out.println("Fallo en el test " + testId + " (se ha guardado una captura de pantalla en la carpeta sreenshots)");
- 
-      Assert.fail(errorCause);
     }
 
   }
@@ -488,26 +481,24 @@ public class Main {
     try {
 
       // Paso 1
-      driver.get("https://seuelectronica-int.ajuntament.bcn/oficinavirtual/ca");
-      wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//div[contains(@class,'person-space')])[2]//a"))).click();
+      
+      AccionComun.accederEspacio2();
     
       // Paso 2
-      Thread.sleep(2000);
+
       AccionComun.loginCertificado(false);
-      Thread.sleep(2000);
+
       wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='espai_personal']//li//a"))).click();
 
       Thread.sleep(10000);
     }
-    catch (Exception e) {
+    catch (TimeoutException | NoSuchElementException e) {
       String errorCause = "" + e.getClass();
       errorCause = errorCause.substring(errorCause.lastIndexOf(".") + 1, errorCause.length());
- 
+  
       AccionComun.takeScreenshoot(testId + " - " + errorCause);
- 
+  
       System.out.println("Fallo en el test " + testId + " (se ha guardado una captura de pantalla en la carpeta sreenshots)");
- 
-      Assert.fail(errorCause);
     }
 
   }
@@ -521,7 +512,7 @@ public class Main {
 
   public void IMI_TC012() throws InterruptedException, IOException {
 
-    testId = "IMI_TC011";
+    testId = "IMI_TC012";
     try {
 
       // Precondición
@@ -530,42 +521,20 @@ public class Main {
 
       // Paso 1
 
-      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//li[contains(@class,'enterprise')][2]")));
-
-      driver.findElement(By.xpath("//li[contains(@class,'enterprise')][2]")).click();
+      AccionComun.accederMisTramites();
 
       // Paso 2
 
-      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//p[contains(text(),'1689137-35')]")));
-
-      driver.findElement(By.xpath("//p[contains(text(),'1689137-35')]")).click();
-
-      String winHandleBefore = driver.getWindowHandle();
-
-      Thread.sleep(5000);
-
-      driver.findElement(By.xpath("//button[@class='col-10 col-sm-8 col-md-4 btn-generic primary mb-4 font s16']")).click();
-
-      for(String winHandle : driver.getWindowHandles()){
-          driver.switchTo().window(winHandle);
-      }
-
-      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='contingut']")));
-
-      driver.close();
-
-      driver.switchTo().window(winHandleBefore);
+      AccionComun.verDetalleTramite();
     
     }
-    catch (Exception e) {
+    catch (TimeoutException | NoSuchElementException e) {
       String errorCause = "" + e.getClass();
       errorCause = errorCause.substring(errorCause.lastIndexOf(".") + 1, errorCause.length());
- 
+  
       AccionComun.takeScreenshoot(testId + " - " + errorCause);
- 
+  
       System.out.println("Fallo en el test " + testId + " (se ha guardado una captura de pantalla en la carpeta sreenshots)");
- 
-      Assert.fail(errorCause);
     }
 
   }
@@ -625,6 +594,7 @@ public class Main {
       //paso 1
       IMI_TC0016_PS001();
       //paso 2
+      Asercion.validarElemento("//*[@id=\"home\"]/app-person-space-info/section/div[3]/div[3]/div");
       AccionComun.clickarElementoWait("//*[@id=\"home\"]/app-person-space-info/section/div[3]/div[3]/div");
       AccionComun.loginCertificado(true);
       AccionComun.esperarSegundos(2);
@@ -1015,59 +985,63 @@ public class Main {
    */
   @Test(description = "IMI_TC022_PS007 - Recuperar Borrador", enabled = true)
   public void IMI_TC022_PS007() throws InterruptedException, IOException {
+    testId = "IMI_TC022_PS007";
     try {
       // Prcondiciónes
       IMI_TC021();
-      testId = "IMI_TC022_PS007";
 
       // Paso 1
       String tramiteId = AccionCiudadano.conseguirIdTramite();
       AccionComun.guardarYCerrarTramite();
+      Asercion.validarElemento("//p[normalize-space()='Cerqueu el que us interessa']");
 
       // Paso 2
       AccionComun.recuperarTramitePorId(tramiteId);
+      Asercion.validarElemento("(//span[normalize-space()='Dades de la persona sol·licitant'])[1]");
 
       // Paso 3
       // Condición - Page Is "dades personals de la persona sol·licitant"
-      AccionComun.validarTextoFormulario("Dades de la persona sol·licitant");
       AccionComun.aceptarSubmit();
+      Asercion.validarElemento("(//span[normalize-space()='Dades del tràmit'])[1]");
 
       // Paso 4
       //Condición - Page Is "dades de la sol·licitud"
-      Thread.sleep(5000);
-      AccionComun.validarTextoFormulario("Dades del tràmit");
+      Thread.sleep(3000);
       AccionComun.aceptarSubmit();
+      Asercion.validarElemento("(//span[normalize-space()='Documentació'])[1]");
 
       // Paso 5
       //Condición - Page Is "autorització de consulta de dades"
-      Thread.sleep(5000);
-      AccionComun.validarTextoFormulario("Documentació");
+      Thread.sleep(3000);
       AccionComun.aceptarSubmit();
+      Asercion.validarElemento("(//span[normalize-space()='Resum'])[1]");
 
       // Paso 6
       //Condición - Page Is "autorització de consulta de dades"
-      Thread.sleep(5000);
-      AccionComun.validarTextoFormulario("Resum");
+      Thread.sleep(3000);
       AccionComun.aceptarSubmit();
+      Asercion.validarElemento("(//span[normalize-space()='Enviament (registre/signatura)'])[1]");
 
       // Paso 7
       //Condición - Page is "decarregeu el vostre document"
-      AccionComun.validarTextoFormulario("Enviament (registre/signatura)");
       AccionComun.enviarTramite();
+      Thread.sleep(30000);
+      Asercion.validarElemento("//p[contains(text(), 'Tràmit realitzat')]");
 
       // Paso 8
-      Thread.sleep(30000);
       AccionComun.guardarYCerrarTramite();
+      Asercion.validarElemento("//p[normalize-space()='Cerqueu el que us interessa']");
 
-      System.out.println("Test " + testId + "completado");
+      System.out.println("Test " + testId + " finalizado");
 
-    } catch (TimeoutException | NoSuchElementException e) {
+    } catch (Exception e) {
       String errorCause = "" + e.getClass();
       errorCause = errorCause.substring(errorCause.lastIndexOf(".") + 1, errorCause.length());
 
       AccionComun.takeScreenshoot(testId + " - " + errorCause);
 
       System.out.println("Fallo en el test " + testId + " (se ha guardado una captura de pantalla en la carpeta sreenshots)");
+      Assert.fail(errorCause);
     }
   }
 
@@ -1079,29 +1053,19 @@ public class Main {
   @Test(description = "IMI_TC023 - Trámite Volante De Residencia", enabled = true)
 
   public void IMI_TC023() throws InterruptedException, IOException {
+
+    testId = "IMI_TC023";
     try {
 
       // Precondición
 
       IMI_TC007_APOV001();
-      testId = "IMI_TC023";
 
       wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='virtual-ofice vertical-align-c']//p[@class='font s18 black regular'][normalize-space()='Oficina Virtual de Tràmits']"))).click();
 
       // Paso 1
 
-      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//app-root")));
-
-      Assert.assertTrue(driver.findElement(By.xpath("//input[@name=\"searchWord\"]")).isDisplayed());
-
-      driver.findElement(By.xpath("//input[@name=\"searchWord\"]")).sendKeys("volant");
-
-      driver.findElement(By.xpath("//input[@name=\"searchWord\"]")).sendKeys(Keys.RETURN);
-
-      wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//div[contains(@class,\"media-body\")])[1]")));
-    
-      List<WebElement> list = driver.findElements(By.xpath("//*[contains(text(),'" + "volant" + "')]"));
-      Assert.assertTrue(list.size() > 0);
+      AccionComun.realizarBusqueda("volant");
 
       // Paso 2
 
@@ -1109,60 +1073,27 @@ public class Main {
 
       // Paso 3
 
-      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='buttons-header both-buttons']//div[contains(text(),'Inicia el tràmit')]")));
-
-      wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(@class, 'bg-spinner-file')]")));
-
-      driver.findElement(By.xpath("//div[@class='buttons-header both-buttons']//div[contains(text(),'Inicia el tràmit')]")).click();
-
-      Thread.sleep(2000);
+      AccionComun.iniciarTramiteVolant();
 
       // Paso 4
 
-      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@id='botonNext']"))).click();
-
-      Assert.assertTrue(driver.findElement(By.xpath("//button[@id='botonNext']")).isDisplayed());
-
-      Thread.sleep(10000);
-
-      JavascriptExecutor js = (JavascriptExecutor) driver;
-      js.executeScript("window.scrollBy(0,1500)", "");
-
-      Thread.sleep(2000);
-
-      driver.findElement(By.xpath("/html/body/app-root/app-personal-space-layout/div/app-residence-certificate/app-wizard-step/div/div/div/div/form/section[4]/div/div/div/div/div[2]/div[3]/div[2]/label")).click();  
-
-      driver.findElement(By.xpath("//*[@id=\"dataForm\"]/app-wizard-buttons/main/footer/div/div/div[2]/div/div[2]/button")).click();   
+      AccionComun.rellenarFormularioVolant();   
 
       // Paso 5
 
-      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//p[@class='m-0 p-0 finalStep-documentText']")));
-
-      Assert.assertTrue(driver.findElement(By.xpath("//div[@class='virtual-ofice vertical-align-c']//a")).isDisplayed());
-
-      driver.findElement(By.xpath("//div[@class='virtual-ofice vertical-align-c']//a")).click();
+      AccionComun.finalizarTramiteVolant();
 
       // Paso 6
 
-      Thread.sleep(2000);
-
-      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//app-root")));
-
-      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"home-tab\"]")));
-
-      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"tabMainContent\"]")));
-
-      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@name=\"searchWord\"]")));
+      AccionComun.validarPaginaBienvenida();
     }
-    catch (Exception e) {
+    catch (TimeoutException | NoSuchElementException e) {
       String errorCause = "" + e.getClass();
       errorCause = errorCause.substring(errorCause.lastIndexOf(".") + 1, errorCause.length());
- 
+  
       AccionComun.takeScreenshoot(testId + " - " + errorCause);
- 
+  
       System.out.println("Fallo en el test " + testId + " (se ha guardado una captura de pantalla en la carpeta sreenshots)");
- 
-      Assert.fail(errorCause);
     }
 
   }

@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
@@ -7,17 +8,19 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
 public class AccionComun extends Main {
-  public static void clickarElementoWait(String xpath) {
-    wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath))).click();
-  }
+
   public static void navegarInfoFiscal() throws InterruptedException {
+    Asercion.validarElemento("//*[@id=\"profile-tab\"]");
     clickarElementoWait("//*[@id=\"profile-tab\"]");
+    Asercion.validarElemento("//*[@id=\"profile\"]/app-enterprise-tax/div[2]/div/div[1]/div/div[1]");
     clickarElementoWait("//*[@id=\"profile\"]/app-enterprise-tax/div[2]/div/div[1]/div/div[1]");
     esperarSegundos(2);
+    Asercion.validarElemento("//*[@id=\"ex1-tab-1\"]");
     clickarElementoWait("//*[@id=\"ex1-tab-1\"]");
   }
   public static void comprobarInfoFiscal() throws InterruptedException {
@@ -298,40 +301,184 @@ public class AccionComun extends Main {
     wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//table//tbody//tr[1]//td[2]"))).getText().compareTo(tramitId);
   }
 
-  public static void navegarAreaNotificaciones() throws InterruptedException {
-    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//div[contains(@class, 'options-desktop')])//p[2]")));
+      public static void navegarAreaNotificaciones() throws InterruptedException, IOException {
 
-    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(@class, 'bg-spinner-file')]")));
+    Asercion.validarElemento("(//div[contains(@class, 'options-desktop')])//p[2]");
 
-    driver.findElement(By.xpath("(//div[contains(@class, 'options-desktop')])//p[2]")).click();
+    Asercion.validarElementoInvisible("//div[contains(@class, 'bg-spinner-file')]");
 
-    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//app-notifications")));
+    clickarElemento("(//div[contains(@class, 'options-desktop')])//p[2]");
 
-    Thread.sleep(2000);
+    Asercion.validarElemento("//app-notifications");
+
+    esperarSegundos(2);
+
+    takeScreenshoot("navegarAreaNotificaciones");
   }
 
   public static void navegarDatosSuscripcion() throws InterruptedException {
-      Assert.assertTrue(driver.findElement(By.xpath("//div[contains(@class, 'personal-space')]//div[3]//button")).isEnabled());
+      Asercion.validarElemento("//div[contains(@class, 'personal-space')]//div[3]//button");
 
-      driver.findElement(By.xpath("//div[contains(@class, 'personal-space')]//div[3]//button")).click();
+      clickarElemento("//div[contains(@class, 'personal-space')]//div[3]//button");
+
+      esperarSegundos(5);
+
+      Asercion.validarTexto("//p[@class='title-fitxa mobile font s32 black semi m-0']", "Registre de subscriptors al servei de Notificació Electrònica");
   }
 
-  public static void cambiarNumTelefono(String numero) throws InterruptedException {
-    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[contains(@formcontrolname, 'telephone')]")));
+  public static void cambiarNumTelefono(String numero) throws InterruptedException, IOException {
+    Asercion.validarElemento("//input[contains(@formcontrolname, 'telephone')]");
 
-    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(@class, 'bg-spinner-file')]")));
+    Asercion.validarElementoInvisible("//div[contains(@class, 'bg-spinner-file')]");
 
-    driver.findElement(By.xpath("//input[contains(@formcontrolname, 'telephone')]")).sendKeys(numero);
+    enviarTexto("//input[contains(@formcontrolname, 'telephone')]", numero);
 
-    Thread.sleep(2000);
+    esperarSegundos(2);
 
-    Assert.assertTrue(driver.findElement(By.xpath("//button[normalize-space()='Actualitzar dades']")).isEnabled());
+    takeScreenshoot("Introducir Num Telefono");
 
-    driver.findElement(By.xpath("//button[normalize-space()='Actualitzar dades']")).click();
+    Asercion.validarElemento("//button[normalize-space()='Actualitzar dades']");
+
+    clickarElemento("//button[normalize-space()='Actualitzar dades']");
+  }
+
+  public static void comprobarCambioNumTelefono() throws InterruptedException {
+    clickarElementoWait("//div[@class='content-box-modal col-10 offset-1']//div[2]");
+
+    Asercion.validarElemento("//input[contains(@formcontrolname, 'telephone')]");
+
+    Asercion.validarElementoInvisible("//div[contains(@class, 'bg-spinner-file')]");
+
+    Asercion.validarElemento("//span[contains(text(), '123456789')]");
+  }
+
+  public static void buscarTramite(String numeroTramite) throws InterruptedException {
+    clickarElementoWait("//i[@class='fa bcn-icon-esquerra-bold']");
+
+    Asercion.validarElemento("(//section[contains(@class,\"check-tramit-status\")])[1]");
+
+    Asercion.validarElemento("//section[@class='check-tramit-status ie10up']");
+
+    WebElement element = driver.findElement(By.xpath("//section[@class='check-tramit-status ie10up']"));
+    ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+
+    esperarSegundos(2);
+
+    Asercion.validarElemento("//input[@placeholder='Introduïu el número']");
+
+    enviarTexto("//input[@placeholder='Introduïu el número']", numeroTramite);
+
+    pulsarEnter("//input[@placeholder='Introduïu el número']");
+  }
+
+  public static void comprobarBusquedaTramite(String numeroTramite) throws InterruptedException {
+    Asercion.validarElemento("//app-tramit-status-detail");
+
+    Asercion.validarElemento("//div[contains(@class,\"modal-subtitle\")]");
+
+    List<WebElement> list = driver.findElements(By.xpath("//*[contains(text(),'" + numeroTramite + "')]"));
+    Assert.assertTrue(list.size() > 0);
+  }
+
+  public static void accederEspacio2() throws InterruptedException {
+    driver.get("https://seuelectronica-int.ajuntament.bcn/oficinavirtual/ca");
+    clickarElementoWait("(//div[contains(@class,'person-space')])[2]//a");
+  }
+
+  public static void realizarBusqueda(String buscar) throws InterruptedException {
+    Asercion.validarElemento("//app-root");
+
+    Asercion.validarElemento("//input[@name=\"searchWord\"]");
+
+    enviarTexto("//input[@name=\"searchWord\"]", buscar);
+
+    pulsarEnter("//input[@name=\"searchWord\"]");
+
+    Asercion.validarElemento("(//div[contains(@class,\"media-body\")])[1]");
+  
+    List<WebElement> list = driver.findElements(By.xpath("//*[contains(text(),'" + buscar + "')]"));
+    Assert.assertTrue(list.size() > 0);
+  }
+
+  public static void iniciarTramiteVolant() throws InterruptedException {
+    Asercion.validarElemento("//div[@class='buttons-header both-buttons']//div[contains(text(),'Inicia el tràmit')]");
+
+    Asercion.validarElementoInvisible("//div[contains(@class, 'bg-spinner-file')]");
+
+    clickarElemento("//div[@class='buttons-header both-buttons']//div[contains(text(),'Inicia el tràmit')]");
+
+    esperarSegundos(2);
+  }
+
+  public static void rellenarFormularioVolant() throws InterruptedException, IOException {
+    clickarElementoWait("//button[@id='botonNext']");
+
+    Asercion.validarElemento("//button[@id='botonNext']");
+
+    esperarSegundos(10);
+
+    scrollDown(1500);
+
+    esperarSegundos(2);
+
+    takeScreenshoot("Ultimo Paso Formulario Volant");
+
+    clickarElemento("/html/body/app-root/app-personal-space-layout/div/app-residence-certificate/app-wizard-step/div/div/div/div/form/section[4]/div/div/div/div/div[2]/div[3]/div[2]/label"); 
+
+    clickarElemento("//*[@id=\"dataForm\"]/app-wizard-buttons/main/footer/div/div/div[2]/div/div[2]/button");
+  }
+
+  public static void finalizarTramiteVolant() throws InterruptedException, IOException {
+    Asercion.validarElemento("//p[@class='m-0 p-0 finalStep-documentText']");
+
+    takeScreenshoot("Finalizar Tramite Volant");
+
+    Asercion.validarElemento("//div[@class='virtual-ofice vertical-align-c']//a");
+
+    clickarElemento("//div[@class='virtual-ofice vertical-align-c']//a");
+  }
+
+  public static void validarPaginaBienvenida() throws InterruptedException {
+    esperarSegundos(2);
+
+    Asercion.validarElemento("//app-root");
+
+    Asercion.validarElemento("//*[@id=\"home-tab\"]");
+
+    Asercion.validarElemento("//*[@id=\"tabMainContent\"]");
+
+    Asercion.validarElemento("//input[@name=\"searchWord\"]");
+  }
+
+  public static void accederMisTramites() throws InterruptedException, IOException {
+    Asercion.validarElemento("//li[contains(@class,'enterprise')][2]");
+
+    takeScreenshoot("User accede Mis Tramites");
+
+    clickarElemento("//li[contains(@class,'enterprise')][2]");
+  }
+
+  public static void verDetalleTramite() throws InterruptedException, IOException {
+    Asercion.validarElemento("//p[contains(text(),'2023_EXP_49690')]");
+
+    takeScreenshoot("Ver Tramite");
+
+    clickarElemento("//p[contains(text(),'2023_EXP_49690')]");
+
+    esperarSegundos(5);
+
+    Asercion.validarTexto("//p[@class='mb-1 font s24 grey regular mt-4 pt-5']", "Detall");
+
+    takeScreenshoot("Ver Detalles Tramite");
+
   }
  
   public static void clickarElemento(String xpath) {
     driver.findElement(By.xpath(xpath)).click();
+  }
+
+  public static void clickarElementoWait(String xpath) {
+    wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath))).click();
   }
 
   public static void esperarSegundos(int segundos) throws InterruptedException {
