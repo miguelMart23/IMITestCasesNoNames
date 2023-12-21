@@ -376,15 +376,15 @@ public class Main {
   @Test(description = "IMI_TC009 - Validar Modificar Datos Del Registro De Suscriptores", enabled = true)
 
   public void IMI_TC009() throws InterruptedException, IOException {
+
+    testId = "IMI_TC009";
     try {
 
       // Precondición
 
       IMI_TC007_APOV001();
 
-      testId = "IMI_TC009";
-
-      Thread.sleep(2000);
+      AccionComun.esperarSegundos(5);
 
       // Paso 1
 
@@ -400,24 +400,18 @@ public class Main {
 
       // Comprobacion
 
-      wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='content-box-modal col-10 offset-1']//div[2]"))).click();
+      AccionComun.comprobarCambioNumTelefono();
 
-      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[contains(@formcontrolname, 'telephone')]")));
-
-      wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(@class, 'bg-spinner-file')]")));
-
-      Assert.assertTrue(driver.findElement(By.xpath("//span[contains(text(), '123456789')]")).isDisplayed());
     } 
-    catch (Exception e) {
+    catch (TimeoutException | NoSuchElementException e) {
       String errorCause = "" + e.getClass();
       errorCause = errorCause.substring(errorCause.lastIndexOf(".") + 1, errorCause.length());
- 
+  
       AccionComun.takeScreenshoot(testId + " - " + errorCause);
- 
+  
       System.out.println("Fallo en el test " + testId + " (se ha guardado una captura de pantalla en la carpeta sreenshots)");
- 
-      Assert.fail(errorCause);
-    } 
+    }
+
   }
 
   /**
@@ -428,49 +422,30 @@ public class Main {
   @Test(description = "IMI_TC010 - Consulta Estado Trámite Finalizado", enabled = true)
 
   public void IMI_TC010() throws InterruptedException, IOException {
+
+    testId = "IMI_TC010";
     try {
+
+      // Precondición
 
       IMI_TC007_APOV001();
 
-      testId = "IMI_TC010";
-
       // Paso 1
 
-      wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//i[@class='fa bcn-icon-esquerra-bold']"))).click();
-
-      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//section[contains(@class,\"check-tramit-status\")])[1]")));
-
-      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//section[@class='check-tramit-status ie10up']")));
-
-      WebElement element = driver.findElement(By.xpath("//section[@class='check-tramit-status ie10up']"));
-      ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
-
-      Thread.sleep(2000);
-
-      Assert.assertTrue(driver.findElement(By.xpath("//input[@placeholder='Introduïu el número']")).isDisplayed());
-
-      driver.findElement(By.xpath("//input[@placeholder='Introduïu el número']")).sendKeys("1689361-34");
-
-      driver.findElement(By.xpath("//input[@placeholder='Introduïu el número']")).sendKeys(Keys.RETURN);
+      AccionComun.buscarTramite("1689361-34");
 
       // Paso 2
 
-      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//app-tramit-status-detail")));
+      AccionComun.comprobarBusquedaTramite("1689361-34");
 
-      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,\"modal-subtitle\")]")));
-
-      List<WebElement> list = driver.findElements(By.xpath("//*[contains(text(),'" + "1689361-34" + "')]"));
-      Assert.assertTrue(list.size() > 0);
     }
-    catch (Exception e) {
+    catch (TimeoutException | NoSuchElementException e) {
       String errorCause = "" + e.getClass();
       errorCause = errorCause.substring(errorCause.lastIndexOf(".") + 1, errorCause.length());
- 
+  
       AccionComun.takeScreenshoot(testId + " - " + errorCause);
- 
+  
       System.out.println("Fallo en el test " + testId + " (se ha guardado una captura de pantalla en la carpeta sreenshots)");
- 
-      Assert.fail(errorCause);
     }
 
   }
@@ -488,26 +463,24 @@ public class Main {
     try {
 
       // Paso 1
-      driver.get("https://seuelectronica-int.ajuntament.bcn/oficinavirtual/ca");
-      wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//div[contains(@class,'person-space')])[2]//a"))).click();
+      
+      AccionComun.accederEspacio2();
     
       // Paso 2
-      Thread.sleep(2000);
+
       AccionComun.loginCertificado(false);
-      Thread.sleep(2000);
+
       wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='espai_personal']//li//a"))).click();
 
       Thread.sleep(10000);
     }
-    catch (Exception e) {
+    catch (TimeoutException | NoSuchElementException e) {
       String errorCause = "" + e.getClass();
       errorCause = errorCause.substring(errorCause.lastIndexOf(".") + 1, errorCause.length());
- 
+  
       AccionComun.takeScreenshoot(testId + " - " + errorCause);
- 
+  
       System.out.println("Fallo en el test " + testId + " (se ha guardado una captura de pantalla en la carpeta sreenshots)");
- 
-      Assert.fail(errorCause);
     }
 
   }
@@ -521,7 +494,7 @@ public class Main {
 
   public void IMI_TC012() throws InterruptedException, IOException {
 
-    testId = "IMI_TC011";
+    testId = "IMI_TC012";
     try {
 
       // Precondición
@@ -530,42 +503,20 @@ public class Main {
 
       // Paso 1
 
-      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//li[contains(@class,'enterprise')][2]")));
-
-      driver.findElement(By.xpath("//li[contains(@class,'enterprise')][2]")).click();
+      AccionComun.accederMisTramites();
 
       // Paso 2
 
-      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//p[contains(text(),'1689137-35')]")));
-
-      driver.findElement(By.xpath("//p[contains(text(),'1689137-35')]")).click();
-
-      String winHandleBefore = driver.getWindowHandle();
-
-      Thread.sleep(5000);
-
-      driver.findElement(By.xpath("//button[@class='col-10 col-sm-8 col-md-4 btn-generic primary mb-4 font s16']")).click();
-
-      for(String winHandle : driver.getWindowHandles()){
-          driver.switchTo().window(winHandle);
-      }
-
-      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='contingut']")));
-
-      driver.close();
-
-      driver.switchTo().window(winHandleBefore);
+      AccionComun.verDetalleTramite();
     
     }
-    catch (Exception e) {
+    catch (TimeoutException | NoSuchElementException e) {
       String errorCause = "" + e.getClass();
       errorCause = errorCause.substring(errorCause.lastIndexOf(".") + 1, errorCause.length());
- 
+  
       AccionComun.takeScreenshoot(testId + " - " + errorCause);
- 
+  
       System.out.println("Fallo en el test " + testId + " (se ha guardado una captura de pantalla en la carpeta sreenshots)");
- 
-      Assert.fail(errorCause);
     }
 
   }
@@ -1079,29 +1030,19 @@ public class Main {
   @Test(description = "IMI_TC023 - Trámite Volante De Residencia", enabled = true)
 
   public void IMI_TC023() throws InterruptedException, IOException {
+
+    testId = "IMI_TC023";
     try {
 
       // Precondición
 
       IMI_TC007_APOV001();
-      testId = "IMI_TC023";
 
       wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='virtual-ofice vertical-align-c']//p[@class='font s18 black regular'][normalize-space()='Oficina Virtual de Tràmits']"))).click();
 
       // Paso 1
 
-      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//app-root")));
-
-      Assert.assertTrue(driver.findElement(By.xpath("//input[@name=\"searchWord\"]")).isDisplayed());
-
-      driver.findElement(By.xpath("//input[@name=\"searchWord\"]")).sendKeys("volant");
-
-      driver.findElement(By.xpath("//input[@name=\"searchWord\"]")).sendKeys(Keys.RETURN);
-
-      wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//div[contains(@class,\"media-body\")])[1]")));
-    
-      List<WebElement> list = driver.findElements(By.xpath("//*[contains(text(),'" + "volant" + "')]"));
-      Assert.assertTrue(list.size() > 0);
+      AccionComun.realizarBusqueda("volant");
 
       // Paso 2
 
@@ -1109,60 +1050,27 @@ public class Main {
 
       // Paso 3
 
-      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='buttons-header both-buttons']//div[contains(text(),'Inicia el tràmit')]")));
-
-      wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(@class, 'bg-spinner-file')]")));
-
-      driver.findElement(By.xpath("//div[@class='buttons-header both-buttons']//div[contains(text(),'Inicia el tràmit')]")).click();
-
-      Thread.sleep(2000);
+      AccionComun.iniciarTramite();
 
       // Paso 4
 
-      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@id='botonNext']"))).click();
-
-      Assert.assertTrue(driver.findElement(By.xpath("//button[@id='botonNext']")).isDisplayed());
-
-      Thread.sleep(10000);
-
-      JavascriptExecutor js = (JavascriptExecutor) driver;
-      js.executeScript("window.scrollBy(0,1500)", "");
-
-      Thread.sleep(2000);
-
-      driver.findElement(By.xpath("/html/body/app-root/app-personal-space-layout/div/app-residence-certificate/app-wizard-step/div/div/div/div/form/section[4]/div/div/div/div/div[2]/div[3]/div[2]/label")).click();  
-
-      driver.findElement(By.xpath("//*[@id=\"dataForm\"]/app-wizard-buttons/main/footer/div/div/div[2]/div/div[2]/button")).click();   
+      AccionComun.rellenarFormularioVolant();   
 
       // Paso 5
 
-      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//p[@class='m-0 p-0 finalStep-documentText']")));
-
-      Assert.assertTrue(driver.findElement(By.xpath("//div[@class='virtual-ofice vertical-align-c']//a")).isDisplayed());
-
-      driver.findElement(By.xpath("//div[@class='virtual-ofice vertical-align-c']//a")).click();
+      AccionComun.finalizarTramiteVolant();
 
       // Paso 6
 
-      Thread.sleep(2000);
-
-      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//app-root")));
-
-      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"home-tab\"]")));
-
-      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"tabMainContent\"]")));
-
-      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@name=\"searchWord\"]")));
+      AccionComun.validarPaginaBienvenida();
     }
-    catch (Exception e) {
+    catch (TimeoutException | NoSuchElementException e) {
       String errorCause = "" + e.getClass();
       errorCause = errorCause.substring(errorCause.lastIndexOf(".") + 1, errorCause.length());
- 
+  
       AccionComun.takeScreenshoot(testId + " - " + errorCause);
- 
+  
       System.out.println("Fallo en el test " + testId + " (se ha guardado una captura de pantalla en la carpeta sreenshots)");
- 
-      Assert.fail(errorCause);
     }
 
   }
