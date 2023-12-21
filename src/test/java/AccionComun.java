@@ -298,7 +298,7 @@ public class AccionComun extends Main {
     wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//table//tbody//tr[1]//td[2]"))).getText().compareTo(tramitId);
   }
 
-    public static void navegarAreaNotificaciones() throws InterruptedException {
+      public static void navegarAreaNotificaciones() throws InterruptedException, IOException {
 
     Asercion.validarElemento("(//div[contains(@class, 'options-desktop')])//p[2]");
 
@@ -309,6 +309,8 @@ public class AccionComun extends Main {
     Asercion.validarElemento("//app-notifications");
 
     esperarSegundos(2);
+
+    takeScreenshoot("navegarAreaNotificaciones");
   }
 
   public static void navegarDatosSuscripcion() throws InterruptedException {
@@ -321,7 +323,7 @@ public class AccionComun extends Main {
       Asercion.validarTexto("//p[@class='title-fitxa mobile font s32 black semi m-0']", "Registre de subscriptors al servei de Notificació Electrònica");
   }
 
-  public static void cambiarNumTelefono(String numero) throws InterruptedException {
+  public static void cambiarNumTelefono(String numero) throws InterruptedException, IOException {
     Asercion.validarElemento("//input[contains(@formcontrolname, 'telephone')]");
 
     Asercion.validarElementoInvisible("//div[contains(@class, 'bg-spinner-file')]");
@@ -329,6 +331,8 @@ public class AccionComun extends Main {
     enviarTexto("//input[contains(@formcontrolname, 'telephone')]", numero);
 
     esperarSegundos(2);
+
+    takeScreenshoot("Introducir Num Telefono");
 
     Asercion.validarElemento("//button[normalize-space()='Actualitzar dades']");
 
@@ -403,7 +407,7 @@ public class AccionComun extends Main {
     esperarSegundos(2);
   }
 
-  public static void rellenarFormularioVolant() throws InterruptedException {
+  public static void rellenarFormularioVolant() throws InterruptedException, IOException {
     clickarElementoWait("//button[@id='botonNext']");
 
     Asercion.validarElemento("//button[@id='botonNext']");
@@ -414,13 +418,17 @@ public class AccionComun extends Main {
 
     esperarSegundos(2);
 
+    takeScreenshoot("Ultimo Paso Formulario Volant");
+
     clickarElemento("/html/body/app-root/app-personal-space-layout/div/app-residence-certificate/app-wizard-step/div/div/div/div/form/section[4]/div/div/div/div/div[2]/div[3]/div[2]/label"); 
 
     clickarElemento("//*[@id=\"dataForm\"]/app-wizard-buttons/main/footer/div/div/div[2]/div/div[2]/button");
   }
 
-  public static void finalizarTramiteVolant() throws InterruptedException {
+  public static void finalizarTramiteVolant() throws InterruptedException, IOException {
     Asercion.validarElemento("//p[@class='m-0 p-0 finalStep-documentText']");
+
+    takeScreenshoot("Finalizar Tramite Volant");
 
     Asercion.validarElemento("//div[@class='virtual-ofice vertical-align-c']//a");
 
@@ -439,20 +447,26 @@ public class AccionComun extends Main {
     Asercion.validarElemento("//input[@name=\"searchWord\"]");
   }
 
-  public static void accederMisTramites() throws InterruptedException {
+  public static void accederMisTramites() throws InterruptedException, IOException {
     Asercion.validarElemento("//li[contains(@class,'enterprise')][2]");
+
+    takeScreenshoot("User accede Mis Tramites");
 
     clickarElemento("//li[contains(@class,'enterprise')][2]");
   }
 
-  public static void verDetalleTramite() throws InterruptedException {
+  public static void verDetalleTramite() throws InterruptedException, IOException {
     Asercion.validarElemento("//p[contains(text(),'2023_EXP_49690')]");
+
+    takeScreenshoot("Ver Tramite");
 
     clickarElemento("//p[contains(text(),'2023_EXP_49690')]");
 
     esperarSegundos(5);
 
     Asercion.validarTexto("//p[@class='mb-1 font s24 grey regular mt-4 pt-5']", "Detall");
+
+    takeScreenshoot("Ver Detalles Tramite");
 
   }
  
