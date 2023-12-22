@@ -24,6 +24,7 @@ public class AccionComun extends Main {
     clickarElementoWait("//*[@id=\"ex1-tab-1\"]");
   }
   public static void comprobarInfoFiscal() throws InterruptedException {
+    esperarSegundos(5);
     String url = driver.getCurrentUrl();
       assert url.contains("enterprise-information/tax/vehicles");
       esperarSegundos(2);
