@@ -825,7 +825,7 @@ public class Main {
       AccionComun.esperarSegundos(1);
 
       // Condición
-      Asercion.validarElemento("//*[@id='page']");   //////////////////////////////// PROBAR ESTO
+      Asercion.validarElemento("//*[text()=\" Dret d'accès a la informació pública \"]");   //////////////////////////////// PROBAR ESTO
 
       // - Paso 3
       // Acción - User Initiates Process
@@ -838,18 +838,14 @@ public class Main {
       AccionComun.esperarSegundos(1);
 
       // Condición
-      Asercion.validarElemento("//*[@id='page']");  //////////////////////////////// PROBAR ESTO
+      Asercion.validarElemento("(//div[contains(@class,'modal-dialog')])[3]");  //////////////////////////////// PROBAR ESTO
 
       // Paso 4
       // Acción - User Confirms Dialog
-      Asercion.validarElemento("(//div[contains(@class,'modal-dialog')])[3]");
-
-      Asercion.validarElementoInvisible("(//div[contains(@class,'modal-dialog')]//button)[5]");
-
       AccionComun.clickarElemento("(//div[contains(@class,'modal-dialog')]//button)[5]");
 
       // Condición
-      Asercion.validarElemento("//*[@id='page']");  //////////////////////////////// PROBAR ESTO
+      Asercion.validarElemento("//*[@id='loginform']");  //////////////////////////////// PROBAR ESTO
 
       // Paso 5
       // Acción - User Sign In With Certificate
@@ -879,7 +875,7 @@ public class Main {
       AccionComun.enviarTexto("(//textarea)[3]", "format test");
 
       // Condición
-      Asercion.validarElemento("//*[@id='page']");  //////////////////////////////// PROBAR ESTO
+      Asercion.validarElemento("//button[@value='Següent']");  //////////////////////////////// PROBAR ESTO
 
       // Paso 8
       // Acción - User Clicks Next
@@ -897,7 +893,7 @@ public class Main {
       AccionComun.clickarElemento("//*[text()=\" D'ACORD \"]");
 
       // Condición
-      Asercion.validarElemento("//*[@id='page']");  //////////////////////////////// PROBAR ESTO
+      Asercion.validarElemento("//button[@value='Següent']");  //////////////////////////////// PROBAR ESTO
 
       // Paso 10
       // Acción - User Clicks Next
