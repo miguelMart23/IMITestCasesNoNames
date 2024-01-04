@@ -94,7 +94,7 @@ public class Main {
       String errorCause = "" + e.getClass();
       errorCause = errorCause.substring(errorCause.lastIndexOf(".") + 1, errorCause.length());
 
-      AccionComun.takeScreenshoot(testId + " - " + errorCause);
+      AccionComun.takeScreenshot(testId + " - " + errorCause);
 
       System.out.println("Fallo en el test " + testId + " (se ha guardado una captura de pantalla en la carpeta sreenshots)");
       Assert.fail(errorCause);
@@ -128,7 +128,7 @@ public class Main {
       String errorCause = "" + e.getClass();
       errorCause = errorCause.substring(errorCause.lastIndexOf(".") + 1, errorCause.length());
 
-      AccionComun.takeScreenshoot(testId + " - " + errorCause);
+      AccionComun.takeScreenshot(testId + " - " + errorCause);
 
       System.out.println("Fallo en el test " + testId + " (se ha guardado una captura de pantalla en la carpeta sreenshots)");
 
@@ -178,7 +178,7 @@ public class Main {
       String errorCause = "" + e.getClass();
       errorCause = errorCause.substring(errorCause.lastIndexOf(".") + 1, errorCause.length());
 
-      AccionComun.takeScreenshoot(testId + " - " + errorCause);
+      AccionComun.takeScreenshot(testId + " - " + errorCause);
 
       System.out.println("Fallo en el test " + testId + " (se ha guardado una captura de pantalla en la carpeta sreenshots)");
       Assert.fail(errorCause);
@@ -217,7 +217,7 @@ public class Main {
       String errorCause = "" + e.getClass();
       errorCause = errorCause.substring(errorCause.lastIndexOf(".") + 1, errorCause.length());
 
-      AccionComun.takeScreenshoot(testId + " - " + errorCause);
+      AccionComun.takeScreenshot(testId + " - " + errorCause);
 
       System.out.println("Fallo en el test " + testId + " (se ha guardado una captura de pantalla en la carpeta sreenshots)");
       Assert.fail(errorCause);
@@ -251,7 +251,7 @@ public class Main {
       String errorCause = "" + e.getClass();
       errorCause = errorCause.substring(errorCause.lastIndexOf(".") + 1, errorCause.length());
 
-      AccionComun.takeScreenshoot(testId + " - " + errorCause);
+      AccionComun.takeScreenshot(testId + " - " + errorCause);
 
       System.out.println("Fallo en el test " + testId + " (se ha guardado una captura de pantalla en la carpeta sreenshots)");
       Assert.fail(errorCause);
@@ -310,7 +310,7 @@ public class Main {
       String errorCause = "" + e.getClass();
       errorCause = errorCause.substring(errorCause.lastIndexOf(".") + 1, errorCause.length());
 
-      AccionComun.takeScreenshoot(testId + " - " + errorCause);
+      AccionComun.takeScreenshot(testId + " - " + errorCause);
 
       System.out.println("Fallo en el test " + testId + " (se ha guardado una captura de pantalla en la carpeta sreenshots)");
       Assert.fail(errorCause);
@@ -344,7 +344,7 @@ public class Main {
       String errorCause = "" + e.getClass();
       errorCause = errorCause.substring(errorCause.lastIndexOf(".") + 1, errorCause.length());
 
-      AccionComun.takeScreenshoot(testId + " - " + errorCause);
+      AccionComun.takeScreenshot(testId + " - " + errorCause);
 
       System.out.println("Fallo en el test " + testId + " (se ha guardado una captura de pantalla en la carpeta sreenshots)");
       Assert.fail(errorCause);
@@ -377,7 +377,7 @@ public class Main {
       String errorCause = "" + e.getClass();
       errorCause = errorCause.substring(errorCause.lastIndexOf(".") + 1, errorCause.length());
 
-      AccionComun.takeScreenshoot(testId + " - " + errorCause);
+      AccionComun.takeScreenshot(testId + " - " + errorCause);
 
       System.out.println("Fallo en el test " + testId + " (se ha guardado una captura de pantalla en la carpeta sreenshots)");
       Assert.fail(errorCause);
@@ -423,7 +423,7 @@ public class Main {
       String errorCause = "" + e.getClass();
       errorCause = errorCause.substring(errorCause.lastIndexOf(".") + 1, errorCause.length());
   
-      AccionComun.takeScreenshoot(testId + " - " + errorCause);
+      AccionComun.takeScreenshot(testId + " - " + errorCause);
   
       System.out.println("Fallo en el test " + testId + " (se ha guardado una captura de pantalla en la carpeta sreenshots)");
     }
@@ -459,7 +459,7 @@ public class Main {
       String errorCause = "" + e.getClass();
       errorCause = errorCause.substring(errorCause.lastIndexOf(".") + 1, errorCause.length());
   
-      AccionComun.takeScreenshoot(testId + " - " + errorCause);
+      AccionComun.takeScreenshot(testId + " - " + errorCause);
   
       System.out.println("Fallo en el test " + testId + " (se ha guardado una captura de pantalla en la carpeta sreenshots)");
     }
@@ -494,7 +494,7 @@ public class Main {
       String errorCause = "" + e.getClass();
       errorCause = errorCause.substring(errorCause.lastIndexOf(".") + 1, errorCause.length());
   
-      AccionComun.takeScreenshoot(testId + " - " + errorCause);
+      AccionComun.takeScreenshot(testId + " - " + errorCause);
   
       System.out.println("Fallo en el test " + testId + " (se ha guardado una captura de pantalla en la carpeta sreenshots)");
     }
@@ -530,7 +530,7 @@ public class Main {
       String errorCause = "" + e.getClass();
       errorCause = errorCause.substring(errorCause.lastIndexOf(".") + 1, errorCause.length());
   
-      AccionComun.takeScreenshoot(testId + " - " + errorCause);
+      AccionComun.takeScreenshot(testId + " - " + errorCause);
   
       System.out.println("Fallo en el test " + testId + " (se ha guardado una captura de pantalla en la carpeta sreenshots)");
     }
@@ -554,7 +554,7 @@ public class Main {
       String errorCause = "" + e.getClass();
       errorCause = errorCause.substring(errorCause.lastIndexOf(".") + 1, errorCause.length());
 
-      AccionComun.takeScreenshoot(testId + " - " + errorCause);
+      AccionComun.takeScreenshot(testId + " - " + errorCause);
 
       System.out.println("Fallo en el test " + testId + " (se ha guardado una captura de pantalla en la carpeta sreenshots)");
     }
@@ -575,7 +575,7 @@ public class Main {
       String errorCause = "" + e.getClass();
       errorCause = errorCause.substring(errorCause.lastIndexOf(".") + 1, errorCause.length());
 
-      AccionComun.takeScreenshoot(testId + " - " + errorCause);
+      AccionComun.takeScreenshot(testId + " - " + errorCause);
 
       System.out.println("Fallo en el test " + testId + " (se ha guardado una captura de pantalla en la carpeta sreenshots)");
     }
@@ -602,7 +602,7 @@ public class Main {
       String errorCause = "" + e.getClass();
       errorCause = errorCause.substring(errorCause.lastIndexOf(".") + 1, errorCause.length());
 
-      AccionComun.takeScreenshoot(testId + " - " + errorCause);
+      AccionComun.takeScreenshot(testId + " - " + errorCause);
 
       System.out.println("Fallo en el test " + testId + " (se ha guardado una captura de pantalla en la carpeta sreenshots)");
     }
@@ -624,7 +624,7 @@ public class Main {
       String errorCause = "" + e.getClass();
       errorCause = errorCause.substring(errorCause.lastIndexOf(".") + 1, errorCause.length());
 
-      AccionComun.takeScreenshoot(testId + " - " + errorCause);
+      AccionComun.takeScreenshot(testId + " - " + errorCause);
 
       System.out.println("Fallo en el test " + testId + " (se ha guardado una captura de pantalla en la carpeta sreenshots)");
     }
@@ -658,7 +658,7 @@ public class Main {
       String errorCause = "" + e.getClass();
       errorCause = errorCause.substring(errorCause.lastIndexOf(".") + 1, errorCause.length());
 
-      AccionComun.takeScreenshoot(testId + " - " + errorCause);
+      AccionComun.takeScreenshot(testId + " - " + errorCause);
 
       System.out.println("Fallo en el test " + testId + " (se ha guardado una captura de pantalla en la carpeta sreenshots)");
     }
@@ -691,7 +691,7 @@ public class Main {
       String errorCause = "" + e.getClass();
       errorCause = errorCause.substring(errorCause.lastIndexOf(".") + 1, errorCause.length());
 
-      AccionComun.takeScreenshoot(testId + " - " + errorCause);
+      AccionComun.takeScreenshot(testId + " - " + errorCause);
 
       System.out.println("Fallo en el test " + testId + " (se ha guardado una captura de pantalla en la carpeta sreenshots)");
 
@@ -725,7 +725,7 @@ public class Main {
       String errorCause = "" + e.getClass();
       errorCause = errorCause.substring(errorCause.lastIndexOf(".") + 1, errorCause.length());
 
-      AccionComun.takeScreenshoot(testId + " - " + errorCause);
+      AccionComun.takeScreenshot(testId + " - " + errorCause);
 
       System.out.println("Fallo en el test " + testId + " (se ha guardado una captura de pantalla en la carpeta sreenshots)");
     }
@@ -786,7 +786,7 @@ public class Main {
       String errorCause = "" + e.getClass();
       errorCause = errorCause.substring(errorCause.lastIndexOf(".") + 1, errorCause.length());
 
-      AccionComun.takeScreenshoot(testId + " - " + errorCause);
+      AccionComun.takeScreenshot(testId + " - " + errorCause);
 
       System.out.println("Fallo en el test " + testId + " (se ha guardado una captura de pantalla en la carpeta sreenshots)");
     }
@@ -967,7 +967,7 @@ public class Main {
       String errorCause = "" + e.getClass();
       errorCause = errorCause.substring(errorCause.lastIndexOf(".") + 1, errorCause.length());
 
-      AccionComun.takeScreenshoot(testId + " - " + errorCause);
+      AccionComun.takeScreenshot(testId + " - " + errorCause);
 
       System.out.println("Fallo en el test " + testId + " (se ha guardado una captura de pantalla en la carpeta sreenshots)");
     }
@@ -1032,7 +1032,7 @@ public class Main {
       String errorCause = "" + e.getClass();
       errorCause = errorCause.substring(errorCause.lastIndexOf(".") + 1, errorCause.length());
 
-      AccionComun.takeScreenshoot(testId + " - " + errorCause);
+      AccionComun.takeScreenshot(testId + " - " + errorCause);
 
       System.out.println("Fallo en el test " + testId + " (se ha guardado una captura de pantalla en la carpeta sreenshots)");
       Assert.fail(errorCause);
@@ -1085,7 +1085,7 @@ public class Main {
       String errorCause = "" + e.getClass();
       errorCause = errorCause.substring(errorCause.lastIndexOf(".") + 1, errorCause.length());
   
-      AccionComun.takeScreenshoot(testId + " - " + errorCause);
+      AccionComun.takeScreenshot(testId + " - " + errorCause);
   
       System.out.println("Fallo en el test " + testId + " (se ha guardado una captura de pantalla en la carpeta sreenshots)");
     }

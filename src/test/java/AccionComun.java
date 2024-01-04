@@ -242,7 +242,7 @@ public class AccionComun extends Main {
   public static void takeScreenshot(String nombreFoto) throws IOException {
       scrshot = ((TakesScreenshot)driver);
       srcFile = scrshot.getScreenshotAs(OutputType.FILE);
-      destFile = new File("./screenshotss/"+java.time.LocalDate.now()+"/"+nombreFoto+".png");
+      destFile = new File("./screenshots/"+java.time.LocalDate.now()+"/"+nombreFoto+".png");
       FileUtils.copyFile(srcFile, destFile);
   }
 
