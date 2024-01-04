@@ -56,7 +56,7 @@ public class AccionComun extends Main {
       wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(("//input[@name=\"searchWord\"]")))).sendKeys(busqueda);
       // Asserts
       Assert.assertTrue(driver.findElements(By.xpath("//strong[text()=\""+busqueda+"\"]")).isEmpty());
-      AccionComun.takeScreenshoot("IMI_TC002-Search.png");
+      AccionComun.takeScreenshot("IMI_TC002-Search.png");
 
   }
 
@@ -177,7 +177,7 @@ public class AccionComun extends Main {
   }
 
   public static void validarFormulario() throws IOException {
-    AccionComun.takeScreenshoot("validateForm.png");
+    AccionComun.takeScreenshot("validateForm.png");
 
     JavascriptExecutor js = (JavascriptExecutor) driver;
     js.executeScript("window.scrollBy(0,1200)", "");
@@ -189,7 +189,7 @@ public class AccionComun extends Main {
 
     wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@id='firmaNueva']"))).click();
     wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@name='certificat']/span[@class='txt']"))).click();
-    AccionComun.takeScreenshoot("sendedTramit.png");
+    AccionComun.takeScreenshot("sendedTramit.png");
 
     Thread.sleep(20000);
    
@@ -239,10 +239,10 @@ public class AccionComun extends Main {
     driver.findElement(By.xpath(xpath)).sendKeys(Keys.ENTER);
   }
 
-  public static void takeScreenshoot(String nombreFoto) throws IOException {
+  public static void takeScreenshot(String nombreFoto) throws IOException {
       scrshot = ((TakesScreenshot)driver);
       srcFile = scrshot.getScreenshotAs(OutputType.FILE);
-      destFile = new File("./screenshoots/"+java.time.LocalDate.now()+"/"+nombreFoto+".png");
+      destFile = new File("./screenshotss/"+java.time.LocalDate.now()+"/"+nombreFoto+".png");
       FileUtils.copyFile(srcFile, destFile);
   }
 
@@ -267,7 +267,7 @@ public class AccionComun extends Main {
     scrollDown(600);
     wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//p[contains(@class,'referencia')][1]/span")));
     // Paso 2
-    takeScreenshoot("IMI_TC003-Correct_Operation_Number-1");
+    takeScreenshot("IMI_TC003-Correct_Operation_Number-1");
     // Paso 3
     String tramitId = driver.findElement(By.xpath("//p[contains(@class,'referencia')][1]/span")).getText();
     // Paso 4
@@ -277,7 +277,7 @@ public class AccionComun extends Main {
     // Paso 6
     wait.until(ExpectedConditions.not(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class, 'bg-spinner-file')]"))));
     // Paso 7
-    takeScreenshoot("IMI_TC003-Correct_Operation_Number-2");
+    takeScreenshot("IMI_TC003-Correct_Operation_Number-2");
     // Paso 8
     driver.findElement(By.xpath("//a[@id='home-tab']")).click();
     /* 
@@ -287,7 +287,7 @@ public class AccionComun extends Main {
     wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//app-query-tramit-detail")));
     wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//app-query-tramit-detail")));
     // Paso 11
-    takeScreenshoot("IMI_TC003-Correct_Operation_Number-3");
+    takeScreenshot("IMI_TC003-Correct_Operation_Number-3");
     // Paso 12 
     String originalWindow = driver.getWindowHandle();
     wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@class,'col-10 col-sm-8 col-md-4 btn-generic primary mb-4 font s16')]"))).click();
@@ -316,7 +316,7 @@ public class AccionComun extends Main {
 
     esperarSegundos(2);
 
-    takeScreenshoot("navegarAreaNotificaciones");
+    takeScreenshot("navegarAreaNotificaciones");
   }
 
   public static void navegarDatosSuscripcion() throws InterruptedException {
@@ -338,7 +338,7 @@ public class AccionComun extends Main {
 
     esperarSegundos(2);
 
-    takeScreenshoot("Introducir Num Telefono");
+    takeScreenshot("Introducir Num Telefono");
 
     Asercion.validarElemento("//button[normalize-space()='Actualitzar dades']");
 
@@ -424,7 +424,7 @@ public class AccionComun extends Main {
 
     esperarSegundos(2);
 
-    takeScreenshoot("Ultimo Paso Formulario Volant");
+    takeScreenshot("Ultimo Paso Formulario Volant");
 
     clickarElemento("/html/body/app-root/app-personal-space-layout/div/app-residence-certificate/app-wizard-step/div/div/div/div/form/section[4]/div/div/div/div/div[2]/div[3]/div[2]/label"); 
 
@@ -434,7 +434,7 @@ public class AccionComun extends Main {
   public static void finalizarTramiteVolant() throws InterruptedException, IOException {
     Asercion.validarElemento("//p[@class='m-0 p-0 finalStep-documentText']");
 
-    takeScreenshoot("Finalizar Tramite Volant");
+    takeScreenshot("Finalizar Tramite Volant");
 
     Asercion.validarElemento("//div[@class='virtual-ofice vertical-align-c']//a");
 
@@ -456,7 +456,7 @@ public class AccionComun extends Main {
   public static void accederMisTramites() throws InterruptedException, IOException {
     Asercion.validarElemento("//li[contains(@class,'enterprise')][2]");
 
-    takeScreenshoot("User accede Mis Tramites");
+    takeScreenshot("User accede Mis Tramites");
 
     clickarElemento("//li[contains(@class,'enterprise')][2]");
   }
@@ -464,7 +464,7 @@ public class AccionComun extends Main {
   public static void verDetalleTramite() throws InterruptedException, IOException {
     Asercion.validarElemento("//p[contains(text(),'2023_EXP_49690')]");
 
-    takeScreenshoot("Ver Tramite");
+    takeScreenshot("Ver Tramite");
 
     clickarElemento("//p[contains(text(),'2023_EXP_49690')]");
 
@@ -472,7 +472,7 @@ public class AccionComun extends Main {
 
     Asercion.validarTexto("//p[@class='mb-1 font s24 grey regular mt-4 pt-5']", "Detall");
 
-    takeScreenshoot("Ver Detalles Tramite");
+    takeScreenshot("Ver Detalles Tramite");
 
   }
  
