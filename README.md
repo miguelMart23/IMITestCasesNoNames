@@ -28,17 +28,14 @@ screenshots/: Almacena capturas de pantalla de diferentes expeciones o pasos en 
 
 Para ejecutar las pruebas, utiliza el siguiente comando:
 
-```bash
-Copy code
-mvn clean test
 Esto ejecutará todas las pruebas y generará informes en el directorio reports/. Puedes visualizar estos informes utilizando Allure Reports ejecutando:
 ```
-
+mvn clean test
 ```
-bash
-Copy code
-allure serve reports
+
 Esto abrirá una interfaz de usuario en tu navegador predeterminado para navegar y analizar los resultados de las pruebas.
+```
+allure serve reports
 ```
 
 ## Acerca del Proyecto
