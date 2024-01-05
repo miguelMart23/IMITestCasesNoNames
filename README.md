@@ -1,28 +1,45 @@
 # TestSuite para el Institut Municipal d'Informàtica de Barcelona
 
-Este repositorio contiene una Test Suite desarrollada en Selenium con Java para automatizar la prueba de la web del Institut Municipal d'Informàtica de Barcelona (IMI).
-
 ## Descripción
 
-La Test Suite se ha diseñado con el objetivo de realizar pruebas automatizadas en la web del IMI, asegurando la funcionalidad y estabilidad de la aplicación. Utiliza Selenium WebDriver, un marco de prueba de software para navegadores web, que permite simular las interacciones del usuario con la página web.
+Este repositorio contiene el código fuente y la configuración necesaria para llevar a cabo el desarrollo de pruebas automatizadas para la página web de la Oficina Virtual de Trámites de Barcelona. El proyecto está desarrollado en Java y utiliza herramientas como Selenium WebDriver y Allure Reports para garantizar la calidad y estabilidad de la plataforma.
 
-## Requisitos
+## Requisitos del Sistema
 
-Antes de ejecutar la Test Suite, asegúrate de tener instalados los siguientes componentes:
+Para ejecutar y contribuir al proyecto, asegúrate de contar con las siguientes herramientas y dependencias instaladas:
 
-- [Java](https://www.oracle.com/java/)
-- [Selenium WebDriver](https://www.selenium.dev/documentation/en/webdriver/) (asegúrate de tener el controlador adecuado para tu navegador)
-- [JUnit](https://junit.org/junit5/) (para ejecutar las pruebas)
+Java: Asegúrate de tener Java instalado en tu sistema. Puedes descargar la última versión desde java.com.
 
-## Configuración
+Selenium WebDriver: Se utiliza para interactuar con la interfaz de usuario de la aplicación web. Asegúrate de tener el controlador adecuado para el navegador que prefieras (por ejemplo, ChromeDriver o GeckoDriver).
 
-1. Clona este repositorio en tu máquina local:
+Allure Reports: Recientemente, se ha integrado la herramienta Allure Reports para mejorar la visualización y análisis de los resultados de las pruebas. Puedes obtener más información sobre Allure Reports en el sitio oficial.
 
-   ```bash
-   git clone https://github.com/miguelMart23/IMITestCasesNoNames.git
-   
-## Uso
-Ejecuta la Test Suite desde tu IDE o mediante la línea de comandos. Asegúrate de haber configurado correctamente las propiedades en los archivos de configuración.
+## Estructura del Proyecto
 
-## Licencia
-Este proyecto está bajo la Licencia MIT.
+El proyecto está organizado de la siguiente manera:
+
+src/test: Contiene los scripts de prueba desarrollados en Java con Selenium para validar la funcionalidad de la Oficina Virtual de Trámites de Barcelona.
+
+allure-results/: Almacena los informes generados por Allure Reports después de la ejecución de las pruebas.
+
+screenshots/: Almacena capturas de pantalla de diferentes expeciones o pasos en los tests.
+
+## Ejecución de Pruebas
+
+Para ejecutar las pruebas, utiliza el siguiente comando:
+
+bash
+Copy code
+mvn clean test
+Esto ejecutará todas las pruebas y generará informes en el directorio reports/. Puedes visualizar estos informes utilizando Allure Reports ejecutando:
+
+bash
+Copy code
+allure serve reports
+Esto abrirá una interfaz de usuario en tu navegador predeterminado para navegar y analizar los resultados de las pruebas.
+
+## Acerca del Proyecto
+
+Este proyecto tiene como objetivo principal desarrollar y mantener un conjunto robusto de pruebas automatizadas para la Oficina Virtual de Trámites de Barcelona. Las pruebas abarcan diversas áreas, como el registro de usuarios, la navegación por la plataforma y la realización de trámites.
+
+La integración de Allure Reports proporciona una visualización detallada de los resultados de las pruebas, facilitando la identificación y resolución de problemas. Contribuciones y mejoras al proyecto son bienvenidas para fortalecer la calidad de la aplicación y garantizar una experiencia fluida para los usuarios de la Oficina Virtual de Trámites de Barcelona.
